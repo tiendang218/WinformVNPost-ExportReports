@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\TIEN DANG\\source\\repos\\XuatExcelApp\\XuatExcelApp.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\TIEN DANG\\source\\repos\\XuatExcelApp\\XuatExcelApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\TIEN DANG\\source\\repos\\XuatExcelApp\\XuatExcelApp.csproj",
+        "projectName": "XuatExcelApp",
+        "projectPath": "C:\\Users\\TIEN DANG\\source\\repos\\XuatExcelApp\\XuatExcelApp.csproj",
+        "packagesPath": "C:\\Users\\TIEN DANG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TIEN DANG\\source\\repos\\XuatExcelApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\TIEN DANG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
+            "Microsoft.Office.Interop.Excel": {
+              "target": "Package",
+              "version": "[15.0.4795.1001, )"
+            },
+            "Microsoft.Office.Interop.Word": {
+              "target": "Package",
+              "version": "[15.0.4797.1004, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

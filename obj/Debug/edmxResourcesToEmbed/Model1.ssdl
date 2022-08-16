@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChungTuHCCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CT_HCC">
+    <Key>
+      <PropertyRef Name="SO_CT" />
+    </Key>
+    <Property Name="SO_CT" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="TEN_NGUOI_GUI" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DIA_CHI" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SO_HS_HCC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NGAY_HEN" Type="date" Nullable="false" />
+    <Property Name="NGAY_NHAN" Type="date" Nullable="false" />
+    <Property Name="TINH_NHAN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HUYEN_NHAN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="XA_NHAN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CUOC" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SO_HS_KEM" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DIEN_THOAI" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MA_LOAI_HS" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TRONG_LUONG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MA_BUUGUI" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="GHI_CHU" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOAI_HS">
+    <Key>
+      <PropertyRef Name="MA_LOAI_HS" />
+    </Key>
+    <Property Name="MA_LOAI_HS" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TEN_LOAI_HS" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_CT_HCC">
+    <End Role="LOAI_HS" Type="Self.LOAI_HS" Multiplicity="1" />
+    <End Role="CT_HCC" Type="Self.CT_HCC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAI_HS">
+        <PropertyRef Name="MA_LOAI_HS" />
+      </Principal>
+      <Dependent Role="CT_HCC">
+        <PropertyRef Name="MA_LOAI_HS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ChungTuHCCModelStoreContainer">
+    <EntitySet Name="CT_HCC" EntityType="Self.CT_HCC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAI_HS" EntityType="Self.LOAI_HS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CT_HCC" Association="Self.FK_CT_HCC">
+      <End Role="LOAI_HS" EntitySet="LOAI_HS" />
+      <End Role="CT_HCC" EntitySet="CT_HCC" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

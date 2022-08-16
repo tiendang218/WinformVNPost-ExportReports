@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChungTuHCCModelStoreContainer" CdmEntityContainer="ChungTuHCCEntities">
+    <EntitySetMapping Name="CT_HCC">
+      <EntityTypeMapping TypeName="ChungTuHCCModel.CT_HCC">
+        <MappingFragment StoreEntitySet="CT_HCC">
+          <ScalarProperty Name="SO_CT" ColumnName="SO_CT" />
+          <ScalarProperty Name="TEN_NGUOI_GUI" ColumnName="TEN_NGUOI_GUI" />
+          <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+          <ScalarProperty Name="SO_HS_HCC" ColumnName="SO_HS_HCC" />
+          <ScalarProperty Name="NGAY_HEN" ColumnName="NGAY_HEN" />
+          <ScalarProperty Name="NGAY_NHAN" ColumnName="NGAY_NHAN" />
+          <ScalarProperty Name="TINH_NHAN" ColumnName="TINH_NHAN" />
+          <ScalarProperty Name="HUYEN_NHAN" ColumnName="HUYEN_NHAN" />
+          <ScalarProperty Name="XA_NHAN" ColumnName="XA_NHAN" />
+          <ScalarProperty Name="CUOC" ColumnName="CUOC" />
+          <ScalarProperty Name="SO_HS_KEM" ColumnName="SO_HS_KEM" />
+          <ScalarProperty Name="DIEN_THOAI" ColumnName="DIEN_THOAI" />
+          <ScalarProperty Name="MA_LOAI_HS" ColumnName="MA_LOAI_HS" />
+          <ScalarProperty Name="TRONG_LUONG" ColumnName="TRONG_LUONG" />
+          <ScalarProperty Name="MA_BUUGUI" ColumnName="MA_BUUGUI" />
+          <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAI_HS">
+      <EntityTypeMapping TypeName="ChungTuHCCModel.LOAI_HS">
+        <MappingFragment StoreEntitySet="LOAI_HS">
+          <ScalarProperty Name="MA_LOAI_HS" ColumnName="MA_LOAI_HS" />
+          <ScalarProperty Name="TEN_LOAI_HS" ColumnName="TEN_LOAI_HS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ChungTuHCCModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ChungTuHCCModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ChungTuHCCModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ChungTuHCCModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ChungTuHCCModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChungTuHCCModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ChungTuHCCModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChungTuHCCModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ChungTuHCCModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ChungTuHCCModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

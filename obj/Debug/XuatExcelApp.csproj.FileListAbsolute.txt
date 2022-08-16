@@ -1,0 +1,16 @@
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\XuatExcelApp.exe.config
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\XuatExcelApp.exe
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\XuatExcelApp.pdb
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\EntityFramework.dll
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.csproj.AssemblyReference.cache
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.Form1.resources
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.Properties.Resources.resources
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.csproj.GenerateResource.cache
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.csproj.CoreCompileInputs.cache
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.csproj.CopyComplete
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.exe
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.pdb
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Microsoft.Office.Interop.Word.dll
