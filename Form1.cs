@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 
@@ -15,18 +8,16 @@ namespace XuatExcelApp
 {
     public partial class Form1 : Form
     {
-        SqlConnection cn;
+        SqlConnection cn = new SqlConnection(@"Data Source=KTNV-TIEN\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
         SqlCommand cmd;
         SqlDataAdapter da;
-
+        SqlDataReader dr;
         public Form1()
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            cn = new SqlConnection(@"Data Source=KTNV-TIEN\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
             cn.Open();
             //bind data in data grid view  
             Get_All_ChungTu();
@@ -34,9 +25,11 @@ namespace XuatExcelApp
             load_loai_hoso();
             LoadHuyen(tinh_comboBox2.SelectedValue.ToString());
             LoadXa(huyen_comboBox3.SelectedValue.ToString());
+            IN_BAOCAO(tinh_comboBox5.SelectedValue.ToString(), huyen_comboBox6.SelectedValue.ToString());
             ////disable delete and update button on load  
             Sửa.Enabled = true;
             Xóa.Enabled = true;
+            cn.Close();
         }
         private void Get_All_ChungTu()
         {
@@ -46,7 +39,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", "");
             cmd.Parameters.AddWithValue("@DIA_CHI", "");
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
-            cmd.Parameters.AddWithValue("@NGAY_HEN",DateTime.Today);
+            cmd.Parameters.AddWithValue("@NGAY_HEN", DateTime.Today);
             cmd.Parameters.AddWithValue("@NGAY_NHAN", DateTime.Today);
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
@@ -115,7 +108,7 @@ namespace XuatExcelApp
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Bản ghi được thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Get_All_ChungTu();
-                    so_ct_textbox.Text ="" ;
+                    so_ct_textbox.Text = "";
                     ten_box.Text = "";
                     diachi_box.Text = "";
                     so_hcc_box.Text = "";
@@ -137,7 +130,7 @@ namespace XuatExcelApp
                     MessageBox.Show("Điền thiếu dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            
+
             catch
             { MessageBox.Show("Lỗi xử lý dữ liệu hoặc dữ liệu đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         }
@@ -202,29 +195,25 @@ namespace XuatExcelApp
         }
         void LoadHuyen(string MaTinh)
         {
-            string sql = @"select * from HUYEN_TP where MA_TINH = @MaTinh";
-            SqlConnection con = cn = new SqlConnection(@"Data Source=KTNV-TIEN\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
-            con.Open();
-            SqlCommand cmd = new SqlCommand(sql, con);
+            string sql = @"select * from HUYEN_TP where MA_TINH = @MaTinh";   
+            SqlCommand cmd = new SqlCommand(sql, cn);
             SqlParameter para = new SqlParameter("@MaTinh", SqlDbType.NVarChar);
             para.Value = MaTinh;
             cmd.Parameters.Add(para);
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
             da.Fill(dt);
-                huyen_comboBox3.DataSource = dt;
-                huyen_comboBox3.DisplayMember = "TEN_HUYENTP";
-                huyen_comboBox3.ValueMember = "MA_HUYENTP";
-                huyen_comboBox6.DataSource = dt;
+            huyen_comboBox3.DataSource = dt;
+            huyen_comboBox3.DisplayMember = "TEN_HUYENTP";
+            huyen_comboBox3.ValueMember = "MA_HUYENTP";
+            huyen_comboBox6.DataSource = dt;
             huyen_comboBox6.DisplayMember = "TEN_HUYENTP";
             huyen_comboBox6.ValueMember = "MA_HUYENTP";
         }
         void LoadXa(string MaHuyen)
         {
             string sql = @"select * from XAPHUONG where MA_HUYENTP= @MaHuyen";
-            SqlConnection con = cn = new SqlConnection(@"Data Source=KTNV-TIEN\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
-            con.Open();
-            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlCommand cmd = new SqlCommand(sql, cn);
             SqlParameter para = new SqlParameter("@MaHuyen", SqlDbType.NVarChar);
             para.Value = MaHuyen;
             cmd.Parameters.Add(para);
@@ -245,7 +234,7 @@ namespace XuatExcelApp
             LoadHuyen(tinh_comboBox2.SelectedValue.ToString());
         }
         private void huyen_comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {   
+        {
             LoadXa(huyen_comboBox3.SelectedValue.ToString());
         }
 
@@ -328,7 +317,7 @@ namespace XuatExcelApp
         }
         private void Sửa_Click(object sender, EventArgs e)
         {
-            if (so_ct_textbox.Text != string.Empty )
+            if (so_ct_textbox.Text != string.Empty)
             {
                 cmd = new SqlCommand("CRUD", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -369,7 +358,7 @@ namespace XuatExcelApp
                 mabuugui.Text = "";
                 ghichu_textBox9.Text = "";
                 //Xóa.Enabled = false;
-              
+
             }
             else
             {
@@ -392,6 +381,7 @@ namespace XuatExcelApp
             worksheet = (_Worksheet)workbook.ActiveSheet;
             // changing the name of active sheet  
             worksheet.Name = "Exported from gridview";
+            worksheet.Columns.ColumnWidth = 15;
             // lấy dữ liệu tên cột
             for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
             {
@@ -405,22 +395,103 @@ namespace XuatExcelApp
                     worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
                 }
             }
-            // save the application  
-            //workbook.Save("D:\\baocaoexcel.xls", XlSaveAsAccessMode.xlExclusive);
-            //System.Windows.Forms.SaveFileDialog saveDlg = new System.Windows.Forms.SaveFileDialog();
-            //saveDlg.InitialDirectory = @"D:\";
-            //saveDlg.Filter = "Excel files (*.xls)|*.xlsx";
-            //saveDlg.FilterIndex = 0;    
-            //saveDlg.RestoreDirectory = true;
-            //saveDlg.Title = "Export Excel File To";
-            //if (saveDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ////document = new Document();
+            ////document.LoadFromFile(samplePath);
+            //////get strings to replace  
+            ////Dictionary<string, string> dictReplace = GetReplaceDictionary();
+            //////Replace text  
+            ////foreach (KeyValuePair<string, string> kvp in dictReplace)
+            ////{
+            ////    document.Replace(kvp.Key, kvp.Value, true, true);
+            ////}
+            //////Save doc file.  
+            ////document.SaveToFile(docxPath, FileFormat.Docx);
+            //////Convert to PDF  
+            ////document.SaveToFile(pdfPath, FileFormat.PDF);
+            ////MessageBox.Show("All tasks are finished.", "doc processing", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ////document.Close();
+            //WordDocument document = new WordDocument();
+            ////Add a section & a paragraph in the empty document
+            //document.EnsureMinimal();
+            ////Append text to the last paragraph of the document
+            //document.LastParagraph.AppendText("Hello World");
+            ////Save and close the Word document
+            //document.Save("Result.docx");
+            //document.Close();
+            cn.Open();
+            IN_BAOCAO((tinh_comboBox5.SelectedValue).ToString(), (huyen_comboBox6.SelectedValue).ToString());
+            cn.Close();
+        }
+        //Bitmap bitmap;
+        private Spire.Doc.Document document;
+
+        //private void CaptureScreen()
+        //{
+        //    Graphics myGraphics = this.CreateGraphics();
+        //    Size s = this.Size;
+        //    bitmap = new Bitmap(s.Width, s.Height, myGraphics);
+        //    Graphics memoryGraphics = Graphics.FromImage(bitmap);
+        //    memoryGraphics.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, s);
+        //}
+        void IN_BAOCAO(string ma_tinh, string ma_huyen)
+        {
+            SqlCommand cmd = new SqlCommand("dem_ban_ghi", cn); 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@tinh", ma_tinh));
+            cmd.Parameters.Add(new SqlParameter("@huyen", ma_huyen));
+            //Add parameters like this
+            int count = (int)cmd.ExecuteScalar();
+            baocao.ResetText();
+            baocao.Text = count.ToString();
+        }
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            //float linesPerPage = 0;
+            //float yPosition = 0;
+            //int count = 0;
+            //float leftMargin = e.MarginBounds.Left;
+            //float topMargin = e.MarginBounds.Top;
+            //string line = null;
+            //System.Drawing.Font printFont = new System.Drawing.Font("Arial", 24, FontStyle.Bold);
+            //StreamReader rd = new StreamReader(@"D:\Tai_lieu_nghiep_vu\Hướng dẫn lấy dữ liệu chứng từ chuyển trả, chuyển hoàn chuyển tiếp từ PNS về BCCP.docx");
+            //SolidBrush myBrush = new SolidBrush(Color.Black);
+            //// Work out the number of lines per page, using the MarginBounds.  
+            //linesPerPage = e.MarginBounds.Height / printFont.GetHeight(e.Graphics);
+            //// Iterate over the string using the StringReader, printing each line.  
+            //while (count < linesPerPage && ((line = rd.ReadLine()) != null))
             //{
-            //    string path = saveDlg.FileName;
-            //    workbook.SaveCopyAs(path);
-            //    workbook.Saved = true;
-            //    workbook.Close(true);
-            //    //app.Quit();
+            //    // calculate the next line position based on the height of the font according to the printing device  
+            //    yPosition = topMargin + (count * printFont.GetHeight(e.Graphics));
+            //    // draw the next line in the rich edit control  
+            //    e.Graphics.DrawString(line, printFont, myBrush, leftMargin, yPosition, new StringFormat());
+            //    count++;
             //}
+            //// If there are more lines, print another page.  
+            //if (line != null)
+            //    e.HasMorePages = true;
+            //else
+            //    e.HasMorePages = false;
+            //myBrush.Dispose();
+            
+        }
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cuoc_textBox8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
         }
     }
 }

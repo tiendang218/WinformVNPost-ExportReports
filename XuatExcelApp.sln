@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XuatExcelApp", "XuatExcelApp.csproj", "{2DA41F27-A3B9-4DA5-A899-A7E3ACAF03CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "..\TestProject1\TestProject1.csproj", "{0F230AC0-F141-43F4-8C07-AF36F4792EC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2DA41F27-A3B9-4DA5-A899-A7E3ACAF03CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DA41F27-A3B9-4DA5-A899-A7E3ACAF03CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DA41F27-A3B9-4DA5-A899-A7E3ACAF03CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F230AC0-F141-43F4-8C07-AF36F4792EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F230AC0-F141-43F4-8C07-AF36F4792EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F230AC0-F141-43F4-8C07-AF36F4792EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F230AC0-F141-43F4-8C07-AF36F4792EC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,6 +45,26 @@
             "Microsoft.Office.Interop.Word": {
               "target": "Package",
               "version": "[15.0.4797.1004, )"
+            },
+            "Spire.Doc": {
+              "target": "Package",
+              "version": "[10.7.16, )"
+            },
+            "Syncfusion.DocIO.WinForms": {
+              "target": "Package",
+              "version": "[20.2.0.44, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Uno.UI": {
+              "target": "Package",
+              "version": "[4.4.13, )"
             }
           }
         }
