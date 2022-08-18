@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+            #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -38,7 +38,6 @@
             this.in_baocao = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.TraCuu = new System.Windows.Forms.Button();
-            this.InBiThu = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -86,6 +85,7 @@
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.baocao = new System.Windows.Forms.TextBox();
+            this.tenhuyen_report = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -170,7 +170,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(92, 38);
             this.button7.TabIndex = 7;
-            this.button7.Text = "InBN";
+            this.button7.Text = "In BC";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -183,16 +183,6 @@
             this.TraCuu.TabIndex = 8;
             this.TraCuu.Text = "Tra Cứu";
             this.TraCuu.UseVisualStyleBackColor = true;
-            // 
-            // InBiThu
-            // 
-            this.InBiThu.Location = new System.Drawing.Point(1095, 254);
-            this.InBiThu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.InBiThu.Name = "InBiThu";
-            this.InBiThu.Size = new System.Drawing.Size(92, 28);
-            this.InBiThu.TabIndex = 9;
-            this.InBiThu.Text = "In Bì Thư";
-            this.InBiThu.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -462,7 +452,6 @@
             this.label15.TabIndex = 37;
             this.label15.Text = "Tỉnh";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // tinh_comboBox5
             // 
@@ -554,7 +543,7 @@
             // 
             // xuatExcel
             // 
-            this.xuatExcel.Location = new System.Drawing.Point(1095, 314);
+            this.xuatExcel.Location = new System.Drawing.Point(1095, 319);
             this.xuatExcel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xuatExcel.Name = "xuatExcel";
             this.xuatExcel.Size = new System.Drawing.Size(92, 57);
@@ -605,7 +594,7 @@
             // 
             // mabuugui
             // 
-            this.mabuugui.Location = new System.Drawing.Point(825, 320);
+            this.mabuugui.Location = new System.Drawing.Point(825, 318);
             this.mabuugui.Name = "mabuugui";
             this.mabuugui.Size = new System.Drawing.Size(79, 28);
             this.mabuugui.TabIndex = 52;
@@ -649,6 +638,15 @@
             this.baocao.Name = "baocao";
             this.baocao.Size = new System.Drawing.Size(80, 28);
             this.baocao.TabIndex = 54;
+            this.baocao.TextChanged += new System.EventHandler(this.baocao_TextChanged);
+            // 
+            // tenhuyen_report
+            // 
+            this.tenhuyen_report.Location = new System.Drawing.Point(1100, 251);
+            this.tenhuyen_report.Name = "tenhuyen_report";
+            this.tenhuyen_report.Size = new System.Drawing.Size(80, 28);
+            this.tenhuyen_report.TabIndex = 55;
+            this.tenhuyen_report.TextChanged += new System.EventHandler(this.tenhuyen_report_TextChanged);
             // 
             // Form1
             // 
@@ -656,6 +654,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1192, 612);
+            this.Controls.Add(this.tenhuyen_report);
             this.Controls.Add(this.baocao);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.mabuugui);
@@ -700,7 +699,6 @@
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.InBiThu);
             this.Controls.Add(this.TraCuu);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.in_baocao);
@@ -732,7 +730,6 @@
         private System.Windows.Forms.Button in_baocao;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button TraCuu;
-        private System.Windows.Forms.Button InBiThu;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
@@ -780,6 +777,7 @@
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.TextBox baocao;
+        private System.Windows.Forms.TextBox tenhuyen_report;
     }
 }
 

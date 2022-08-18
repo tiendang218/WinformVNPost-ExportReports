@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
-
+using Microsoft.Office.Interop.Word;
+using Spire.Doc;
 namespace XuatExcelApp
-{
+{   
+
     public partial class Form1 : Form
     {
         SqlConnection cn = new SqlConnection(@"Data Source=KTNV-TIEN\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
@@ -25,7 +28,6 @@ namespace XuatExcelApp
             load_loai_hoso();
             LoadHuyen(tinh_comboBox2.SelectedValue.ToString());
             LoadXa(huyen_comboBox3.SelectedValue.ToString());
-            IN_BAOCAO(tinh_comboBox5.SelectedValue.ToString(), huyen_comboBox6.SelectedValue.ToString());
             ////disable delete and update button on load  
             Sửa.Enabled = true;
             Xóa.Enabled = true;
@@ -56,7 +58,6 @@ namespace XuatExcelApp
             System.Data.DataTable dt = new System.Data.DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
-
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -398,44 +399,13 @@ namespace XuatExcelApp
         }
         private void button7_Click(object sender, EventArgs e)
         {
-            ////document = new Document();
-            ////document.LoadFromFile(samplePath);
-            //////get strings to replace  
-            ////Dictionary<string, string> dictReplace = GetReplaceDictionary();
-            //////Replace text  
-            ////foreach (KeyValuePair<string, string> kvp in dictReplace)
-            ////{
-            ////    document.Replace(kvp.Key, kvp.Value, true, true);
-            ////}
-            //////Save doc file.  
-            ////document.SaveToFile(docxPath, FileFormat.Docx);
-            //////Convert to PDF  
-            ////document.SaveToFile(pdfPath, FileFormat.PDF);
-            ////MessageBox.Show("All tasks are finished.", "doc processing", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ////document.Close();
-            //WordDocument document = new WordDocument();
-            ////Add a section & a paragraph in the empty document
-            //document.EnsureMinimal();
-            ////Append text to the last paragraph of the document
-            //document.LastParagraph.AppendText("Hello World");
-            ////Save and close the Word document
-            //document.Save("Result.docx");
-            //document.Close();
+  
             cn.Open();
-            IN_BAOCAO((tinh_comboBox5.SelectedValue).ToString(), (huyen_comboBox6.SelectedValue).ToString());
+            string ten_huyen = huyen_comboBox3.Text;
+            tenhuyen_report.Text = ten_huyen;
+            IN_BAOCAO((tinh_comboBox5.SelectedValue).ToString(), (huyen_comboBox6.SelectedValue).ToString());    
             cn.Close();
         }
-        //Bitmap bitmap;
-        private Spire.Doc.Document document;
-
-        //private void CaptureScreen()
-        //{
-        //    Graphics myGraphics = this.CreateGraphics();
-        //    Size s = this.Size;
-        //    bitmap = new Bitmap(s.Width, s.Height, myGraphics);
-        //    Graphics memoryGraphics = Graphics.FromImage(bitmap);
-        //    memoryGraphics.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, s);
-        //}
         void IN_BAOCAO(string ma_tinh, string ma_huyen)
         {
             SqlCommand cmd = new SqlCommand("dem_ban_ghi", cn); 
@@ -446,36 +416,85 @@ namespace XuatExcelApp
             int count = (int)cmd.ExecuteScalar();
             baocao.ResetText();
             baocao.Text = count.ToString();
+            object oMissing = System.Reflection.Missing.Value;
+            object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+
+            //Start Word and create a new document.
+            Microsoft.Office.Interop.Word._Application oWord;
+            Microsoft.Office.Interop.Word._Document oDoc;
+            oWord = new Microsoft.Office.Interop.Word.Application();
+            oWord.Visible = true;
+            oWord.Width= 300;
+            oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
+            ref oMissing, ref oMissing);
+      
+            //Insert a paragraph at the beginning of the document.
+            Microsoft.Office.Interop.Word.Paragraph oPara1;
+            oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
+            oPara1.Range.Text = "Báo Cáo Nhanh Chuyển Trả Kết Quả Hành Chính Công Tại " + huyen_comboBox3.Text.ToString(); ;
+            oPara1.Range.Font.Bold = 1;
+            oPara1.Range.Font.Size = 20;
+            oPara1.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            oPara1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
+            oPara1.Range.InsertParagraphAfter();
+
+            //Insert a paragraph at the end of the document.
+            Microsoft.Office.Interop.Word.Paragraph oPara2;
+            object oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
+            oPara2.Range.Text = "Ngày: "+ DateTime.Today.ToString();
+            oPara2.Format.SpaceAfter = 6;
+            oPara2.Range.InsertParagraphAfter();
+
+            //Insert another paragraph.
+            Microsoft.Office.Interop.Word.Paragraph oPara3;
+            oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oPara3 = oDoc.Content.Paragraphs.Add(ref oRng);
+            oPara3.Range.Font.Bold = 0;
+            oPara3.Format.SpaceAfter = 24;
+            oPara3.Range.InsertParagraphAfter();
+
+            //Insert a 3 x 3 table, fill it with data, and make the first row
+            //bold and italic.
+            Microsoft.Office.Interop.Word.Table oTable;
+            Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+           
+            oTable = oDoc.Tables.Add(wrdRng, 3, 3, ref oMissing, ref oMissing);
+            oTable.Rows.Alignment = WdRowAlignment.wdAlignRowCenter;
+            oTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
+            oTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
+            oTable.Range.ParagraphFormat.SpaceAfter = 6;
+            oTable.Cell(1, 1).Range.Text = "STT";
+            oTable.Cell(1, 2).Range.Text = "Tên Đơn Vị";
+            oTable.Cell(1, 3).Range.Text = "Số lượng";
+            oTable.Cell(2, 1).Range.Text = "1";
+            oTable.Cell(2, 2).Range.Text = huyen_comboBox3.Text.ToString();
+            oTable.Cell(2, 3).Range.Text = count.ToString();
+            oTable.Cell(3, 2).Range.Text = "Tổng cộng";
+            oTable.Cell(3, 3).Range.Text = count.ToString();
+
+            oTable.Rows[1].Range.Font.Bold = 1;
+            oTable.Rows[1].Range.Font.Italic = 1;
+
+            //Add some text after the table.
+            Microsoft.Office.Interop.Word.Paragraph oPara4;
+            oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oPara4 = oDoc.Content.Paragraphs.Add(ref oRng);   
+            oTable.Columns[1].Width = oWord.InchesToPoints(1); //Change width of columns 1 & 2
+            oTable.Columns[2].Width = oWord.InchesToPoints(4);
+            oTable.Columns[3].Width = oWord.InchesToPoints(2);  
+            //Add text after the chart.
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            wrdRng.InsertParagraphAfter();
+            wrdRng.InsertAfter("------------------------------");
+
+            //Close this form.
+
+            //Close this form.
         }
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            //float linesPerPage = 0;
-            //float yPosition = 0;
-            //int count = 0;
-            //float leftMargin = e.MarginBounds.Left;
-            //float topMargin = e.MarginBounds.Top;
-            //string line = null;
-            //System.Drawing.Font printFont = new System.Drawing.Font("Arial", 24, FontStyle.Bold);
-            //StreamReader rd = new StreamReader(@"D:\Tai_lieu_nghiep_vu\Hướng dẫn lấy dữ liệu chứng từ chuyển trả, chuyển hoàn chuyển tiếp từ PNS về BCCP.docx");
-            //SolidBrush myBrush = new SolidBrush(Color.Black);
-            //// Work out the number of lines per page, using the MarginBounds.  
-            //linesPerPage = e.MarginBounds.Height / printFont.GetHeight(e.Graphics);
-            //// Iterate over the string using the StringReader, printing each line.  
-            //while (count < linesPerPage && ((line = rd.ReadLine()) != null))
-            //{
-            //    // calculate the next line position based on the height of the font according to the printing device  
-            //    yPosition = topMargin + (count * printFont.GetHeight(e.Graphics));
-            //    // draw the next line in the rich edit control  
-            //    e.Graphics.DrawString(line, printFont, myBrush, leftMargin, yPosition, new StringFormat());
-            //    count++;
-            //}
-            //// If there are more lines, print another page.  
-            //if (line != null)
-            //    e.HasMorePages = true;
-            //else
-            //    e.HasMorePages = false;
-            //myBrush.Dispose();
-            
+          
         }
         private void label15_Click(object sender, EventArgs e)
         {
@@ -492,6 +511,16 @@ namespace XuatExcelApp
         }
         private void printPreviewDialog1_Load(object sender, EventArgs e)
         {
+        }
+
+        private void tenhuyen_report_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void baocao_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
