@@ -477,7 +477,7 @@
             // huyen_comboBox6
             // 
             this.huyen_comboBox6.FormattingEnabled = true;
-            this.huyen_comboBox6.Location = new System.Drawing.Point(942, 252);
+            this.huyen_comboBox6.Location = new System.Drawing.Point(942, 249);
             this.huyen_comboBox6.Name = "huyen_comboBox6";
             this.huyen_comboBox6.Size = new System.Drawing.Size(134, 30);
             this.huyen_comboBox6.TabIndex = 40;

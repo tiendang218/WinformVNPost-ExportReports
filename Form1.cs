@@ -416,6 +416,7 @@ namespace XuatExcelApp
             int count = (int)cmd.ExecuteScalar();
             baocao.ResetText();
             baocao.Text = count.ToString();
+
             object oMissing = System.Reflection.Missing.Value;
             object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
 
@@ -423,11 +424,14 @@ namespace XuatExcelApp
             Microsoft.Office.Interop.Word._Application oWord;
             Microsoft.Office.Interop.Word._Document oDoc;
             oWord = new Microsoft.Office.Interop.Word.Application();
-            oWord.Visible = true;
-            oWord.Width= 300;
+            
+
+            //oWord.PrintPreview = true;
+            oWord.Width = 300;
             oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
             ref oMissing, ref oMissing);
-      
+
+            ;
             //Insert a paragraph at the beginning of the document.
             Microsoft.Office.Interop.Word.Paragraph oPara1;
             oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
@@ -442,7 +446,7 @@ namespace XuatExcelApp
             Microsoft.Office.Interop.Word.Paragraph oPara2;
             object oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
-            oPara2.Range.Text = "Ngày: "+ DateTime.Today.ToString();
+            oPara2.Range.Text = "Ngày: " + DateTime.Today.ToString();
             oPara2.Format.SpaceAfter = 6;
             oPara2.Range.InsertParagraphAfter();
 
@@ -458,7 +462,7 @@ namespace XuatExcelApp
             //bold and italic.
             Microsoft.Office.Interop.Word.Table oTable;
             Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-           
+
             oTable = oDoc.Tables.Add(wrdRng, 3, 3, ref oMissing, ref oMissing);
             oTable.Rows.Alignment = WdRowAlignment.wdAlignRowCenter;
             oTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
@@ -479,26 +483,28 @@ namespace XuatExcelApp
             //Add some text after the table.
             Microsoft.Office.Interop.Word.Paragraph oPara4;
             oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            oPara4 = oDoc.Content.Paragraphs.Add(ref oRng);   
+            oPara4 = oDoc.Content.Paragraphs.Add(ref oRng);
             oTable.Columns[1].Width = oWord.InchesToPoints(1); //Change width of columns 1 & 2
             oTable.Columns[2].Width = oWord.InchesToPoints(4);
-            oTable.Columns[3].Width = oWord.InchesToPoints(2);  
+            oTable.Columns[3].Width = oWord.InchesToPoints(2);
             //Add text after the chart.
             wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             wrdRng.InsertParagraphAfter();
             wrdRng.InsertAfter("------------------------------");
+            //oWord.Visible = true;
+            //object nullobj = Missing.Value;
+            //int dialogResult = oWord.Dialogs[Microsoft.Office.Interop.Word.WdWordDialog.wdDialogFilePrint].Show(ref nullobj);
 
-            //Close this form.
-
-            //Close this form.
+            //if (dialogResult == 1)
+            //{
+            //    oWord.PrintOut();
+            //}
         }
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-          
         }
-        private void label15_Click(object sender, EventArgs e)
+    private void label15_Click(object sender, EventArgs e)
         {
-
         }
         private void label21_Click(object sender, EventArgs e)
         {
@@ -511,6 +517,7 @@ namespace XuatExcelApp
         }
         private void printPreviewDialog1_Load(object sender, EventArgs e)
         {
+          
         }
 
         private void tenhuyen_report_TextChanged(object sender, EventArgs e)
