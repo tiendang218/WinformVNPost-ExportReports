@@ -231,7 +231,7 @@
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1175, 218);
+            this.dataGridView1.Size = new System.Drawing.Size(1175, 265);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -420,7 +420,6 @@
             this.xa_comboBox4.Name = "xa_comboBox4";
             this.xa_comboBox4.Size = new System.Drawing.Size(86, 30);
             this.xa_comboBox4.TabIndex = 34;
-            this.xa_comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -474,7 +473,7 @@
             this.huyen_comboBox6.Name = "huyen_comboBox6";
             this.huyen_comboBox6.Size = new System.Drawing.Size(134, 30);
             this.huyen_comboBox6.TabIndex = 40;
-            this.huyen_comboBox6.SelectedIndexChanged += new System.EventHandler(this.huyen_comboBox6_SelectedIndexChanged_1);
+            this.huyen_comboBox6.SelectedIndexChanged += new System.EventHandler(this.huyen_comboBox6_SelectedIndexChanged);
             // 
             // label17
             // 
@@ -648,7 +647,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(75, 30);
             this.comboBox1.TabIndex = 56;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
             // 
             // Form1
@@ -656,7 +654,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1192, 612);
+            this.ClientSize = new System.Drawing.Size(1198, 659);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tenhuyen_report);
             this.Controls.Add(this.baocao);
