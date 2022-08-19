@@ -44,7 +44,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.so_ct_textbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.loai_hs_comboBox = new System.Windows.Forms.ComboBox();
@@ -86,6 +85,7 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.baocao = new System.Windows.Forms.TextBox();
             this.tenhuyen_report = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -246,13 +246,6 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Ngày hẹn";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // so_ct_textbox
-            // 
-            this.so_ct_textbox.Location = new System.Drawing.Point(417, 60);
-            this.so_ct_textbox.Name = "so_ct_textbox";
-            this.so_ct_textbox.Size = new System.Drawing.Size(100, 28);
-            this.so_ct_textbox.TabIndex = 16;
             // 
             // label5
             // 
@@ -481,7 +474,7 @@
             this.huyen_comboBox6.Name = "huyen_comboBox6";
             this.huyen_comboBox6.Size = new System.Drawing.Size(134, 30);
             this.huyen_comboBox6.TabIndex = 40;
-            this.huyen_comboBox6.SelectedIndexChanged += new System.EventHandler(this.huyen_comboBox6_SelectedIndexChanged);
+            this.huyen_comboBox6.SelectedIndexChanged += new System.EventHandler(this.huyen_comboBox6_SelectedIndexChanged_1);
             // 
             // label17
             // 
@@ -648,12 +641,23 @@
             this.tenhuyen_report.TabIndex = 55;
             this.tenhuyen_report.TextChanged += new System.EventHandler(this.tenhuyen_report_TextChanged);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(417, 61);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(75, 30);
+            this.comboBox1.TabIndex = 56;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1192, 612);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tenhuyen_report);
             this.Controls.Add(this.baocao);
             this.Controls.Add(this.label21);
@@ -692,7 +696,6 @@
             this.Controls.Add(this.loai_hs_comboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.so_ct_textbox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label3);
@@ -736,7 +739,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox so_ct_textbox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox loai_hs_comboBox;
@@ -778,6 +780,7 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.TextBox baocao;
         private System.Windows.Forms.TextBox tenhuyen_report;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
