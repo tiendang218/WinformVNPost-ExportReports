@@ -85,6 +85,7 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.duyet_box = new System.Windows.Forms.CheckBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -230,7 +231,7 @@
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1175, 265);
+            this.dataGridView1.Size = new System.Drawing.Size(1175, 168);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -643,12 +644,25 @@
             this.duyet_box.Text = "Đã duyệt";
             this.duyet_box.UseVisualStyleBackColor = true;
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(471, 553);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(280, 22);
+            this.linkLabel2.TabIndex = 60;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "TD All Right Reserved © 2022";
+            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1198, 659);
+            this.ClientSize = new System.Drawing.Size(1201, 584);
+            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.duyet_box);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label21);
@@ -771,6 +785,7 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox duyet_box;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 
