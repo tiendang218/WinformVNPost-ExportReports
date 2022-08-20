@@ -63,10 +63,10 @@ namespace XuatExcelApp
             System.Data.DataTable dt = new System.Data.DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            auto_add_id();
         }
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
         private void label3_Click(object sender, EventArgs e)
         {
@@ -127,6 +127,7 @@ namespace XuatExcelApp
                 }
                 catch
                 { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                cn.Close();
             }
 }
         
@@ -277,6 +278,7 @@ namespace XuatExcelApp
                 {
                     MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                cn.Close();
             }
             
         }
@@ -286,39 +288,46 @@ namespace XuatExcelApp
             {
                 cn.Open();
             }
-            SqlCommand cmd = new SqlCommand("load_tinh_huyen_xa", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@tinh", int.Parse(dataGridView1.CurrentRow.Cells[7].Value.ToString())));
-            cmd.Parameters.Add(new SqlParameter("@huyen", int.Parse(dataGridView1.CurrentRow.Cells[8].Value.ToString())));
-            cmd.Parameters.Add(new SqlParameter("@xa", int.Parse(dataGridView1.CurrentRow.Cells[9].Value.ToString())));
-            da = new SqlDataAdapter(cmd);
-            System.Data.DataTable dt = new System.Data.DataTable();
-            da.Fill(dt);
-            if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
-            { 
-                duyet_box.CheckState = CheckState.Checked; 
+            try
+            {
+                SqlCommand cmd = new SqlCommand("load_tinh_huyen_xa", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@tinh", int.Parse(dataGridView1.CurrentRow.Cells[7].Value.ToString())));
+                cmd.Parameters.Add(new SqlParameter("@huyen", int.Parse(dataGridView1.CurrentRow.Cells[8].Value.ToString())));
+                cmd.Parameters.Add(new SqlParameter("@xa", int.Parse(dataGridView1.CurrentRow.Cells[9].Value.ToString())));
+                da = new SqlDataAdapter(cmd);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                da.Fill(dt);
+                if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
+                {
+                    duyet_box.CheckState = CheckState.Checked;
+                }
+                else
+                {
+                    duyet_box.CheckState = CheckState.Unchecked;
+                }
+                dataGridView1.CurrentRow.Cells[1].ReadOnly = true;
+                comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                ten_box.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                diachi_box.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                so_hcc_box.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                dateTimePicker2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                dateTimePicker1.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                tinh_comboBox2.Text = dt.Rows[0][0].ToString();
+                huyen_comboBox3.Text = dt.Rows[0][1].ToString();
+                xa_comboBox4.Text = dt.Rows[0][2].ToString();
+                cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
+                sohskem.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
+                sdt_textBox2.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
+                loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[13].Value.ToString();
+                trongluong.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
+                mabuugui.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
+                ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[16].Value.ToString();
             }
-            else
-            { 
-                duyet_box.CheckState = CheckState.Unchecked;
+            catch
+            {
+                MessageBox.Show("Hàng trống dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            dataGridView1.CurrentRow.Cells[1].ReadOnly= true;
-            comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            ten_box.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            diachi_box.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            so_hcc_box.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            dateTimePicker2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
-            dateTimePicker1.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
-            tinh_comboBox2.Text = dt.Rows[0][0].ToString();
-            huyen_comboBox3.Text = dt.Rows[0][1].ToString();
-            xa_comboBox4.Text = dt.Rows[0][2].ToString();
-            cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
-            sohskem.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
-            sdt_textBox2.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
-            loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[13].Value.ToString();
-            trongluong.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
-            mabuugui.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
-            ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[16].Value.ToString();
 
         }
         private void Sửa_Click(object sender, EventArgs e)
@@ -388,6 +397,7 @@ namespace XuatExcelApp
                 }
                 catch
                 { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                cn.Close();
             }
         }
         private void xuatExcel_Click(object sender, EventArgs e)
