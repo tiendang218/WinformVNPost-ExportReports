@@ -140,6 +140,9 @@
     <PackageReference Include="Microsoft.Office.Interop.Word">
       <Version>15.0.4797.1004</Version>
     </PackageReference>
+    <PackageReference Include="Spire.DataExport">
+      <Version>3.5.10</Version>
+    </PackageReference>
     <PackageReference Include="Spire.Doc">
       <Version>10.7.16</Version>
     </PackageReference>

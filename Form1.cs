@@ -6,6 +6,10 @@ using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Word;
 using Spire.Doc;
+using Spire.DataExport;
+using Spire.DataExport.RTF;
+using System.Drawing;
+
 namespace XuatExcelApp
 {
     public partial class Form1 : Form
@@ -38,6 +42,7 @@ namespace XuatExcelApp
             cmd = new SqlCommand("CRUD", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SO_CT", 0);
+            cmd.Parameters.AddWithValue("@Approved", 0);
             cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", "");
             cmd.Parameters.AddWithValue("@DIA_CHI", "");
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
@@ -71,45 +76,58 @@ namespace XuatExcelApp
         }
         private void Them_Click(object sender, EventArgs e)
         {
-            if (cn.State == ConnectionState.Closed)
+            if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi thêm", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                cn.Open();
-            }
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
                 Them.Enabled = true;
-            try
-            {
-                if (comboBox1.Text != string.Empty /*&& ten_box.Text != string.Empty && txtempsalary.Text != string.Empty*/)
+                try
                 {
-                    cmd = new SqlCommand("CRUD", cn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
-                    cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", ten_box.Text);
-                    cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
-                    cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
-                    cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
-                    cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
-                    cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
-                    cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
-                    cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
-                    cmd.Parameters.AddWithValue("@CUOC", cuoc_textBox8.Text);
-                    cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
-                    cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
-                    cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
-                    cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
-                    cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
-                    cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
-                    cmd.Parameters.AddWithValue("@OperationType", "1");
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Bản ghi được thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Get_All_ChungTu();
+                    if (comboBox1.Text != string.Empty /*&& ten_box.Text != string.Empty && txtempsalary.Text != string.Empty*/)
+                    {
+                        int i;
+                        if (duyet_box.Checked == true)
+                        {
+                            i = 1;
+                        }
+                        else
+                        {
+                            i = 0;
+                        }
+                        cmd = new SqlCommand("CRUD", cn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
+                        cmd.Parameters.AddWithValue("@Approved", i);
+                        cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", ten_box.Text);
+                        cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
+                        cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
+                        cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
+                        cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
+                        cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@CUOC", cuoc_textBox8.Text);
+                        cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
+                        cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
+                        cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
+                        cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
+                        cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
+                        cmd.Parameters.AddWithValue("@OperationType", "1");
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Bản ghi được thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Get_All_ChungTu();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Điền thiếu dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Điền thiếu dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                catch
+                { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             }
-            catch
-            { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
 }
         
         private void load_tinh()
@@ -117,6 +135,7 @@ namespace XuatExcelApp
             cmd = new SqlCommand("CRUD", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SO_CT", 0);
+            cmd.Parameters.AddWithValue("@Approved", 0);
             cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", "");
             cmd.Parameters.AddWithValue("@DIA_CHI", "");
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
@@ -149,6 +168,7 @@ namespace XuatExcelApp
             cmd = new SqlCommand("CRUD", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SO_CT", 0);
+            cmd.Parameters.AddWithValue("@Approved", 0);
             cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", "");
             cmd.Parameters.AddWithValue("@DIA_CHI", "");
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
@@ -221,73 +241,18 @@ namespace XuatExcelApp
         }
         private void Xóa_Click(object sender, EventArgs e)
         {
-            if (cn.State == ConnectionState.Closed)
+            if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi xóa", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                cn.Open();
-            }
-            try
-            {
-                cmd = new SqlCommand("CRUD", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
-                cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", ten_box.Text);
-                cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
-                cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
-                cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
-                cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
-                cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
-                cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
-                cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
-                cmd.Parameters.AddWithValue("@CUOC", cuoc_textBox8.Text);
-                cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
-                cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
-                cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
-                cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
-                cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
-                cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
-                cmd.Parameters.AddWithValue("@OperationType", "3");
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Bản ghi được xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Get_All_ChungTu();
-            }
-            catch
-            { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-        }
-       private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {   
-            
-            comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            ten_box.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            diachi_box.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            so_hcc_box.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            dateTimePicker2.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            dateTimePicker1.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
-            tinh_comboBox2.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
-            huyen_comboBox3.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
-            xa_comboBox4.Text = dataGridView1.CurrentRow.Cells[8].Value.ToString();
-            cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[9].Value.ToString();
-            sohskem.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
-            sdt_textBox2.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
-            loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
-            trongluong.Text = dataGridView1.CurrentRow.Cells[13].Value.ToString();
-            mabuugui.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
-            ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
-            comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            //so_ct_textbox.Enabled = false;    
-        }
-        private void Sửa_Click(object sender, EventArgs e)
-        {
-            if (cn.State == ConnectionState.Closed)
-            {
-                cn.Open();
-            }
-            try
-            {
-                if (comboBox1.Text != string.Empty)
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+                try
                 {
                     cmd = new SqlCommand("CRUD", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
+                    cmd.Parameters.AddWithValue("@Approved", 0);
                     cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", ten_box.Text);
                     cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
                     cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
@@ -303,40 +268,134 @@ namespace XuatExcelApp
                     cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
                     cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
                     cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
-                    cmd.Parameters.AddWithValue("@OperationType", "2");
+                    cmd.Parameters.AddWithValue("@OperationType", "3");
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Bản ghi được sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Bản ghi được xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Get_All_ChungTu();
-                    //so_ct_textbox.Text = "";
-                    //ten_box.Text = "";
-                    //diachi_box.Text = "";
-                    //so_hcc_box.Text = "";
-                    //dateTimePicker2.Text = "";
-                    //dateTimePicker1.Text = "";
-                    //tinh_comboBox2.Text = "";
-                    //huyen_comboBox3.Text = "";
-                    //xa_comboBox4.Text = "";
-                    //cuoc_textBox8.Text = "";
-                    //sohskem.Text = "";
-                    //sdt_textBox2.Text = "";
-                    //loai_hs_comboBox.Text = "";
-                    //trongluong.Text = "";
-                    //mabuugui.Text = "";
-                    //ghichu_textBox9.Text = "";
-                    //Xóa.Enabled = false;
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("Điền thiếu dữ liệu hoặc số chứng từ đã tồn tại", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch
-            { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             
+        }
+       private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (cn.State != ConnectionState.Open)
+            {
+                cn.Open();
+            }
+            SqlCommand cmd = new SqlCommand("load_tinh_huyen_xa", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@tinh", int.Parse(dataGridView1.CurrentRow.Cells[7].Value.ToString())));
+            cmd.Parameters.Add(new SqlParameter("@huyen", int.Parse(dataGridView1.CurrentRow.Cells[8].Value.ToString())));
+            cmd.Parameters.Add(new SqlParameter("@xa", int.Parse(dataGridView1.CurrentRow.Cells[9].Value.ToString())));
+            da = new SqlDataAdapter(cmd);
+            System.Data.DataTable dt = new System.Data.DataTable();
+            da.Fill(dt);
+            if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
+            { 
+                duyet_box.CheckState = CheckState.Checked; 
+            }
+            else
+            { 
+                duyet_box.CheckState = CheckState.Unchecked;
+            }
+            dataGridView1.CurrentRow.Cells[1].ReadOnly= true;
+            comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            ten_box.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            diachi_box.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            so_hcc_box.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            dateTimePicker2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+            dateTimePicker1.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+            tinh_comboBox2.Text = dt.Rows[0][0].ToString();
+            huyen_comboBox3.Text = dt.Rows[0][1].ToString();
+            xa_comboBox4.Text = dt.Rows[0][2].ToString();
+            cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
+            sohskem.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
+            sdt_textBox2.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
+            loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[13].Value.ToString();
+            trongluong.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
+            mabuugui.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
+            ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[16].Value.ToString();
+
+        }
+        private void Sửa_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi sửa", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            {
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+                try
+                {
+                    if (comboBox1.Text != string.Empty)
+                    {
+                        int i;
+                        if (duyet_box.Checked == true)
+                        {
+                            i = 1;
+                        }
+                        else i = 0;
+
+                        cmd = new SqlCommand("CRUD", cn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
+                        cmd.Parameters.AddWithValue("@Approved", i);
+                        cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", ten_box.Text);
+                        cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
+                        cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
+                        cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
+                        cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
+                        cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@CUOC", cuoc_textBox8.Text);
+                        cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
+                        cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
+                        cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
+                        cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
+                        cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
+                        cmd.Parameters.AddWithValue("@OperationType", "2");
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Bản ghi được sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Get_All_ChungTu();
+                        //so_ct_textbox.Text = "";
+                        //ten_box.Text = "";
+                        //diachi_box.Text = "";
+                        //so_hcc_box.Text = "";
+                        //dateTimePicker2.Text = "";
+                        //dateTimePicker1.Text = "";
+                        //tinh_comboBox2.Text = "";
+                        //huyen_comboBox3.Text = "";
+                        //xa_comboBox4.Text = "";
+                        //cuoc_textBox8.Text = "";
+                        //sohskem.Text = "";
+                        //sdt_textBox2.Text = "";
+                        //loai_hs_comboBox.Text = "";
+                        //trongluong.Text = "";
+                        //mabuugui.Text = "";
+                        //ghichu_textBox9.Text = "";
+                        //Xóa.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Điền thiếu dữ liệu hoặc số chứng từ đã tồn tại", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch
+                { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+            }
         }
         private void xuatExcel_Click(object sender, EventArgs e)
         {
-            cn.Open();
+            if (cn.State != ConnectionState.Open)
+            {
+                cn.Open();
+            }
             // creating Excel Application  
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             // creating new WorkBook within Excel application  
@@ -369,104 +428,25 @@ namespace XuatExcelApp
         }
         private void button7_Click(object sender, EventArgs e)
         {  
-            string ten_huyen = huyen_comboBox3.Text;
-            tenhuyen_report.Text = ten_huyen;
-            IN_BAOCAO(int.Parse((tinh_comboBox5.SelectedValue).ToString()), int.Parse((huyen_comboBox6.SelectedValue).ToString()));
+            
+            
+            //IN_BAOCAO_THEO_HUYEN(int.Parse((tinh_comboBox5.SelectedValue).ToString()), int.Parse((huyen_comboBox6.SelectedValue).ToString()));
+            IN_BAO_ALL();
         }
-        void IN_BAOCAO(int ma_tinh, int ma_huyen)
-        {
-            cn.Open();
+        void IN_BAOCAO_THEO_HUYEN(int ma_tinh, int ma_huyen)
+        {   if(cn.State != ConnectionState.Open)
+            { 
+                cn.Open(); 
+            }
             SqlCommand cmd = new SqlCommand("dem_ban_ghi", cn); 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@tinh", ma_tinh));
             cmd.Parameters.Add(new SqlParameter("@huyen", ma_huyen));
             //Add parameters like this
             int count = (int)cmd.ExecuteScalar();
-            baocao.ResetText();
-            baocao.Text = count.ToString();
+          
 
-            object oMissing = System.Reflection.Missing.Value;
-            object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
-
-            //Start Word and create a new document.
-            Microsoft.Office.Interop.Word._Application oWord;
-            Microsoft.Office.Interop.Word._Document oDoc;
-            oWord = new Microsoft.Office.Interop.Word.Application();
-            
-            //oWord.PrintPreview = true;
-            oWord.Width = 300;
-            oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
-            ref oMissing, ref oMissing);
-
-            ;
-            //Insert a paragraph at the beginning of the document.
-            Microsoft.Office.Interop.Word.Paragraph oPara1;
-            oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
-            oPara1.Range.Text = "Báo Cáo Nhanh Chuyển Trả Kết Quả Hành Chính Công Tại " + huyen_comboBox3.Text.ToString(); ;
-            oPara1.Range.Font.Bold = 1;
-            oPara1.Range.Font.Size = 20;
-            oPara1.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
-            oPara1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
-            oPara1.Range.InsertParagraphAfter();
-
-            //Insert a paragraph at the end of the document.
-            Microsoft.Office.Interop.Word.Paragraph oPara2;
-            object oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
-            oPara2.Range.Text = "Ngày: " + DateTime.Today.ToString();
-            oPara2.Format.SpaceAfter = 6;
-            oPara2.Range.InsertParagraphAfter();
-
-            //Insert another paragraph.
-            Microsoft.Office.Interop.Word.Paragraph oPara3;
-            oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            oPara3 = oDoc.Content.Paragraphs.Add(ref oRng);
-            oPara3.Range.Font.Bold = 0;
-            oPara3.Format.SpaceAfter = 24;
-            oPara3.Range.InsertParagraphAfter();
-
-            //Insert a 3 x 3 table, fill it with data, and make the first row
-            //bold and italic.
-            Microsoft.Office.Interop.Word.Table oTable;
-            Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-
-            oTable = oDoc.Tables.Add(wrdRng, 3, 3, ref oMissing, ref oMissing);
-            oTable.Rows.Alignment = WdRowAlignment.wdAlignRowCenter;
-            oTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
-            oTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
-            oTable.Range.ParagraphFormat.SpaceAfter = 6;
-            oTable.Cell(1, 1).Range.Text = "STT";
-            oTable.Cell(1, 2).Range.Text = "Tên Đơn Vị";
-            oTable.Cell(1, 3).Range.Text = "Số lượng";
-            oTable.Cell(2, 1).Range.Text = "1";
-            oTable.Cell(2, 2).Range.Text = huyen_comboBox3.Text.ToString();
-            oTable.Cell(2, 3).Range.Text = count.ToString();
-            oTable.Cell(3, 2).Range.Text = "Tổng cộng";
-            oTable.Cell(3, 3).Range.Text = count.ToString();
-
-            oTable.Rows[1].Range.Font.Bold = 1;
-            oTable.Rows[1].Range.Font.Italic = 1;
-
-            //Add some text after the table.
-            Microsoft.Office.Interop.Word.Paragraph oPara4;
-            oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            oPara4 = oDoc.Content.Paragraphs.Add(ref oRng);
-            oTable.Columns[1].Width = oWord.InchesToPoints(1); //Change width of columns 1 & 2
-            oTable.Columns[2].Width = oWord.InchesToPoints(4);
-            oTable.Columns[3].Width = oWord.InchesToPoints(2);
-            //Add text after the chart.
-            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-            wrdRng.InsertParagraphAfter();
-            wrdRng.InsertAfter("------------------------------");
-            oWord.Visible = true;
-            //object nullobj = Missing.Value;
-            //int dialogResult = oWord.Dialogs[Microsoft.Office.Interop.Word.WdWordDialog.wdDialogFilePrint].Show(ref nullobj);
-
-            //if (dialogResult == 1)
-            //{
-            //    oWord.PrintOut();
-            //}
-            cn.Close();
+           
         }
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
@@ -476,11 +456,9 @@ namespace XuatExcelApp
         }
         private void label21_Click(object sender, EventArgs e)
         {
-
         }
         private void cuoc_textBox8_TextChanged(object sender, EventArgs e)
         {
-
         }
         private void printPreviewDialog1_Load(object sender, EventArgs e)
         {
@@ -510,7 +488,6 @@ namespace XuatExcelApp
         {
             auto_add_id();
         }
-
         private void tinh_comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             //load_tinh();
@@ -518,28 +495,121 @@ namespace XuatExcelApp
             bool parseOK = Int32.TryParse(tinh_comboBox2.SelectedValue.ToString(), out fid);
             LoadHuyen(fid);
         }
-
         private void tinh_comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
             //load_tinh();
             int fid;
             bool parseOK = Int32.TryParse(tinh_comboBox5.SelectedValue.ToString(), out fid);
             LoadHuyen(fid);
-        
         }
-
         private void huyen_comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
             int fid;
             bool parseOK = Int32.TryParse(huyen_comboBox6.SelectedValue.ToString(), out fid);
             LoadXa(fid);
         }
-
         private void huyen_comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             int fid;
             bool parseOK = Int32.TryParse(huyen_comboBox3.SelectedValue.ToString(), out fid);
             LoadXa(fid);
+        }
+        private void IN_BAO_ALL()
+        {
+            if (cn.State != ConnectionState.Open)
+            {
+                cn.Open();
+            }
+            SqlCommand cmd = new SqlCommand("bao_cao_cthcc", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            da = new SqlDataAdapter(cmd);
+            System.Data.DataTable dt = new System.Data.DataTable();
+            da.Fill(dt);
+       
+            object oMissing = System.Reflection.Missing.Value;
+            object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+
+            //Start Word and create a new document.
+            Microsoft.Office.Interop.Word._Application oWord;
+            Microsoft.Office.Interop.Word._Document oDoc;
+            oWord = new Microsoft.Office.Interop.Word.Application();
+
+            //oWord.PrintPreview = true;
+            oWord.Width = 300;
+            oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
+            ref oMissing, ref oMissing);
+
+            ;
+            //Insert a paragraph at the beginning of the document.
+            Microsoft.Office.Interop.Word.Paragraph oPara1;
+            oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
+            oPara1.Range.Text = "Báo Cáo Nhanh Chuyển Trả Kết Quả Hành Chính Công Đã Duyệt" ;
+            oPara1.Range.Font.Bold = 1;
+            oPara1.Range.Font.Size = 20;
+            oPara1.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            oPara1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
+            oPara1.Range.InsertParagraphAfter();
+
+            //Insert a paragraph at the end of the document.
+            Microsoft.Office.Interop.Word.Paragraph oPara2;
+            object oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
+            oPara2.Range.Text = "Ngày: " + DateTime.Today.ToString();
+            oPara2.Format.SpaceAfter = 6;
+            oPara2.Range.InsertParagraphAfter();
+
+            //Insert another paragraph.
+            Microsoft.Office.Interop.Word.Paragraph oPara3;
+            oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oPara3 = oDoc.Content.Paragraphs.Add(ref oRng);
+            oPara3.Range.Font.Bold = 0;
+            oPara3.Format.SpaceAfter = 24;
+            oPara3.Range.InsertParagraphAfter();
+
+            Microsoft.Office.Interop.Word.Table oTable;
+            Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            int i = dt.Rows.Count;
+            int j = dt.Columns.Count;
+            oTable = oDoc.Tables.Add(wrdRng, i + 1, j, ref oMissing, ref oMissing); ;
+            oTable.Rows.Alignment = WdRowAlignment.wdAlignRowCenter;
+            oTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
+            oTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
+            oTable.Range.ParagraphFormat.SpaceAfter = 6;
+            oTable.Cell(1, 1).Range.Text = "Tên Huyện/Thành Phố";
+            oTable.Cell(1, 2).Range.Text = "Tên Tỉnh";
+            oTable.Cell(1, 3).Range.Text = "Số lượng";
+            for (int k = 2; k <= oTable.Rows.Count; k++)
+            {
+                for (int l = 1; l <= oTable.Columns.Count; l++)
+                {
+                    oTable.Cell(k, l).Range.Text = dt.Rows[k-2][l-1].ToString();
+                }
+            }
+            oTable.Rows[1].Range.Font.Bold = 1;
+            oTable.Rows[1].Range.Font.Italic = 1;
+            Microsoft.Office.Interop.Word.Paragraph oPara4;
+            oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            oPara4 = oDoc.Content.Paragraphs.Add(ref oRng);
+            oTable.Columns[1].Width = oWord.InchesToPoints(2);
+            oTable.Columns[2].Width = oWord.InchesToPoints(2);
+            oTable.Columns[3].Width = oWord.InchesToPoints(2);
+            //Add text after the chart.
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            wrdRng.InsertParagraphAfter();
+            wrdRng.InsertAfter("------------------------------");
+            oWord.Visible = true;
+            //object nullobj = Missing.Value;
+            //int dialogResult = oWord.Dialogs[Microsoft.Office.Interop.Word.WdWordDialog.wdDialogFilePrint].Show(ref nullobj);
+            //if (dialogResult == 1)
+            //{
+            //    oWord.PrintOut();
+            //}
+            cn.Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

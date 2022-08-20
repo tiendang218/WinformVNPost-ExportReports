@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "gORqcd68griQgYY0V7DqQV5Cj4LBMy8uLPC2ibdgDEEvjHpmbJDWcr0DsOdlFzBNlCpmpQwQlJh21erGOYDNhQ==",
+  "dgSpecHash": "4X9OZOJTRiqGuIkp816wRymPJA13QKBWFYcoYFm+nIJeyHIbjBNBMFGQN8uBpuj8QThZNzBQfoL6q6RY/f7e+w==",
   "success": true,
   "projectFilePath": "C:\\Users\\TIEN DANG\\source\\repos\\XuatExcelApp\\XuatExcelApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\entityframework\\6.2.0\\entityframework.6.2.0.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\microsoft.office.interop.excel\\15.0.4795.1001\\microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\microsoft.office.interop.word\\15.0.4797.1004\\microsoft.office.interop.word.15.0.4797.1004.nupkg.sha512",
+    "C:\\Users\\TIEN DANG\\.nuget\\packages\\spire.dataexport\\3.5.10\\spire.dataexport.3.5.10.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\spire.doc\\10.7.16\\spire.doc.10.7.16.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\syncfusion.compression.base\\20.2.0.44\\syncfusion.compression.base.20.2.0.44.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\syncfusion.docio.winforms\\20.2.0.44\\syncfusion.docio.winforms.20.2.0.44.nupkg.sha512",

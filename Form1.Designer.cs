@@ -83,9 +83,9 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.baocao = new System.Windows.Forms.TextBox();
-            this.tenhuyen_report = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.duyet_box = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,21 +165,21 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(1095, 210);
+            this.button7.Location = new System.Drawing.Point(1095, 236);
             this.button7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(92, 38);
+            this.button7.Size = new System.Drawing.Size(92, 75);
             this.button7.TabIndex = 7;
-            this.button7.Text = "In BC";
+            this.button7.Text = "In BC CT đã duyệt";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // TraCuu
             // 
-            this.TraCuu.Location = new System.Drawing.Point(1095, 171);
+            this.TraCuu.Location = new System.Drawing.Point(1095, 176);
             this.TraCuu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TraCuu.Name = "TraCuu";
-            this.TraCuu.Size = new System.Drawing.Size(92, 33);
+            this.TraCuu.Size = new System.Drawing.Size(92, 54);
             this.TraCuu.TabIndex = 8;
             this.TraCuu.Text = "Tra Cứu";
             this.TraCuu.UseVisualStyleBackColor = true;
@@ -624,22 +624,6 @@
             this.printPreviewDialog1.Visible = false;
             this.printPreviewDialog1.Load += new System.EventHandler(this.printPreviewDialog1_Load);
             // 
-            // baocao
-            // 
-            this.baocao.Location = new System.Drawing.Point(1100, 284);
-            this.baocao.Name = "baocao";
-            this.baocao.Size = new System.Drawing.Size(80, 28);
-            this.baocao.TabIndex = 54;
-            this.baocao.TextChanged += new System.EventHandler(this.baocao_TextChanged);
-            // 
-            // tenhuyen_report
-            // 
-            this.tenhuyen_report.Location = new System.Drawing.Point(1100, 251);
-            this.tenhuyen_report.Name = "tenhuyen_report";
-            this.tenhuyen_report.Size = new System.Drawing.Size(80, 28);
-            this.tenhuyen_report.TabIndex = 55;
-            this.tenhuyen_report.TextChanged += new System.EventHandler(this.tenhuyen_report_TextChanged);
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -647,7 +631,28 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(75, 30);
             this.comboBox1.TabIndex = 56;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(0, 0);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(133, 26);
+            this.checkBox3.TabIndex = 57;
+            this.checkBox3.Text = "checkBox3";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // duyet_box
+            // 
+            this.duyet_box.AutoSize = true;
+            this.duyet_box.Location = new System.Drawing.Point(509, 65);
+            this.duyet_box.Name = "duyet_box";
+            this.duyet_box.Size = new System.Drawing.Size(116, 26);
+            this.duyet_box.TabIndex = 58;
+            this.duyet_box.Text = "Đã duyệt";
+            this.duyet_box.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -655,9 +660,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1198, 659);
+            this.Controls.Add(this.duyet_box);
+            this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.tenhuyen_report);
-            this.Controls.Add(this.baocao);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.mabuugui);
             this.Controls.Add(this.label20);
@@ -776,9 +781,9 @@
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.TextBox baocao;
-        private System.Windows.Forms.TextBox tenhuyen_report;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox duyet_box;
     }
 }
 

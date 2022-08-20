@@ -34,6 +34,22 @@
           "lib/net20/Microsoft.Office.Interop.Word.dll": {}
         }
       },
+      "Spire.DataExport/3.5.10": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Spire.DataExport"
+        ],
+        "compile": {
+          "lib/net40/Spire.DataExport.ResourceMgr.dll": {},
+          "lib/net40/Spire.DataExport.dll": {},
+          "lib/net40/Spire.License.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Spire.DataExport.ResourceMgr.dll": {},
+          "lib/net40/Spire.DataExport.dll": {},
+          "lib/net40/Spire.License.dll": {}
+        }
+      },
       "Spire.Doc/10.7.16": {
         "type": "package",
         "compile": {
@@ -290,6 +306,22 @@
           "lib/net20/Microsoft.Office.Interop.Word.dll": {}
         }
       },
+      "Spire.DataExport/3.5.10": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Spire.DataExport"
+        ],
+        "compile": {
+          "lib/net40/Spire.DataExport.ResourceMgr.dll": {},
+          "lib/net40/Spire.DataExport.dll": {},
+          "lib/net40/Spire.License.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Spire.DataExport.ResourceMgr.dll": {},
+          "lib/net40/Spire.DataExport.dll": {},
+          "lib/net40/Spire.License.dll": {}
+        }
+      },
       "Spire.Doc/10.7.16": {
         "type": "package",
         "compile": {
@@ -536,6 +568,22 @@
           "lib/net20/Microsoft.Office.Interop.Word.dll": {}
         }
       },
+      "Spire.DataExport/3.5.10": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Spire.DataExport"
+        ],
+        "compile": {
+          "lib/net40/Spire.DataExport.ResourceMgr.dll": {},
+          "lib/net40/Spire.DataExport.dll": {},
+          "lib/net40/Spire.License.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Spire.DataExport.ResourceMgr.dll": {},
+          "lib/net40/Spire.DataExport.dll": {},
+          "lib/net40/Spire.License.dll": {}
+        }
+      },
       "Spire.Doc/10.7.16": {
         "type": "package",
         "compile": {
@@ -780,6 +828,22 @@
         },
         "runtime": {
           "lib/net20/Microsoft.Office.Interop.Word.dll": {}
+        }
+      },
+      "Spire.DataExport/3.5.10": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Spire.DataExport"
+        ],
+        "compile": {
+          "lib/net40/Spire.DataExport.ResourceMgr.dll": {},
+          "lib/net40/Spire.DataExport.dll": {},
+          "lib/net40/Spire.License.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Spire.DataExport.ResourceMgr.dll": {},
+          "lib/net40/Spire.DataExport.dll": {},
+          "lib/net40/Spire.License.dll": {}
         }
       },
       "Spire.Doc/10.7.16": {
@@ -1051,6 +1115,32 @@
         "lib/netstandard2.0/Microsoft.Office.Interop.Word.dll",
         "microsoft.office.interop.word.15.0.4797.1004.nupkg.sha512",
         "microsoft.office.interop.word.nuspec"
+      ]
+    },
+    "Spire.DataExport/3.5.10": {
+      "sha512": "ofCoqS0w8kicv+eIbXMgC9TuuU2m5GsNxXNada76b1Xscfe3tGyKdf+hV2SdRtqViOdmu4ZG5gQMgiION4+80A==",
+      "type": "package",
+      "path": "spire.dataexport/3.5.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Spire.DataExport.ResourceMgr.dll",
+        "lib/net20/Spire.DataExport.XML",
+        "lib/net20/Spire.DataExport.dll",
+        "lib/net20/Spire.License.dll",
+        "lib/net20/Spire.License.xml",
+        "lib/net35/Spire.DataExport.ResourceMgr.dll",
+        "lib/net35/Spire.DataExport.XML",
+        "lib/net35/Spire.DataExport.dll",
+        "lib/net35/Spire.License.dll",
+        "lib/net35/Spire.License.xml",
+        "lib/net40/Spire.DataExport.ResourceMgr.dll",
+        "lib/net40/Spire.DataExport.XML",
+        "lib/net40/Spire.DataExport.dll",
+        "lib/net40/Spire.License.dll",
+        "lib/net40/Spire.License.xml",
+        "spire.dataexport.3.5.10.nupkg.sha512",
+        "spire.dataexport.nuspec"
       ]
     },
     "Spire.Doc/10.7.16": {
@@ -2600,6 +2690,7 @@
       "EntityFramework >= 6.2.0",
       "Microsoft.Office.Interop.Excel >= 15.0.4795.1001",
       "Microsoft.Office.Interop.Word >= 15.0.4797.1004",
+      "Spire.DataExport >= 3.5.10",
       "Spire.Doc >= 10.7.16",
       "Syncfusion.DocIO.WinForms >= 20.2.0.44",
       "System.Data.SqlClient >= 4.8.3",
@@ -2651,6 +2742,10 @@
           "Microsoft.Office.Interop.Word": {
             "target": "Package",
             "version": "[15.0.4797.1004, )"
+          },
+          "Spire.DataExport": {
+            "target": "Package",
+            "version": "[3.5.10, )"
           },
           "Spire.Doc": {
             "target": "Package",

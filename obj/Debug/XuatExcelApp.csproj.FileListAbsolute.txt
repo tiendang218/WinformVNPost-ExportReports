@@ -46,3 +46,6 @@ C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Uno.Xaml.dll
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Uno.dll
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.exe.config
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\System.Data.SqlClient.dll
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Spire.DataExport.ResourceMgr.dll
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Spire.DataExport.dll
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Spire.License.dll
