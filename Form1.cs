@@ -28,11 +28,20 @@ namespace XuatExcelApp
             //bind data in data grid view  
             Get_All_ChungTu();
             load_tinh();
+            load_tinh_tt();
             load_loai_hoso();
-            LoadHuyen(int.Parse(tinh_comboBox2.SelectedValue.ToString()));
-            LoadXa(int.Parse(huyen_comboBox3.SelectedValue.ToString()));
+            int xid;
+            bool parseOK1 = Int32.TryParse(tinh_comboBox2.SelectedValue.ToString(), out xid);
+            LoadHuyen(xid);
+            int zid;
+            bool parseOK2 = Int32.TryParse(tinh_comboBox5.SelectedValue.ToString(), out zid);
+            LoadHuyen_tt(zid);
+            int fid;
+            bool parseOK = Int32.TryParse(huyen_comboBox3.SelectedValue.ToString(), out fid);
+            LoadXa(fid);
             ////disable delete and update button on load  
             auto_add_id();
+
             Sửa.Enabled = true;
             Xóa.Enabled = true;
             cn.Close();
@@ -48,6 +57,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
             cmd.Parameters.AddWithValue("@NGAY_HEN", DateTime.Today);
             cmd.Parameters.AddWithValue("@NGAY_NHAN", DateTime.Today);
+            cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", "");
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
             cmd.Parameters.AddWithValue("@XA_NHAN", "");
@@ -58,6 +68,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@TRONG_LUONG", "");
             cmd.Parameters.AddWithValue("@MA_BUUGUI", "");
             cmd.Parameters.AddWithValue("@GHI_CHU", "");
+            cmd.Parameters.AddWithValue("@NGAY_DUYET", "1/1/1900");
             cmd.Parameters.AddWithValue("@OperationType", "9");
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -83,54 +94,56 @@ namespace XuatExcelApp
                     cn.Open();
                 }
                 Them.Enabled = true;
-                try
+                //try
+                //{
+                if (comboBox1.Text != string.Empty /*&& ten_box.Text != string.Empty && txtempsalary.Text != string.Empty*/)
                 {
-                    if (comboBox1.Text != string.Empty /*&& ten_box.Text != string.Empty && txtempsalary.Text != string.Empty*/)
+                    int i;
+                    if (duyet_box.Checked == true)
                     {
-                        int i;
-                        if (duyet_box.Checked == true)
-                        {
-                            i = 1;
-                        }
-                        else
-                        {
-                            i = 0;
-                        }
-                        cmd = new SqlCommand("CRUD", cn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
-                        cmd.Parameters.AddWithValue("@Approved", i);
-                        cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", ten_box.Text);
-                        cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
-                        cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
-                        cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
-                        cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
-                        cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@CUOC", cuoc_textBox8.Text);
-                        cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
-                        cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
-                        cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
-                        cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
-                        cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
-                        cmd.Parameters.AddWithValue("@OperationType", "1");
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Bản ghi được thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Get_All_ChungTu();
+                        i = 1;
                     }
                     else
                     {
-                        MessageBox.Show("Điền thiếu dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        i = 0;
                     }
+                    cmd = new SqlCommand("CRUD", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
+                    cmd.Parameters.AddWithValue("@Approved", i);
+                    cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", ten_box.Text);
+                    cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
+                    cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
+                    cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
+                    cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
+                    cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", diachi_thuongtru_box.Text + tinh_comboBox5.Text + huyen_comboBox6.Text);
+                    cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
+                    cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
+                    cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
+                    cmd.Parameters.AddWithValue("@CUOC", cuoc_textBox8.Text);
+                    cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
+                    cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
+                    cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
+                    cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
+                    cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
+                    cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
+                    cmd.Parameters.AddWithValue("@NGAY_DUYET", "1/1/1900");
+                    cmd.Parameters.AddWithValue("@OperationType", "1");
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Bản ghi được thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Get_All_ChungTu();
                 }
-                catch
-                { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-                cn.Close();
+                else
+                {
+                    MessageBox.Show("Điền thiếu dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-}
-        
+            //catch
+            //{ MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+            cn.Close();
+            //}
+        }
+
         private void load_tinh()
         {
             cmd = new SqlCommand("CRUD", cn);
@@ -142,6 +155,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
             cmd.Parameters.AddWithValue("@NGAY_HEN", DateTime.Today);
             cmd.Parameters.AddWithValue("@NGAY_NHAN", DateTime.Today);
+            cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", "");
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
             cmd.Parameters.AddWithValue("@XA_NHAN", "");
@@ -152,6 +166,38 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@TRONG_LUONG", "");
             cmd.Parameters.AddWithValue("@MA_BUUGUI", "");
             cmd.Parameters.AddWithValue("@GHI_CHU", "");
+            cmd.Parameters.AddWithValue("@NGAY_DUYET", "1/1/1900");
+            cmd.Parameters.AddWithValue("@OperationType", "5");
+            da = new SqlDataAdapter(cmd);
+            System.Data.DataTable dt = new System.Data.DataTable();
+            da.Fill(dt);
+            tinh_comboBox2.DataSource = dt;
+            tinh_comboBox2.DisplayMember = "TEN_TINH";
+            tinh_comboBox2.ValueMember = "MA_TINH";
+        }
+        private void load_tinh_tt()
+        {
+            cmd = new SqlCommand("CRUD", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SO_CT", 0);
+            cmd.Parameters.AddWithValue("@Approved", 0);
+            cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", "");
+            cmd.Parameters.AddWithValue("@DIA_CHI", "");
+            cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
+            cmd.Parameters.AddWithValue("@NGAY_HEN", DateTime.Today);
+            cmd.Parameters.AddWithValue("@NGAY_NHAN", DateTime.Today);
+            cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", "");
+            cmd.Parameters.AddWithValue("@TINH_NHAN", "");
+            cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
+            cmd.Parameters.AddWithValue("@XA_NHAN", "");
+            cmd.Parameters.AddWithValue("@CUOC", "");
+            cmd.Parameters.AddWithValue("@SO_HS_KEM", "0");
+            cmd.Parameters.AddWithValue("@DIEN_THOAI", "");
+            cmd.Parameters.AddWithValue("@MA_LOAI_HS", "");
+            cmd.Parameters.AddWithValue("@TRONG_LUONG", "");
+            cmd.Parameters.AddWithValue("@MA_BUUGUI", "");
+            cmd.Parameters.AddWithValue("@GHI_CHU", "");
+            cmd.Parameters.AddWithValue("@NGAY_DUYET", "1/1/1900");
             cmd.Parameters.AddWithValue("@OperationType", "5");
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -159,9 +205,7 @@ namespace XuatExcelApp
             tinh_comboBox5.DataSource = dt;
             tinh_comboBox5.DisplayMember = "TEN_TINH";
             tinh_comboBox5.ValueMember = "MA_TINH";
-            tinh_comboBox2.DataSource = dt;
-            tinh_comboBox2.DisplayMember = "TEN_TINH";
-            tinh_comboBox2.ValueMember = "MA_TINH";
+
         }
 
         private void load_loai_hoso()
@@ -175,6 +219,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
             cmd.Parameters.AddWithValue("@NGAY_HEN", DateTime.Today);
             cmd.Parameters.AddWithValue("@NGAY_NHAN", DateTime.Today);
+            cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", diachi_thuongtru_box.Text);
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
             cmd.Parameters.AddWithValue("@XA_NHAN", "");
@@ -185,6 +230,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@TRONG_LUONG", "");
             cmd.Parameters.AddWithValue("@MA_BUUGUI", "");
             cmd.Parameters.AddWithValue("@GHI_CHU", "");
+            cmd.Parameters.AddWithValue("@NGAY_DUYET", "1/1/1900");
             cmd.Parameters.AddWithValue("@OperationType", "8");
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -210,6 +256,27 @@ namespace XuatExcelApp
             huyen_comboBox3.DataSource = dt;
             huyen_comboBox3.DisplayMember = "TEN_HUYENTP";
             huyen_comboBox3.ValueMember = "MA_HUYENTP";
+            //huyen_comboBox6.DataSource = dt;
+            //huyen_comboBox6.DisplayMember = "TEN_HUYENTP";
+            //huyen_comboBox6.ValueMember = "MA_HUYENTP";
+        }
+        void LoadHuyen_tt(int MaTinh)
+        {
+            //string sql = @"select * from HUYEN_TP where MA_TINH = @MaTinh";   
+            //SqlCommand cmd = new SqlCommand(sql, cn);
+            //SqlParameter para = new SqlParameter("@MaTinh", SqlDbType.Int);
+            //para.Value = MaTinh;
+            //cmd.Parameters.Add(para);
+
+            SqlCommand cmd = new SqlCommand("load_huyen", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@tinh", MaTinh));
+            da = new SqlDataAdapter(cmd);
+            System.Data.DataTable dt = new System.Data.DataTable();
+            da.Fill(dt);
+            //huyen_comboBox3.DataSource = dt;
+            //huyen_comboBox3.DisplayMember = "TEN_HUYENTP";
+            //huyen_comboBox3.ValueMember = "MA_HUYENTP";
             huyen_comboBox6.DataSource = dt;
             huyen_comboBox6.DisplayMember = "TEN_HUYENTP";
             huyen_comboBox6.ValueMember = "MA_HUYENTP";
@@ -232,7 +299,7 @@ namespace XuatExcelApp
             xa_comboBox4.DisplayMember = "TEN_XA_PHUONG";
             xa_comboBox4.ValueMember = "MA_XA_PHUONG";
         }
-      
+
         private void label20_Click(object sender, EventArgs e)
         {
         }
@@ -259,6 +326,7 @@ namespace XuatExcelApp
                     cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
                     cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
                     cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
+                    cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", diachi_thuongtru_box.Text + tinh_comboBox5.Text + huyen_comboBox6.Text);
                     cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
                     cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
                     cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
@@ -269,6 +337,7 @@ namespace XuatExcelApp
                     cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
                     cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
                     cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
+                    cmd.Parameters.AddWithValue("@NGAY_DUYET", dateTimePicker3.Value);
                     cmd.Parameters.AddWithValue("@OperationType", "3");
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Bản ghi được xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -280,9 +349,9 @@ namespace XuatExcelApp
                 }
                 cn.Close();
             }
-            
+
         }
-       private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (cn.State != ConnectionState.Open)
             {
@@ -292,9 +361,9 @@ namespace XuatExcelApp
             {
                 SqlCommand cmd = new SqlCommand("load_tinh_huyen_xa", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@tinh", int.Parse(dataGridView1.CurrentRow.Cells[7].Value.ToString())));
-                cmd.Parameters.Add(new SqlParameter("@huyen", int.Parse(dataGridView1.CurrentRow.Cells[8].Value.ToString())));
-                cmd.Parameters.Add(new SqlParameter("@xa", int.Parse(dataGridView1.CurrentRow.Cells[9].Value.ToString())));
+                cmd.Parameters.Add(new SqlParameter("@tinh", int.Parse(dataGridView1.CurrentRow.Cells[8].Value.ToString())));
+                cmd.Parameters.Add(new SqlParameter("@huyen", int.Parse(dataGridView1.CurrentRow.Cells[9].Value.ToString())));
+                cmd.Parameters.Add(new SqlParameter("@xa", int.Parse(dataGridView1.CurrentRow.Cells[10].Value.ToString())));
                 da = new SqlDataAdapter(cmd);
                 System.Data.DataTable dt = new System.Data.DataTable();
                 da.Fill(dt);
@@ -313,16 +382,18 @@ namespace XuatExcelApp
                 so_hcc_box.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
                 dateTimePicker2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
                 dateTimePicker1.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+                diachi_thuongtru_box.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
                 tinh_comboBox2.Text = dt.Rows[0][0].ToString();
                 huyen_comboBox3.Text = dt.Rows[0][1].ToString();
                 xa_comboBox4.Text = dt.Rows[0][2].ToString();
-                cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
-                sohskem.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
-                sdt_textBox2.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
-                loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[13].Value.ToString();
-                trongluong.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
-                mabuugui.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
-                ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[16].Value.ToString();
+                cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
+                sohskem.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
+                sdt_textBox2.Text = dataGridView1.CurrentRow.Cells[13].Value.ToString();
+                loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
+                trongluong.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
+                mabuugui.Text = dataGridView1.CurrentRow.Cells[16].Value.ToString();
+                dateTimePicker3.Text = dataGridView1.CurrentRow.Cells[17].Value.ToString();
+                ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[18].Value.ToString();
             }
             catch
             {
@@ -358,6 +429,7 @@ namespace XuatExcelApp
                         cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
                         cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
                         cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
+                        cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", diachi_thuongtru_box.Text + tinh_comboBox5.Text + huyen_comboBox6.Text);
                         cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
@@ -368,6 +440,7 @@ namespace XuatExcelApp
                         cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
                         cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
                         cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
+                        cmd.Parameters.AddWithValue("@NGAY_DUYET", dateTimePicker3.Value);
                         cmd.Parameters.AddWithValue("@OperationType", "2");
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Bản ghi được sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -437,31 +510,29 @@ namespace XuatExcelApp
             cn.Close();
         }
         private void button7_Click(object sender, EventArgs e)
-        {  
-            
-            
+        {
+
+
             //IN_BAOCAO_THEO_HUYEN(int.Parse((tinh_comboBox5.SelectedValue).ToString()), int.Parse((huyen_comboBox6.SelectedValue).ToString()));
             IN_BAO_ALL();
         }
         void IN_BAOCAO_THEO_HUYEN(int ma_tinh, int ma_huyen)
-        {   if(cn.State != ConnectionState.Open)
-            { 
-                cn.Open(); 
+        {
+            if (cn.State != ConnectionState.Open)
+            {
+                cn.Open();
             }
-            SqlCommand cmd = new SqlCommand("dem_ban_ghi", cn); 
+            SqlCommand cmd = new SqlCommand("dem_ban_ghi", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@tinh", ma_tinh));
             cmd.Parameters.Add(new SqlParameter("@huyen", ma_huyen));
             //Add parameters like this
             int count = (int)cmd.ExecuteScalar();
-          
-
-           
         }
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
         }
-    private void label15_Click(object sender, EventArgs e)
+        private void label15_Click(object sender, EventArgs e)
         {
         }
         private void label21_Click(object sender, EventArgs e)
@@ -480,7 +551,7 @@ namespace XuatExcelApp
         {
         }
         private void so_ct_textbox_TextChanged(object sender, EventArgs e)
-        { 
+        {
         }
         void auto_add_id()
         {
@@ -510,13 +581,13 @@ namespace XuatExcelApp
             //load_tinh();
             int fid;
             bool parseOK = Int32.TryParse(tinh_comboBox5.SelectedValue.ToString(), out fid);
-            LoadHuyen(fid);
+            LoadHuyen_tt(fid);
         }
         private void huyen_comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int fid;
-            bool parseOK = Int32.TryParse(huyen_comboBox6.SelectedValue.ToString(), out fid);
-            LoadXa(fid);
+            //int fid;
+            //bool parseOK = Int32.TryParse(huyen_comboBox6.SelectedValue.ToString(), out fid);
+            //LoadXa(fid);
         }
         private void huyen_comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -535,7 +606,7 @@ namespace XuatExcelApp
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
             da.Fill(dt);
-       
+
             object oMissing = System.Reflection.Missing.Value;
             object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
 
@@ -553,7 +624,7 @@ namespace XuatExcelApp
             //Insert a paragraph at the beginning of the document.
             Microsoft.Office.Interop.Word.Paragraph oPara1;
             oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
-            oPara1.Range.Text = "Báo Cáo Nhanh Chuyển Trả Kết Quả Hành Chính Công Đã Duyệt" ;
+            oPara1.Range.Text = "Báo Cáo Nhanh Chuyển Trả Kết Quả Hành Chính Công Đã Duyệt";
             oPara1.Range.Font.Bold = 1;
             oPara1.Range.Font.Size = 20;
             oPara1.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
@@ -592,7 +663,7 @@ namespace XuatExcelApp
             {
                 for (int l = 1; l <= oTable.Columns.Count; l++)
                 {
-                    oTable.Cell(k, l).Range.Text = dt.Rows[k-2][l-1].ToString();
+                    oTable.Cell(k, l).Range.Text = dt.Rows[k - 2][l - 1].ToString();
                 }
             }
             oTable.Rows[1].Range.Font.Bold = 1;
@@ -616,12 +687,9 @@ namespace XuatExcelApp
             //}
             cn.Close();
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
-
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkLabel2.LinkVisited = true;
@@ -629,13 +697,103 @@ namespace XuatExcelApp
             //with a URL:
             System.Diagnostics.Process.Start("https://www.facebook.com/tttiendanggg/");
         }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkLabel1.LinkVisited = true;
             //Call the Process.Start method to open the default browser
             //with a URL:
             System.Diagnostics.Process.Start("https://github.com/tiendang218");
+        }
+        private void label7_Click(object sender, EventArgs e)
+        {
+        }
+        void duyet_ct(int i)
+        {
+                if (cn.State == ConnectionState.Closed)
+                {
+                    cn.Open();
+                }
+                try
+                {
+                    if (comboBox1.Text != string.Empty)
+                    {
+                        cmd = new SqlCommand("CRUD", cn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
+                        cmd.Parameters.AddWithValue("@Approved", i);
+                        cmd.Parameters.AddWithValue("@TEN_NGUOI_GUI", ten_box.Text);
+                        cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
+                        cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
+                        cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value);
+                        cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value);
+                        cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", diachi_thuongtru_box.Text);
+                        cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@CUOC", cuoc_textBox8.Text);
+                        cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
+                        cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
+                        cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
+                        cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
+                        cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
+                        cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
+                        cmd.Parameters.AddWithValue("@NGAY_DUYET", DateTime.Today);
+                        cmd.Parameters.AddWithValue("@OperationType", "2");
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Đã duyệt thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Get_All_ChungTu();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi xử lý dữ liệu", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Lỗi xử lý dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                cn.Close();
+            }
+        
+        private void duyet_box_CheckedChanged(object sender, EventArgs e)
+        {
+
+            //if (duyet_box.CheckState == CheckState.Unchecked)
+            //{
+            //    if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            //    {
+
+            //        duyet_ct(1);
+            //    }
+            //}
+            //if (duyet_box.CheckState == CheckState.Checked)
+            //{
+            //    if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi hủy duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            //    {
+
+            //        duyet_ct(0);
+            //    }
+            //}
+        }
+
+        private void duyet_box_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (duyet_box.CheckState == CheckState.Unchecked)
+            {
+                if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khic hủy duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+
+                    duyet_ct(0);
+                }
+            }
+            if (duyet_box.CheckState == CheckState.Checked)
+            {
+                if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+
+                    duyet_ct(1);
+                }
+            }
         }
     }
 }

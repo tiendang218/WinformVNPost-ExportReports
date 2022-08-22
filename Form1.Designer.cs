@@ -87,6 +87,8 @@
             this.duyet_box = new System.Windows.Forms.CheckBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -232,7 +234,7 @@
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1175, 168);
+            this.dataGridView1.Size = new System.Drawing.Size(1175, 188);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -273,27 +275,28 @@
             // loai_hs_comboBox
             // 
             this.loai_hs_comboBox.FormattingEnabled = true;
-            this.loai_hs_comboBox.Location = new System.Drawing.Point(417, 94);
+            this.loai_hs_comboBox.Location = new System.Drawing.Point(417, 103);
             this.loai_hs_comboBox.Name = "loai_hs_comboBox";
-            this.loai_hs_comboBox.Size = new System.Drawing.Size(121, 30);
+            this.loai_hs_comboBox.Size = new System.Drawing.Size(75, 30);
             this.loai_hs_comboBox.TabIndex = 19;
             // 
             // label7
             // 
             this.label7.BackColor = System.Drawing.SystemColors.Control;
-            this.label7.Location = new System.Drawing.Point(597, 99);
+            this.label7.Location = new System.Drawing.Point(802, 99);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(146, 34);
+            this.label7.Size = new System.Drawing.Size(106, 34);
             this.label7.TabIndex = 20;
             this.label7.Text = "Điện thoại";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // sdt_textBox2
             // 
-            this.sdt_textBox2.Location = new System.Drawing.Point(755, 99);
+            this.sdt_textBox2.Location = new System.Drawing.Point(915, 99);
             this.sdt_textBox2.Name = "sdt_textBox2";
-            this.sdt_textBox2.Size = new System.Drawing.Size(321, 28);
+            this.sdt_textBox2.Size = new System.Drawing.Size(161, 28);
             this.sdt_textBox2.TabIndex = 21;
             // 
             // label8
@@ -638,17 +641,19 @@
             // duyet_box
             // 
             this.duyet_box.AutoSize = true;
-            this.duyet_box.Location = new System.Drawing.Point(509, 65);
+            this.duyet_box.Location = new System.Drawing.Point(502, 44);
             this.duyet_box.Name = "duyet_box";
-            this.duyet_box.Size = new System.Drawing.Size(116, 26);
+            this.duyet_box.Size = new System.Drawing.Size(88, 26);
             this.duyet_box.TabIndex = 58;
-            this.duyet_box.Text = "Đã duyệt";
+            this.duyet_box.Text = "Duyệt";
             this.duyet_box.UseVisualStyleBackColor = true;
+            this.duyet_box.CheckedChanged += new System.EventHandler(this.duyet_box_CheckedChanged);
+            this.duyet_box.CheckStateChanged += new System.EventHandler(this.duyet_box_CheckStateChanged);
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(386, 553);
+            this.linkLabel2.Location = new System.Drawing.Point(386, 573);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(280, 22);
             this.linkLabel2.TabIndex = 60;
@@ -660,7 +665,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(672, 553);
+            this.linkLabel1.Location = new System.Drawing.Point(672, 573);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(100, 22);
             this.linkLabel1.TabIndex = 61;
@@ -668,12 +673,35 @@
             this.linkLabel1.Text = "My Github";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // label22
+            // 
+            this.label22.BackColor = System.Drawing.SystemColors.Control;
+            this.label22.Location = new System.Drawing.Point(503, 68);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(116, 34);
+            this.label22.TabIndex = 62;
+            this.label22.Text = "Ngày duyệt";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Enabled = false;
+            this.dateTimePicker3.Location = new System.Drawing.Point(499, 105);
+            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(279, 28);
+            this.dateTimePicker3.TabIndex = 63;
+            this.dateTimePicker3.Value = new System.DateTime(2022, 8, 22, 13, 47, 37, 0);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1201, 584);
+            this.ClientSize = new System.Drawing.Size(1203, 604);
+            this.Controls.Add(this.dateTimePicker3);
+            this.Controls.Add(this.label22);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.duyet_box);
@@ -800,6 +828,8 @@
         private System.Windows.Forms.CheckBox duyet_box;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
     }
 }
 
