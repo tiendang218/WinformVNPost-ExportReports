@@ -89,6 +89,8 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label22 = new System.Windows.Forms.Label();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.label23 = new System.Windows.Forms.Label();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,21 +170,21 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(1095, 236);
+            this.button7.Location = new System.Drawing.Point(1083, 209);
             this.button7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(92, 75);
+            this.button7.Size = new System.Drawing.Size(104, 102);
             this.button7.TabIndex = 7;
-            this.button7.Text = "In BC CT đã duyệt";
+            this.button7.Text = "In BC CT đã duyệt theo ngày";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // TraCuu
             // 
-            this.TraCuu.Location = new System.Drawing.Point(1095, 176);
+            this.TraCuu.Location = new System.Drawing.Point(1095, 168);
             this.TraCuu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TraCuu.Name = "TraCuu";
-            this.TraCuu.Size = new System.Drawing.Size(92, 54);
+            this.TraCuu.Size = new System.Drawing.Size(92, 34);
             this.TraCuu.TabIndex = 8;
             this.TraCuu.Text = "Tra Cứu";
             this.TraCuu.UseVisualStyleBackColor = true;
@@ -353,7 +355,7 @@
             // 
             this.so_hcc_box.Location = new System.Drawing.Point(417, 209);
             this.so_hcc_box.Name = "so_hcc_box";
-            this.so_hcc_box.Size = new System.Drawing.Size(659, 28);
+            this.so_hcc_box.Size = new System.Drawing.Size(165, 28);
             this.so_hcc_box.TabIndex = 27;
             // 
             // diachi_thuongtru_box
@@ -694,12 +696,34 @@
             this.dateTimePicker3.TabIndex = 63;
             this.dateTimePicker3.Value = new System.DateTime(2022, 8, 22, 13, 47, 37, 0);
             // 
+            // label23
+            // 
+            this.label23.BackColor = System.Drawing.SystemColors.Control;
+            this.label23.Location = new System.Drawing.Point(597, 206);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(228, 34);
+            this.label23.TabIndex = 64;
+            this.label23.Text = "Chọn ngày xuất báo cáo";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.Location = new System.Drawing.Point(841, 210);
+            this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(235, 28);
+            this.dateTimePicker4.TabIndex = 65;
+            this.dateTimePicker4.Value = new System.DateTime(2022, 8, 22, 13, 47, 37, 0);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1203, 604);
+            this.Controls.Add(this.dateTimePicker4);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.linkLabel1);
@@ -830,6 +854,8 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.DateTimePicker dateTimePicker4;
     }
 }
 

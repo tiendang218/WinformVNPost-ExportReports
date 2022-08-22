@@ -392,8 +392,8 @@ namespace XuatExcelApp
                 loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
                 trongluong.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
                 mabuugui.Text = dataGridView1.CurrentRow.Cells[16].Value.ToString();
-                dateTimePicker3.Text = dataGridView1.CurrentRow.Cells[17].Value.ToString();
-                ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[18].Value.ToString();
+                ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[17].Value.ToString();
+                dateTimePicker3.Text = dataGridView1.CurrentRow.Cells[18].Value.ToString();
             }
             catch
             {
@@ -511,10 +511,8 @@ namespace XuatExcelApp
         }
         private void button7_Click(object sender, EventArgs e)
         {
-
-
             //IN_BAOCAO_THEO_HUYEN(int.Parse((tinh_comboBox5.SelectedValue).ToString()), int.Parse((huyen_comboBox6.SelectedValue).ToString()));
-            IN_BAO_ALL();
+            IN_BAO_ALL(dateTimePicker4.Value);
         }
         void IN_BAOCAO_THEO_HUYEN(int ma_tinh, int ma_huyen)
         {
@@ -595,7 +593,7 @@ namespace XuatExcelApp
             bool parseOK = Int32.TryParse(huyen_comboBox3.SelectedValue.ToString(), out fid);
             LoadXa(fid);
         }
-        private void IN_BAO_ALL()
+        private void IN_BAO_ALL(DateTime date)
         {
             if (cn.State != ConnectionState.Open)
             {
@@ -603,6 +601,7 @@ namespace XuatExcelApp
             }
             SqlCommand cmd = new SqlCommand("bao_cao_cthcc", cn);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@ngayduyet", date));
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
             da.Fill(dt);
@@ -635,7 +634,7 @@ namespace XuatExcelApp
             Microsoft.Office.Interop.Word.Paragraph oPara2;
             object oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
-            oPara2.Range.Text = "Ngày: " + DateTime.Today.ToString();
+            oPara2.Range.Text = "Ngày: " + dateTimePicker4.Value.Day.ToString()+"/"+ dateTimePicker4.Value.Month.ToString()+ "/" + dateTimePicker4.Value.Year.ToString();
             oPara2.Format.SpaceAfter = 6;
             oPara2.Range.InsertParagraphAfter();
 
@@ -656,8 +655,8 @@ namespace XuatExcelApp
             oTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
             oTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
             oTable.Range.ParagraphFormat.SpaceAfter = 6;
-            oTable.Cell(1, 1).Range.Text = "Tên Huyện/Thành Phố";
-            oTable.Cell(1, 2).Range.Text = "Tên Tỉnh";
+            oTable.Cell(1, 1).Range.Text = "Tên Tỉnh/TP TƯ";
+            oTable.Cell(1, 2).Range.Text = "Tên Huyện/Thành Phố";
             oTable.Cell(1, 3).Range.Text = "Số lượng";
             for (int k = 2; k <= oTable.Rows.Count; k++)
             {
@@ -778,22 +777,22 @@ namespace XuatExcelApp
 
         private void duyet_box_CheckStateChanged(object sender, EventArgs e)
         {
-            if (duyet_box.CheckState == CheckState.Unchecked)
-            {
-                if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khic hủy duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-                {
+            //if (duyet_box.CheckState == CheckState.Unchecked)
+            //{
+            //    if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khic hủy duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            //    {
 
-                    duyet_ct(0);
-                }
-            }
-            if (duyet_box.CheckState == CheckState.Checked)
-            {
-                if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-                {
+            //        duyet_ct(0);
+            //    }
+            //}
+            //if (duyet_box.CheckState == CheckState.Checked)
+            //{
+            //    if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            //    {
 
-                    duyet_ct(1);
-                }
-            }
+            //        duyet_ct(1);
+            //    }
+            //}
         }
     }
 }
