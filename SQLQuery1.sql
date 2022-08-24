@@ -13,15 +13,14 @@ DIA_CHI_THUONG_TRU nvarchar(50) not null,
 TINH_NHAN	int	not null,
 HUYEN_NHAN	int	not null,
 XA_NHAN	int	not null,
-CUOC	varchar(50)	not null,
 SO_HS_KEM	varchar(10)	not null,
 DIEN_THOAI	varchar(50)	not null,
 MA_LOAI_HS	int	not null,
 TRONG_LUONG	varchar(10)not null,
 MA_BUUGUI	varchar(10)not null	,
 GHI_CHU	nvarchar(50)not null,
-NGAY_DUYET DATE NULL
-
+NGAY_DUYET DATE NULL,
+CUOC_PHI decimal(10,2) NOT NULL
 );
 CREATE TABLE LOAI_HS
 (
@@ -83,7 +82,6 @@ create PROCEDURE [CRUD]
 @TINH_NHAN	int,
 @HUYEN_NHAN	int,
 @XA_NHAN	int,
-@CUOC	varchar(50),
 @SO_HS_KEM	varchar(10),
 @DIEN_THOAI	varchar(50),
 @MA_LOAI_HS	int,
@@ -91,6 +89,7 @@ create PROCEDURE [CRUD]
 @MA_BUUGUI	varchar(10),
 @GHI_CHU	nvarchar(50),
 @NGAY_DUYET DATE,
+@CUOC_PHI decimal(10,2),
 
 @OperationType int   
     --================================================  
@@ -121,14 +120,14 @@ begin
 		@TINH_NHAN,
 		@HUYEN_NHAN,
 		@XA_NHAN,
-		@CUOC,
 		@SO_HS_KEM,
 		@DIEN_THOAI,
 		@MA_LOAI_HS,
 		@TRONG_LUONG,
 		@MA_BUUGUI,
 		@GHI_CHU,
-		@NGAY_DUYET)  
+		@NGAY_DUYET,
+		@CUOC_PHI)  
     END  
     ELSE IF @OperationType=2  
     BEGIN  
@@ -144,14 +143,14 @@ begin
 		TINH_NHAN=@TINH_NHAN,
 		HUYEN_NHAN=@HUYEN_NHAN,
 		XA_NHAN=@XA_NHAN,
-		CUOC=@CUOC,
 		SO_HS_KEM=@SO_HS_KEM,
 		DIEN_THOAI=@DIEN_THOAI,
 		MA_LOAI_HS=@MA_LOAI_HS,
 		TRONG_LUONG=@TRONG_LUONG,
 		MA_BUUGUI=@MA_BUUGUI,
 		GHI_CHU=@GHI_CHU,
-		NGAY_DUYET=@NGAY_DUYET
+		NGAY_DUYET=@NGAY_DUYET,
+		CUOC_PHI=@CUOC_PHI
 		WHERE SO_CT=@SO_CT  
     END  
     ELSE IF @OperationType=3  
@@ -183,7 +182,6 @@ begin
     BEGIN  
         SELECT * FROM CT_HCC   
     END  
-       
 END  
 drop PROCEDURE dem_ban_ghi
 CREATE PROCEDURE dem_ban_ghi @tinh int, @huyen int
@@ -399,9 +397,10 @@ insert into XAPHUONG values(124,N'Tam Thanh',10)
 
 drop procedure report_by_huyen
 create procedure report_by_huyen
-as
-select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_GUI, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP from CT_HCC as ct, HUYEN_TP as h
-where ct.HUYEN_NHAN=h.MA_HUYENTP
+as 
+select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_GUI, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
+where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1
+
 
 exec report_by_huyen
  
@@ -431,8 +430,8 @@ create proc load_ma_huyen
 as
 select MA_HUYENTP from HUYEN_TP
 
-drop proc load_ct_huyen
-create proc load_ct_huyen @huyen int
+drop proc load_ct_huyen_theo_ma
+create proc load_ct_huyen_theo_ma @huyen int
 as
 --select MA_HUYENTP,TEN_HUYENTP,'','','','','','','' from mahuyen
 --UNION ALL
@@ -440,6 +439,6 @@ select ct.SO_CT as "Số Seri",ct.NGAY_NHAN as "Ngày Nhận", ct.NGAY_HEN as "N
 from CT_HCC as ct, HUYEN_TP as H
 where ct.HUYEN_NHAN=@huyen and ct.HUYEN_NHAN=h.MA_HUYENTP
 
-exec load_ct_huyen @huyen=2
+exec load_ct_huyen_theo_ma @huyen=2
 exec load_tinh_huyen_xa @tinh=86,@huyen=1,@xa=1
 

@@ -94,6 +94,7 @@
             this.printDialog2 = new System.Windows.Forms.PrintDialog();
             this.button1 = new System.Windows.Forms.Button();
             this.report_by_huyenTableAdapter1 = new XuatExcelApp.ChungTuHCCDataSetTableAdapters.report_by_huyenTableAdapter();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -499,7 +500,7 @@
             // 
             // sohskem
             // 
-            this.sohskem.Location = new System.Drawing.Point(417, 316);
+            this.sohskem.Location = new System.Drawing.Point(417, 314);
             this.sohskem.Name = "sohskem";
             this.sohskem.Size = new System.Drawing.Size(47, 28);
             this.sohskem.TabIndex = 42;
@@ -728,10 +729,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(154, 324);
+            this.button1.Location = new System.Drawing.Point(128, 324);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 49);
+            this.button1.Size = new System.Drawing.Size(78, 49);
             this.button1.TabIndex = 66;
             this.button1.Text = "Duyệt CT";
             this.button1.UseVisualStyleBackColor = true;
@@ -741,12 +742,24 @@
             // 
             this.report_by_huyenTableAdapter1.ClearBeforeFill = true;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(214, 312);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 61);
+            this.button2.TabIndex = 67;
+            this.button2.Text = "Hủy Duyệt";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1203, 604);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker4);
             this.Controls.Add(this.label23);
@@ -885,6 +898,7 @@
         public System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.Button button1;
         private ChungTuHCCDataSetTableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
