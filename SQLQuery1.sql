@@ -4,7 +4,7 @@ create database ChungTuHCC
 CREATE TABLE CT_HCC (
     SO_CT	int PRIMARY KEY not null,
 	Approved bit not null,
-TEN_NGUOI_GUI	nvarchar(50) not null ,	
+TEN_NGUOI_NHAN	nvarchar(50) not null ,	
 DIA_CHI	nvarchar(50) not null,	
 SO_HS_HCC	nvarchar(50) not null,	
 NGAY_HEN	date	not null,
@@ -20,7 +20,7 @@ TRONG_LUONG	varchar(10)not null,
 MA_BUUGUI	varchar(10)not null	,
 GHI_CHU	nvarchar(50)not null,
 NGAY_DUYET DATE NULL,
-CUOC_PHI decimal(10,2) NOT NULL
+CUOC_PHI decimal(20) NOT NULL
 );
 CREATE TABLE LOAI_HS
 (
@@ -73,7 +73,7 @@ GO
 create PROCEDURE [CRUD]  
        @SO_CT	int,
 	   @Approved bit,
-@TEN_NGUOI_GUI	nvarchar(50) ,	
+@TEN_NGUOI_NHAN	nvarchar(50) ,	
 @DIA_CHI	nvarchar(50),	
 @SO_HS_HCC	nvarchar(50),	
 @NGAY_HEN	date	,
@@ -111,7 +111,7 @@ begin
         INSERT INTO CT_HCC VALUES (
 		@SO_CT,
 		@Approved,
-		@TEN_NGUOI_GUI,
+		@TEN_NGUOI_NHAN,
 		@DIA_CHI,
 		@SO_HS_HCC,
 		@NGAY_HEN,
@@ -134,7 +134,7 @@ begin
         UPDATE CT_HCC SET 
 		SO_CT=@SO_CT,
 		Approved=@Approved,
-		TEN_NGUOI_GUI=@TEN_NGUOI_GUI,
+		TEN_NGUOI_NHAN=@TEN_NGUOI_NHAN,
 		DIA_CHI=@DIA_CHI,
 		SO_HS_HCC=@SO_HS_HCC,
 		NGAY_HEN=@NGAY_HEN,
@@ -396,13 +396,24 @@ insert into XAPHUONG values(123,N'Long Hải',10)
 insert into XAPHUONG values(124,N'Tam Thanh',10)
 
 drop procedure report_by_huyen
-create procedure report_by_huyen
+create procedure report_by_huyen @ngay date
 as 
-select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_GUI, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
-where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1
+select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
+where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1 and ct.NGAY_NHAN=@ngay
 
+drop proc search_soct @ma=1
+create proc search_soct @ma int
+as
+select * from CT_HCC
+where SO_CT=@ma
 
-exec report_by_huyen
+drop proc search_nguoinhan @ten='Trang'
+create proc search_nguoinhan @ten nvarchar(50)
+as
+select * from CT_HCC
+where TEN_NGUOI_NHAN=@ten
+
+exec report_by_huyen @ngay='2022-08-24'
  
 drop proc load_huyen_report
 create proc load_huyen_report
@@ -419,7 +430,7 @@ select MA_HUYENTP,TEN_HUYENTP from HUYEN_TP
 )
 --select MA_HUYENTP,TEN_HUYENTP,'','','','','','','' from mahuyen
 --UNION ALL
-select ct.SO_CT as "Số Seri",ct.NGAY_NHAN as "Ngày Nhận", ct.NGAY_HEN as "Ngày Hẹn", ct.TEN_NGUOI_GUI as "Họ và tên", ct.DIEN_THOAI as "Số điện thoại",ct.DIA_CHI_THUONG_TRU as "Địa chỉ phát" , ct.DIA_CHI as "Địa chỉ trên hồ sơ" , ct.HUYEN_NHAN as Huyện,h.TEN_HUYENTP as "Tên Quận Huyện Nhận CT"
+select ct.SO_CT as "Số Seri",ct.NGAY_NHAN as "Ngày Nhận", ct.NGAY_HEN as "Ngày Hẹn", ct.TEN_NGUOI_NHAN as "Họ và tên", ct.DIEN_THOAI as "Số điện thoại",ct.DIA_CHI_THUONG_TRU as "Địa chỉ phát" , ct.DIA_CHI as "Địa chỉ trên hồ sơ" , ct.HUYEN_NHAN as Huyện,h.TEN_HUYENTP as "Tên Quận Huyện Nhận CT"
 from CT_HCC as ct, HUYEN_TP as H, mahuyen as ma
 where ct.HUYEN_NHAN=ma.MA_HUYENTP and ct.HUYEN_NHAN=h.MA_HUYENTP
 
@@ -435,7 +446,7 @@ create proc load_ct_huyen_theo_ma @huyen int
 as
 --select MA_HUYENTP,TEN_HUYENTP,'','','','','','','' from mahuyen
 --UNION ALL
-select ct.SO_CT as "Số Seri",ct.NGAY_NHAN as "Ngày Nhận", ct.NGAY_HEN as "Ngày Hẹn", ct.TEN_NGUOI_GUI as "Họ và tên", ct.DIEN_THOAI as "Số điện thoại",ct.DIA_CHI_THUONG_TRU as "Địa chỉ phát" , ct.DIA_CHI as "Địa chỉ trên hồ sơ" , ct.HUYEN_NHAN as Huyện,h.TEN_HUYENTP as "Tên Quận Huyện Nhận CT"
+select ct.SO_CT as "Số Seri",ct.NGAY_NHAN as "Ngày Nhận", ct.NGAY_HEN as "Ngày Hẹn", ct.TEN_NGUOI_NHAN as "Họ và tên", ct.DIEN_THOAI as "Số điện thoại",ct.DIA_CHI_THUONG_TRU as "Địa chỉ phát" , ct.DIA_CHI as "Địa chỉ trên hồ sơ" , ct.HUYEN_NHAN as Huyện,h.TEN_HUYENTP as "Tên Quận Huyện Nhận CT"
 from CT_HCC as ct, HUYEN_TP as H
 where ct.HUYEN_NHAN=@huyen and ct.HUYEN_NHAN=h.MA_HUYENTP
 
