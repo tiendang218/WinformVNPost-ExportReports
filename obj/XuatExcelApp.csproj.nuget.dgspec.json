@@ -34,9 +34,17 @@
       "frameworks": {
         "net472": {
           "dependencies": {
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[2.17.1, )"
+            },
             "EntityFramework": {
               "target": "Package",
-              "version": "[6.2.0, )"
+              "version": "[6.4.4, )"
+            },
+            "GrapeCity.Documents.Word": {
+              "target": "Package",
+              "version": "[5.2.0.800, )"
             },
             "Microsoft.Office.Interop.Excel": {
               "target": "Package",
@@ -45,6 +53,10 @@
             "Microsoft.Office.Interop.Word": {
               "target": "Package",
               "version": "[15.0.4797.1004, )"
+            },
+            "Microsoft.ReportingServices.ReportViewerControl.Winforms": {
+              "target": "Package",
+              "version": "[150.1484.0, )"
             },
             "Spire.DataExport": {
               "target": "Package",
@@ -56,7 +68,7 @@
             },
             "Syncfusion.DocIO.WinForms": {
               "target": "Package",
-              "version": "[20.2.0.44, )"
+              "version": "[20.2.0.45, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

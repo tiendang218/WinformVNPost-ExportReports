@@ -91,6 +91,9 @@
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.label23 = new System.Windows.Forms.Label();
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.printDialog2 = new System.Windows.Forms.PrintDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            this.report_by_huyenTableAdapter1 = new XuatExcelApp.ChungTuHCCDataSetTableAdapters.report_by_huyenTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,13 +109,14 @@
             // 
             // in_banke
             // 
-            this.in_banke.Location = new System.Drawing.Point(32, 192);
+            this.in_banke.Location = new System.Drawing.Point(32, 186);
             this.in_banke.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.in_banke.Name = "in_banke";
-            this.in_banke.Size = new System.Drawing.Size(152, 33);
+            this.in_banke.Size = new System.Drawing.Size(152, 39);
             this.in_banke.TabIndex = 1;
             this.in_banke.Text = "In Bản Kê";
             this.in_banke.UseVisualStyleBackColor = true;
+            this.in_banke.Click += new System.EventHandler(this.in_banke_Click);
             // 
             // Xóa
             // 
@@ -181,7 +185,7 @@
             // 
             // TraCuu
             // 
-            this.TraCuu.Location = new System.Drawing.Point(1095, 168);
+            this.TraCuu.Location = new System.Drawing.Point(1095, 171);
             this.TraCuu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TraCuu.Name = "TraCuu";
             this.TraCuu.Size = new System.Drawing.Size(92, 34);
@@ -331,12 +335,12 @@
             // 
             this.label9.BackColor = System.Drawing.SystemColors.Control;
             this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label9.Location = new System.Drawing.Point(264, 176);
+            this.label9.Location = new System.Drawing.Point(192, 170);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(146, 34);
+            this.label9.Size = new System.Drawing.Size(218, 34);
             this.label9.TabIndex = 25;
-            this.label9.Text = "Địa chỉ";
+            this.label9.Text = "Địa chỉ nhận CTHCC";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label10
@@ -360,16 +364,16 @@
             // 
             // diachi_thuongtru_box
             // 
-            this.diachi_thuongtru_box.Location = new System.Drawing.Point(417, 243);
+            this.diachi_thuongtru_box.Location = new System.Drawing.Point(417, 249);
             this.diachi_thuongtru_box.Name = "diachi_thuongtru_box";
-            this.diachi_thuongtru_box.Size = new System.Drawing.Size(202, 28);
+            this.diachi_thuongtru_box.Size = new System.Drawing.Size(228, 28);
             this.diachi_thuongtru_box.TabIndex = 28;
             // 
             // label11
             // 
             this.label11.BackColor = System.Drawing.SystemColors.Control;
             this.label11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label11.Location = new System.Drawing.Point(221, 237);
+            this.label11.Location = new System.Drawing.Point(221, 245);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(189, 34);
@@ -454,7 +458,7 @@
             // tinh_comboBox5
             // 
             this.tinh_comboBox5.FormattingEnabled = true;
-            this.tinh_comboBox5.Location = new System.Drawing.Point(719, 250);
+            this.tinh_comboBox5.Location = new System.Drawing.Point(719, 249);
             this.tinh_comboBox5.Name = "tinh_comboBox5";
             this.tinh_comboBox5.Size = new System.Drawing.Size(121, 30);
             this.tinh_comboBox5.TabIndex = 38;
@@ -553,7 +557,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(31, 333);
+            this.checkBox1.Location = new System.Drawing.Point(12, 320);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(118, 26);
             this.checkBox1.TabIndex = 48;
@@ -563,7 +567,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(155, 333);
+            this.checkBox2.Location = new System.Drawing.Point(12, 352);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(118, 26);
             this.checkBox2.TabIndex = 49;
@@ -627,6 +631,7 @@
             this.printPreviewDialog1.Enabled = true;
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.UseAntiAlias = true;
             this.printPreviewDialog1.Visible = false;
             this.printPreviewDialog1.Load += new System.EventHandler(this.printPreviewDialog1_Load);
             // 
@@ -649,6 +654,7 @@
             this.duyet_box.TabIndex = 58;
             this.duyet_box.Text = "Duyệt";
             this.duyet_box.UseVisualStyleBackColor = true;
+            this.duyet_box.Visible = false;
             this.duyet_box.CheckedChanged += new System.EventHandler(this.duyet_box_CheckedChanged);
             this.duyet_box.CheckStateChanged += new System.EventHandler(this.duyet_box_CheckStateChanged);
             // 
@@ -716,12 +722,32 @@
             this.dateTimePicker4.TabIndex = 65;
             this.dateTimePicker4.Value = new System.DateTime(2022, 8, 22, 13, 47, 37, 0);
             // 
+            // printDialog2
+            // 
+            this.printDialog2.UseEXDialog = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(154, 324);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 49);
+            this.button1.TabIndex = 66;
+            this.button1.Text = "Duyệt CT";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // report_by_huyenTableAdapter1
+            // 
+            this.report_by_huyenTableAdapter1.ClearBeforeFill = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1203, 604);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker4);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.dateTimePicker3);
@@ -847,7 +873,6 @@
         private System.Windows.Forms.Label label21;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintDialog printDialog1;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox duyet_box;
         private System.Windows.Forms.LinkLabel linkLabel2;
@@ -856,6 +881,10 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.PrintDialog printDialog2;
+        public System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.Button button1;
+        private ChungTuHCCDataSetTableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter1;
     }
 }
 

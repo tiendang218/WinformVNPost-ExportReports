@@ -397,15 +397,49 @@ insert into XAPHUONG values(122,N'Ngũ Phụng',10)
 insert into XAPHUONG values(123,N'Long Hải',10)
 insert into XAPHUONG values(124,N'Tam Thanh',10)
 
+drop procedure report_by_huyen
+create procedure report_by_huyen
+as
+select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_GUI, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP from CT_HCC as ct, HUYEN_TP as h
+where ct.HUYEN_NHAN=h.MA_HUYENTP
+
+exec report_by_huyen
+ 
+drop proc load_huyen_report
+create proc load_huyen_report
+as 
+select MA_HUYENTP as mah, TEN_HUYENTP as tenhuyen
+from HUYEN_TP
+
+drop proc load_ct_huyen
+create proc load_ct_huyen 
+as
+with mahuyen as
+(
+select MA_HUYENTP,TEN_HUYENTP from HUYEN_TP
+)
+--select MA_HUYENTP,TEN_HUYENTP,'','','','','','','' from mahuyen
+--UNION ALL
+select ct.SO_CT as "Số Seri",ct.NGAY_NHAN as "Ngày Nhận", ct.NGAY_HEN as "Ngày Hẹn", ct.TEN_NGUOI_GUI as "Họ và tên", ct.DIEN_THOAI as "Số điện thoại",ct.DIA_CHI_THUONG_TRU as "Địa chỉ phát" , ct.DIA_CHI as "Địa chỉ trên hồ sơ" , ct.HUYEN_NHAN as Huyện,h.TEN_HUYENTP as "Tên Quận Huyện Nhận CT"
+from CT_HCC as ct, HUYEN_TP as H, mahuyen as ma
+where ct.HUYEN_NHAN=ma.MA_HUYENTP and ct.HUYEN_NHAN=h.MA_HUYENTP
 
 
+exec load_ct_huyen
 
+create proc load_ma_huyen
+as
+select MA_HUYENTP from HUYEN_TP
 
+drop proc load_ct_huyen
+create proc load_ct_huyen @huyen int
+as
+--select MA_HUYENTP,TEN_HUYENTP,'','','','','','','' from mahuyen
+--UNION ALL
+select ct.SO_CT as "Số Seri",ct.NGAY_NHAN as "Ngày Nhận", ct.NGAY_HEN as "Ngày Hẹn", ct.TEN_NGUOI_GUI as "Họ và tên", ct.DIEN_THOAI as "Số điện thoại",ct.DIA_CHI_THUONG_TRU as "Địa chỉ phát" , ct.DIA_CHI as "Địa chỉ trên hồ sơ" , ct.HUYEN_NHAN as Huyện,h.TEN_HUYENTP as "Tên Quận Huyện Nhận CT"
+from CT_HCC as ct, HUYEN_TP as H
+where ct.HUYEN_NHAN=@huyen and ct.HUYEN_NHAN=h.MA_HUYENTP
 
-
-
-
-
-
+exec load_ct_huyen @huyen=2
 exec load_tinh_huyen_xa @tinh=86,@huyen=1,@xa=1
 
