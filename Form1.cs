@@ -981,6 +981,8 @@ namespace XuatExcelApp
                         Get_All_ChungTu();
                         button4.Enabled = true;
                         button4.Text= "Nhập Excel";
+                        MessageBox.Show("Thêm dữ liệu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         bw.Dispose();
                     };
                 //Starts the actual work - triggerrs the "DoWork" event
