@@ -11,6 +11,11 @@ using Spire.DataExport.RTF;
 using System.Drawing;
 using DocumentFormat.OpenXml.Drawing;
 using System.Drawing.Printing;
+using System.Runtime.InteropServices;
+using System.IO;
+using System.Data.OleDb;
+using System.ComponentModel;
+using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace XuatExcelApp
 {
@@ -42,7 +47,7 @@ namespace XuatExcelApp
             bool parseOK = Int32.TryParse(huyen_comboBox3.SelectedValue.ToString(), out fid);
             LoadXa(fid);
             ////disable delete and update button on load  
-            auto_add_id();
+            
 
             Sửa.Enabled = true;
             Xóa.Enabled = true;
@@ -416,7 +421,7 @@ namespace XuatExcelApp
                         cmd = new SqlCommand("CRUD", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
-                        cmd.Parameters.AddWithValue("@Approved",i);
+                        cmd.Parameters.AddWithValue("@Approved", i);
                         cmd.Parameters.AddWithValue("@TEN_NGUOI_NHAN", ten_box.Text);
                         cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
                         cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
@@ -485,7 +490,7 @@ namespace XuatExcelApp
             worksheet = (_Worksheet)workbook.Sheets["Sheet1"];
             worksheet = (_Worksheet)workbook.ActiveSheet;
             // changing the name of active sheet  
-            worksheet.Name = "Exported from gridview";
+            worksheet.Name = "Sheet1";
             worksheet.Columns.ColumnWidth = 15;
             // lấy dữ liệu tên cột
             for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
@@ -776,6 +781,8 @@ namespace XuatExcelApp
         }
 
         public static DateTime day;
+
+
         private void in_banke_Click(object sender, EventArgs e)
         {
 
@@ -876,30 +883,6 @@ namespace XuatExcelApp
             }
         }
 
-        private void TraCuu_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cn.State != ConnectionState.Open)
-                {
-                    cn.Open();
-                }
-                SqlCommand cmd = new SqlCommand("search_nguoinhan", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ten", ten_box.Text));
-                da = new SqlDataAdapter(cmd);
-                System.Data.DataTable dt = new System.Data.DataTable();
-                da.Fill(dt);
-                dataGridView1.DataSource = dt;
-            }
-            catch
-            { 
-                MessageBox.Show("Không tìm thấy tên người nhận", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-            }
-            cn.Close();
-        
-    }
-
 
         private void so_hcc_box_TextChanged(object sender, EventArgs e)
         {
@@ -910,22 +893,21 @@ namespace XuatExcelApp
         {
 
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 if (cn.State != ConnectionState.Open)
-            {
-                cn.Open();
-            }
-            SqlCommand cmd = new SqlCommand("search_soct", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@ma", textBox1.Text));
-            da = new SqlDataAdapter(cmd);
-            System.Data.DataTable dt = new System.Data.DataTable();
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
+                {
+                    cn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("search_soct", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@ma", textBox1.Text));
+                da = new SqlDataAdapter(cmd);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
             }
             catch
             {
@@ -933,7 +915,6 @@ namespace XuatExcelApp
             }
             cn.Close();
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             Get_All_ChungTu();
@@ -942,6 +923,132 @@ namespace XuatExcelApp
         private void InBiThuDS_Click(object sender, EventArgs e)
         {
 
+        }
+       
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            string _path;
+            OpenFileDialog od = new OpenFileDialog();
+            od.Filter = "Excell|*.xls;*.xlsx;";
+            od.FileName = "FileImport.xlsx";
+            BackgroundWorker bw = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+            DialogResult dr = od.ShowDialog();
+            if (dr == DialogResult.Abort)
+                return;
+            if (dr == DialogResult.Cancel)
+                return;
+           
+            //txtpath.Text = od.FileName.ToString();   
+            if (dr == DialogResult.OK)
+            {
+
+                try
+                {
+                    button4.Text = "Loading";
+                    button4.Enabled = false;
+                    _path = od.FileName.ToString();
+                    string path = _path;
+                    System.Diagnostics.Stopwatch sWatch = new System.Diagnostics.Stopwatch();
+                    bw.DoWork += (bwSender, bwArg) =>
+                    {
+                    //what happens here must not touch the form
+                    //as it's in a different thread
+                        sWatch.Start();
+                        System.Data.DataTable table = Exceldatatable(path);
+                        if (cn.State == ConnectionState.Closed)
+                        {
+                        cn.Open();
+                        }
+                        SqlBulkCopy bulkCopy = new SqlBulkCopy(cn);
+                        bulkCopy.DestinationTableName = "CT_HCC";
+                        bulkCopy.BatchSize = 100;
+                        bulkCopy.BulkCopyTimeout = 100;
+                        bulkCopy.WriteToServer(table);
+                    };
+                bw.ProgressChanged += (bwSender, bwArg) =>
+                    {
+                    
+                     };
+
+                bw.RunWorkerCompleted += (bwSender, bwArg) =>
+                    {
+                    sWatch.Stop();
+                        Get_All_ChungTu();
+                        button4.Enabled = true;
+                        button4.Text= "Nhập Excel";
+                        bw.Dispose();
+                    };
+                //Starts the actual work - triggerrs the "DoWork" event
+                    bw.RunWorkerAsync();
+                    
+
+                }
+                catch
+                {
+                   MessageBox.Show("Lỗi dữ liệu file excel hoặc quá thời gian truy vấn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+           
+        }
+
+        public static System.Data.DataTable Exceldatatable(string path)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            try
+            {
+                string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";" + "Extended Properties='Excel 12.0 Xml;HDR=YES;IMEX=1;MAXSCANROWS=0'";
+                using (OleDbConnection conn = new OleDbConnection(connectionString))
+                {
+                    using (OleDbCommand comm = new OleDbCommand())
+                    {
+                        string sheetName = "Sheet1";
+                        comm.CommandText = "Select * from [" + sheetName + "$]";
+                        comm.Connection = conn;
+                        using (OleDbDataAdapter da = new OleDbDataAdapter())
+                        {
+                            da.SelectCommand = comm;
+                            da.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+                MessageBox.Show("File Excel đang mở, tắt để đọc file", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                return null;
+            }
+        }
+        
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cn.State != ConnectionState.Open)
+                {
+                    cn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("search_nguoinhan", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@ten", textBox2.Text));
+                da = new SqlDataAdapter(cmd);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch
+            {
+                MessageBox.Show("Không tìm thấy tên người nhận", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            cn.Close();
         }
     }
 }

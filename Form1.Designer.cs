@@ -36,7 +36,6 @@
             this.Them = new System.Windows.Forms.Button();
             this.InBiThuDS = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.TraCuu = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -95,6 +94,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,18 +177,6 @@
             this.button7.Text = "Xuất tổng BC theo ngày";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // TraCuu
-            // 
-            this.TraCuu.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.TraCuu.Location = new System.Drawing.Point(1004, 171);
-            this.TraCuu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TraCuu.Name = "TraCuu";
-            this.TraCuu.Size = new System.Drawing.Size(183, 34);
-            this.TraCuu.TabIndex = 8;
-            this.TraCuu.Text = "Tra cứu theo tên";
-            this.TraCuu.UseVisualStyleBackColor = false;
-            this.TraCuu.Click += new System.EventHandler(this.TraCuu_Click);
             // 
             // label2
             // 
@@ -424,7 +413,7 @@
             // xa_comboBox4
             // 
             this.xa_comboBox4.FormattingEnabled = true;
-            this.xa_comboBox4.Location = new System.Drawing.Point(970, 286);
+            this.xa_comboBox4.Location = new System.Drawing.Point(970, 281);
             this.xa_comboBox4.Name = "xa_comboBox4";
             this.xa_comboBox4.Size = new System.Drawing.Size(89, 30);
             this.xa_comboBox4.TabIndex = 34;
@@ -516,7 +505,7 @@
             // 
             // cuoc_textBox8
             // 
-            this.cuoc_textBox8.Location = new System.Drawing.Point(951, 319);
+            this.cuoc_textBox8.Location = new System.Drawing.Point(951, 312);
             this.cuoc_textBox8.Name = "cuoc_textBox8";
             this.cuoc_textBox8.Size = new System.Drawing.Size(108, 28);
             this.cuoc_textBox8.TabIndex = 44;
@@ -526,7 +515,7 @@
             // 
             this.ghichu_textBox9.Location = new System.Drawing.Point(417, 348);
             this.ghichu_textBox9.Name = "ghichu_textBox9";
-            this.ghichu_textBox9.Size = new System.Drawing.Size(642, 28);
+            this.ghichu_textBox9.Size = new System.Drawing.Size(514, 28);
             this.ghichu_textBox9.TabIndex = 45;
             // 
             // label19
@@ -544,10 +533,10 @@
             // xuatExcel
             // 
             this.xuatExcel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.xuatExcel.Location = new System.Drawing.Point(1063, 324);
+            this.xuatExcel.Location = new System.Drawing.Point(1063, 342);
             this.xuatExcel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xuatExcel.Name = "xuatExcel";
-            this.xuatExcel.Size = new System.Drawing.Size(121, 54);
+            this.xuatExcel.Size = new System.Drawing.Size(121, 36);
             this.xuatExcel.TabIndex = 47;
             this.xuatExcel.Text = "Xuất Excel";
             this.xuatExcel.UseVisualStyleBackColor = false;
@@ -773,12 +762,36 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.button4.Location = new System.Drawing.Point(938, 340);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(121, 36);
+            this.button4.TabIndex = 70;
+            this.button4.Text = "Nhập Excel";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBox2.Location = new System.Drawing.Point(1003, 176);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(181, 28);
+            this.textBox2.TabIndex = 71;
+            this.textBox2.Text = "Nhập tên tra cứu";
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1203, 634);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
@@ -833,7 +846,6 @@
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.TraCuu);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.InBiThuDS);
             this.Controls.Add(this.Them);
@@ -861,7 +873,6 @@
         private System.Windows.Forms.Button Them;
         private System.Windows.Forms.Button InBiThuDS;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button TraCuu;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
@@ -921,6 +932,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
