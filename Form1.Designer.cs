@@ -113,13 +113,13 @@
             // in_banke
             // 
             this.in_banke.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.in_banke.Location = new System.Drawing.Point(73, 201);
+            this.in_banke.Location = new System.Drawing.Point(13, 201);
             this.in_banke.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.in_banke.Name = "in_banke";
-            this.in_banke.Size = new System.Drawing.Size(133, 54);
+            this.in_banke.Size = new System.Drawing.Size(193, 54);
             this.in_banke.TabIndex = 1;
             this.in_banke.TabStop = false;
-            this.in_banke.Text = "In báo cáo CT đã duyệt";
+            this.in_banke.Text = "In báo cáo theo kiểu đã chọn";
             this.in_banke.UseVisualStyleBackColor = false;
             this.in_banke.Click += new System.EventHandler(this.in_banke_Click);
             // 
@@ -203,7 +203,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(789, 23);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(216, 28);
+            this.dateTimePicker1.Size = new System.Drawing.Size(287, 28);
             this.dateTimePicker1.TabIndex = 2;
             this.dateTimePicker1.Value = new System.DateTime(2022, 8, 26, 10, 46, 50, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
@@ -705,7 +705,7 @@
             this.label23.Location = new System.Drawing.Point(214, 208);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(205, 34);
+            this.label23.Size = new System.Drawing.Size(196, 34);
             this.label23.TabIndex = 64;
             this.label23.Text = "Chọn kiểu báo cáo";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -725,6 +725,7 @@
             this.dateTimePicker4.Size = new System.Drawing.Size(264, 28);
             this.dateTimePicker4.TabIndex = 65;
             this.dateTimePicker4.Value = new System.DateTime(2022, 8, 26, 10, 47, 10, 0);
+            this.dateTimePicker4.ValueChanged += new System.EventHandler(this.dateTimePicker4_ValueChanged);
             // 
             // printDialog2
             // 
@@ -746,7 +747,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button2.Location = new System.Drawing.Point(214, 317);
+            this.button2.Location = new System.Drawing.Point(214, 312);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 61);
@@ -796,7 +797,7 @@
             this.dateTimePicker2.Location = new System.Drawing.Point(789, 66);
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(216, 28);
+            this.dateTimePicker2.Size = new System.Drawing.Size(287, 28);
             this.dateTimePicker2.TabIndex = 101;
             this.dateTimePicker2.Value = new System.DateTime(2022, 8, 26, 10, 46, 50, 0);
             // 

@@ -845,7 +845,7 @@ namespace XuatExcelApp
             switch(kieu_bao_cao)
             {
                 case 1:
-                    day = dateTimePicker4.Value.ToString();
+                    day = dateTimePicker4.Value.ToShortDateString();
                     Form fr2 = new Report();
                     fr2.Show();
                     break;
@@ -854,12 +854,12 @@ namespace XuatExcelApp
                     fr3.Show();
                     break;
                 case 3:
-                    day = dateTimePicker4.Value.ToString();
+                    day = dateTimePicker4.Value.ToShortDateString();
                     Form fr4 = new Report();
                     fr4.Show();
                     break;
                 case 4:
-                    day = dateTimePicker4.Value.ToString();
+                    day = dateTimePicker4.Value.ToShortDateString();
                     Form fr5 = new Report();
                     fr5.Show();
                     break;
@@ -1118,5 +1118,10 @@ namespace XuatExcelApp
             }
 
             }
+
+        private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
+        {
+            Form1.day = dateTimePicker4.Value.ToString();
         }
+    }
     }

@@ -114,3 +114,4 @@ C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\ClosedXML.pdb
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\ExcelNumberFormat.dll
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Report_ngay_duyet.rdlc
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\ReportALL.rdlc
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Report_ngay_hen.rdlc

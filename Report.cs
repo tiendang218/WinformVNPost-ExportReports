@@ -36,7 +36,7 @@ namespace XuatExcelApp
                     SqlCommand cmd1 = new SqlCommand("report_by_huyen", cn);
                     cmd1.CommandType = CommandType.StoredProcedure;
                     cmd1.Parameters.Add(new SqlParameter("@ngay", Form1.day));
-                    da = new SqlDataAdapter(cmd);
+                    da = new SqlDataAdapter(cmd1);
                     DataSet ds = new DataSet();
                     da.Fill(ds);
                     reportViewer1.Reset();
@@ -56,7 +56,6 @@ namespace XuatExcelApp
                     SqlCommand cmd2 = new SqlCommand("report_by_huyen_all", cn);
                     cmd2.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-
                     DataSet ds1 = new DataSet();
                     da2.Fill(ds1);
                     reportViewer1.Reset();
@@ -94,9 +93,26 @@ namespace XuatExcelApp
                     }
                     break;
                 case 4:
-                 
-                    break;
+                    SqlCommand cmd4 = new SqlCommand("report_by_huyen_hen", cn);
+                    cmd4.CommandType = CommandType.StoredProcedure;
+                    cmd4.Parameters.Add(new SqlParameter("@ngay", Form1.day));
+                    SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
 
+                    DataSet ds3 = new DataSet();
+                    da4.Fill(ds3);
+                    reportViewer1.Reset();
+                    reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
+                    reportViewer1.LocalReport.ReportPath = "Report_ngay_hen.rdlc";
+                    if (ds3.Tables[0].Rows.Count > 0)
+                    {
+                        ReportDataSource rds3 = new ReportDataSource();
+                        rds3.Name = "DataSet4";
+                        rds3.Value = ds3.Tables[0];
+                        reportViewer1.LocalReport.DataSources.Clear();
+                        reportViewer1.LocalReport.DataSources.Add(rds3);
+                        reportViewer1.RefreshReport();
+                    }
+                    break;
                 default:
                     break;
             }
