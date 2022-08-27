@@ -30,49 +30,75 @@ namespace XuatExcelApp
             
         }
         private void reportViewer1_Load(object sender, EventArgs e)
-        {
-            if (Form1.kieu_bao_cao == 1)
+        {   switch(Form1.kieu_bao_cao)
             {
-                SqlCommand cmd = new SqlCommand("report_by_huyen", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@ngay", Form1.day));
-                da = new SqlDataAdapter(cmd);
-                System.Data.DataTable dt1 = new System.Data.DataTable();
-                da.Fill(dt1);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
-                reportViewer1.LocalReport.ReportPath = "Report1.rdlc";
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ReportDataSource rds = new ReportDataSource();
-                    rds.Name = "DataSet1";
-                    rds.Value = ds.Tables[0];
-                    reportViewer1.LocalReport.DataSources.Clear();
-                    reportViewer1.LocalReport.DataSources.Add(rds);
-                    reportViewer1.RefreshReport();
-                }
-            }
-            if (Form1.kieu_bao_cao == 2)
-            {
-                SqlCommand cmd = new SqlCommand("report_by_huyen_all", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter da2 = new SqlDataAdapter(cmd);
-                System.Data.DataTable dt2 = new System.Data.DataTable();
-                da2.Fill(dt2);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
-                reportViewer1.LocalReport.ReportPath = "Report_Duyet.rdlc";
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    ReportDataSource rds = new ReportDataSource();
-                    rds.Name = "DataSet2";
-                    rds.Value = ds.Tables[0];
-                    reportViewer1.LocalReport.DataSources.Clear();
-                    reportViewer1.LocalReport.DataSources.Add(rds);
-                    reportViewer1.RefreshReport();
-                }
+                case 1:
+                    SqlCommand cmd1 = new SqlCommand("report_by_huyen", cn);
+                    cmd1.CommandType = CommandType.StoredProcedure;
+                    cmd1.Parameters.Add(new SqlParameter("@ngay", Form1.day));
+                    da = new SqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    reportViewer1.Reset();
+                    reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
+                    reportViewer1.LocalReport.ReportPath = "Report1.rdlc";
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ReportDataSource rds = new ReportDataSource();
+                        rds.Name = "DataSet1";
+                        rds.Value = ds.Tables[0];
+                        reportViewer1.LocalReport.DataSources.Clear();
+                        reportViewer1.LocalReport.DataSources.Add(rds);
+                        reportViewer1.RefreshReport();
+                    }
+                    break;
+                case 2:
+                    SqlCommand cmd2 = new SqlCommand("report_by_huyen_all", cn);
+                    cmd2.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+
+                    DataSet ds1 = new DataSet();
+                    da2.Fill(ds1);
+                    reportViewer1.Reset();
+                    reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
+                    reportViewer1.LocalReport.ReportPath = "ReportALL.rdlc";
+                    if (ds1.Tables[0].Rows.Count > 0)
+                    {
+                        ReportDataSource rds1 = new ReportDataSource();
+                        rds1.Name = "DataSet2";
+                        rds1.Value = ds1.Tables[0];
+                        reportViewer1.LocalReport.DataSources.Clear();
+                        reportViewer1.LocalReport.DataSources.Add(rds1);
+                        reportViewer1.RefreshReport();
+                    }
+                    break;
+                case 3:
+                    SqlCommand cmd3 = new SqlCommand("report_by_huyen_duyet", cn);
+                    cmd3.CommandType = CommandType.StoredProcedure;
+                    cmd3.Parameters.Add(new SqlParameter("@ngay", Form1.day));
+                    SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+
+                    DataSet ds2 = new DataSet();
+                    da3.Fill(ds2);
+                    reportViewer1.Reset();
+                    reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
+                    reportViewer1.LocalReport.ReportPath = "Report_ngay_duyet.rdlc";
+                    if (ds2.Tables[0].Rows.Count > 0)
+                    {
+                        ReportDataSource rds2 = new ReportDataSource();
+                        rds2.Name = "DataSet3";
+                        rds2.Value = ds2.Tables[0];
+                        reportViewer1.LocalReport.DataSources.Clear();
+                        reportViewer1.LocalReport.DataSources.Add(rds2);
+                        reportViewer1.RefreshReport();
+                    }
+                    break;
+                case 4:
+                 
+                    break;
+
+                default:
+                    break;
             }
         }
     }

@@ -719,7 +719,7 @@
             this.dateTimePicker4.CalendarTrailingForeColor = System.Drawing.SystemColors.Highlight;
             this.dateTimePicker4.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker4.Location = new System.Drawing.Point(693, 212);
+            this.dateTimePicker4.Location = new System.Drawing.Point(707, 212);
             this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker4.Name = "dateTimePicker4";
             this.dateTimePicker4.Size = new System.Drawing.Size(264, 28);

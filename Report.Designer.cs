@@ -31,15 +31,27 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Report));
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.reportbyhuyenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new XuatExcelApp.DataSet1();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.report_by_huyenTableAdapter1 = new XuatExcelApp.DataSet1TableAdapters.report_by_huyenTableAdapter();
             this.report_by_huyenTableAdapter2 = new XuatExcelApp.DataSet1TableAdapters.report_by_huyenTableAdapter();
             this.report_by_huyenTableAdapter3 = new XuatExcelApp.DataSet1TableAdapters.report_by_huyenTableAdapter();
+            this.report_by_huyenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.reportbyhuyenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.report_by_huyenBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // reportbyhuyenBindingSource
+            // 
+            this.reportbyhuyenBindingSource.DataMember = "report_by_huyen";
+            this.reportbyhuyenBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -56,16 +68,6 @@
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
-            // reportbyhuyenBindingSource
-            // 
-            this.reportbyhuyenBindingSource.DataMember = "report_by_huyen";
-            this.reportbyhuyenBindingSource.DataSource = this.dataSet1;
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // report_by_huyenTableAdapter1
             // 
             this.report_by_huyenTableAdapter1.ClearBeforeFill = true;
@@ -78,6 +80,11 @@
             // 
             this.report_by_huyenTableAdapter3.ClearBeforeFill = true;
             // 
+            // report_by_huyenBindingSource
+            // 
+            this.report_by_huyenBindingSource.DataMember = "report_by_huyen";
+            this.report_by_huyenBindingSource.DataSource = this.dataSet1;
+            // 
             // Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -87,10 +94,11 @@
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Report";
-            this.Text = "HCC Report Theo Ngày Nhận";
+            this.Text = "HCC Báo Cáo";
             this.Load += new System.EventHandler(this.Report_Load);
             ((System.ComponentModel.ISupportInitialize)(this.reportbyhuyenBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.report_by_huyenBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,5 +112,6 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource reportbyhuyenBindingSource;
         private DataSet1 dataSet1;
+        private System.Windows.Forms.BindingSource report_by_huyenBindingSource;
     }
 }

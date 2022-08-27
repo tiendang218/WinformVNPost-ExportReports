@@ -20,17 +20,17 @@ namespace XuatExcelApp {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSet2")]
+    [global::System.Xml.Serialization.XmlRootAttribute("DataSet3")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DataSet2 : global::System.Data.DataSet {
+    public partial class DataSet3 : global::System.Data.DataSet {
         
-        private report_by_huyen_allDataTable tablereport_by_huyen_all;
+        private report_by_huyen_duyetDataTable tablereport_by_huyen_duyet;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public DataSet2() {
+        public DataSet3() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace XuatExcelApp {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected DataSet2(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DataSet3(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace XuatExcelApp {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["report_by_huyen_all"] != null)) {
-                    base.Tables.Add(new report_by_huyen_allDataTable(ds.Tables["report_by_huyen_all"]));
+                if ((ds.Tables["report_by_huyen_duyet"] != null)) {
+                    base.Tables.Add(new report_by_huyen_duyetDataTable(ds.Tables["report_by_huyen_duyet"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace XuatExcelApp {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public report_by_huyen_allDataTable report_by_huyen_all {
+        public report_by_huyen_duyetDataTable report_by_huyen_duyet {
             get {
-                return this.tablereport_by_huyen_all;
+                return this.tablereport_by_huyen_duyet;
             }
         }
         
@@ -127,7 +127,7 @@ namespace XuatExcelApp {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DataSet2 cln = ((DataSet2)(base.Clone()));
+            DataSet3 cln = ((DataSet3)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace XuatExcelApp {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["report_by_huyen_all"] != null)) {
-                    base.Tables.Add(new report_by_huyen_allDataTable(ds.Tables["report_by_huyen_all"]));
+                if ((ds.Tables["report_by_huyen_duyet"] != null)) {
+                    base.Tables.Add(new report_by_huyen_duyetDataTable(ds.Tables["report_by_huyen_duyet"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace XuatExcelApp {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablereport_by_huyen_all = ((report_by_huyen_allDataTable)(base.Tables["report_by_huyen_all"]));
+            this.tablereport_by_huyen_duyet = ((report_by_huyen_duyetDataTable)(base.Tables["report_by_huyen_duyet"]));
             if ((initTable == true)) {
-                if ((this.tablereport_by_huyen_all != null)) {
-                    this.tablereport_by_huyen_all.InitVars();
+                if ((this.tablereport_by_huyen_duyet != null)) {
+                    this.tablereport_by_huyen_duyet.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace XuatExcelApp {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DataSet2";
+            this.DataSetName = "DataSet3";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DataSet2.xsd";
+            this.Namespace = "http://tempuri.org/DataSet3.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablereport_by_huyen_all = new report_by_huyen_allDataTable();
-            base.Tables.Add(this.tablereport_by_huyen_all);
+            this.tablereport_by_huyen_duyet = new report_by_huyen_duyetDataTable();
+            base.Tables.Add(this.tablereport_by_huyen_duyet);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializereport_by_huyen_all() {
+        private bool ShouldSerializereport_by_huyen_duyet() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace XuatExcelApp {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DataSet2 ds = new DataSet2();
+            DataSet3 ds = new DataSet3();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,14 +270,14 @@ namespace XuatExcelApp {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void report_by_huyen_allRowChangeEventHandler(object sender, report_by_huyen_allRowChangeEvent e);
+        public delegate void report_by_huyen_duyetRowChangeEventHandler(object sender, report_by_huyen_duyetRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class report_by_huyen_allDataTable : global::System.Data.TypedTableBase<report_by_huyen_allRow> {
+        public partial class report_by_huyen_duyetDataTable : global::System.Data.TypedTableBase<report_by_huyen_duyetRow> {
             
             private global::System.Data.DataColumn columnSO_CT;
             
@@ -303,8 +303,8 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public report_by_huyen_allDataTable() {
-                this.TableName = "report_by_huyen_all";
+            public report_by_huyen_duyetDataTable() {
+                this.TableName = "report_by_huyen_duyet";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -312,7 +312,7 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal report_by_huyen_allDataTable(global::System.Data.DataTable table) {
+            internal report_by_huyen_duyetDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -329,7 +329,7 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected report_by_huyen_allDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected report_by_huyen_duyetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -433,34 +433,34 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public report_by_huyen_allRow this[int index] {
+            public report_by_huyen_duyetRow this[int index] {
                 get {
-                    return ((report_by_huyen_allRow)(this.Rows[index]));
+                    return ((report_by_huyen_duyetRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event report_by_huyen_allRowChangeEventHandler report_by_huyen_allRowChanging;
+            public event report_by_huyen_duyetRowChangeEventHandler report_by_huyen_duyetRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event report_by_huyen_allRowChangeEventHandler report_by_huyen_allRowChanged;
+            public event report_by_huyen_duyetRowChangeEventHandler report_by_huyen_duyetRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event report_by_huyen_allRowChangeEventHandler report_by_huyen_allRowDeleting;
+            public event report_by_huyen_duyetRowChangeEventHandler report_by_huyen_duyetRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event report_by_huyen_allRowChangeEventHandler report_by_huyen_allRowDeleted;
+            public event report_by_huyen_duyetRowChangeEventHandler report_by_huyen_duyetRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Addreport_by_huyen_allRow(report_by_huyen_allRow row) {
+            public void Addreport_by_huyen_duyetRow(report_by_huyen_duyetRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public report_by_huyen_allRow Addreport_by_huyen_allRow(int SO_CT, string NGAY_NHAN, string NGAY_HEN, string TEN_NGUOI_NHAN, string DIEN_THOAI, string DIA_CHI_THUONG_TRU, string DIA_CHI, int HUYEN_NHAN, string TEN_HUYENTP, string NGAY_DUYET, decimal CUOC_PHI) {
-                report_by_huyen_allRow rowreport_by_huyen_allRow = ((report_by_huyen_allRow)(this.NewRow()));
+            public report_by_huyen_duyetRow Addreport_by_huyen_duyetRow(int SO_CT, string NGAY_NHAN, string NGAY_HEN, string TEN_NGUOI_NHAN, string DIEN_THOAI, string DIA_CHI_THUONG_TRU, string DIA_CHI, int HUYEN_NHAN, string TEN_HUYENTP, string NGAY_DUYET, decimal CUOC_PHI) {
+                report_by_huyen_duyetRow rowreport_by_huyen_duyetRow = ((report_by_huyen_duyetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SO_CT,
                         NGAY_NHAN,
@@ -473,22 +473,22 @@ namespace XuatExcelApp {
                         TEN_HUYENTP,
                         NGAY_DUYET,
                         CUOC_PHI};
-                rowreport_by_huyen_allRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowreport_by_huyen_allRow);
-                return rowreport_by_huyen_allRow;
+                rowreport_by_huyen_duyetRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowreport_by_huyen_duyetRow);
+                return rowreport_by_huyen_duyetRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public report_by_huyen_allRow FindBySO_CT(int SO_CT) {
-                return ((report_by_huyen_allRow)(this.Rows.Find(new object[] {
+            public report_by_huyen_duyetRow FindBySO_CT(int SO_CT) {
+                return ((report_by_huyen_duyetRow)(this.Rows.Find(new object[] {
                             SO_CT})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                report_by_huyen_allDataTable cln = ((report_by_huyen_allDataTable)(base.Clone()));
+                report_by_huyen_duyetDataTable cln = ((report_by_huyen_duyetDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -496,7 +496,7 @@ namespace XuatExcelApp {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new report_by_huyen_allDataTable();
+                return new report_by_huyen_duyetDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -566,28 +566,28 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public report_by_huyen_allRow Newreport_by_huyen_allRow() {
-                return ((report_by_huyen_allRow)(this.NewRow()));
+            public report_by_huyen_duyetRow Newreport_by_huyen_duyetRow() {
+                return ((report_by_huyen_duyetRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new report_by_huyen_allRow(builder);
+                return new report_by_huyen_duyetRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(report_by_huyen_allRow);
+                return typeof(report_by_huyen_duyetRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.report_by_huyen_allRowChanged != null)) {
-                    this.report_by_huyen_allRowChanged(this, new report_by_huyen_allRowChangeEvent(((report_by_huyen_allRow)(e.Row)), e.Action));
+                if ((this.report_by_huyen_duyetRowChanged != null)) {
+                    this.report_by_huyen_duyetRowChanged(this, new report_by_huyen_duyetRowChangeEvent(((report_by_huyen_duyetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -595,8 +595,8 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.report_by_huyen_allRowChanging != null)) {
-                    this.report_by_huyen_allRowChanging(this, new report_by_huyen_allRowChangeEvent(((report_by_huyen_allRow)(e.Row)), e.Action));
+                if ((this.report_by_huyen_duyetRowChanging != null)) {
+                    this.report_by_huyen_duyetRowChanging(this, new report_by_huyen_duyetRowChangeEvent(((report_by_huyen_duyetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -604,8 +604,8 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.report_by_huyen_allRowDeleted != null)) {
-                    this.report_by_huyen_allRowDeleted(this, new report_by_huyen_allRowChangeEvent(((report_by_huyen_allRow)(e.Row)), e.Action));
+                if ((this.report_by_huyen_duyetRowDeleted != null)) {
+                    this.report_by_huyen_duyetRowDeleted(this, new report_by_huyen_duyetRowChangeEvent(((report_by_huyen_duyetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -613,14 +613,14 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.report_by_huyen_allRowDeleting != null)) {
-                    this.report_by_huyen_allRowDeleting(this, new report_by_huyen_allRowChangeEvent(((report_by_huyen_allRow)(e.Row)), e.Action));
+                if ((this.report_by_huyen_duyetRowDeleting != null)) {
+                    this.report_by_huyen_duyetRowDeleting(this, new report_by_huyen_duyetRowChangeEvent(((report_by_huyen_duyetRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Removereport_by_huyen_allRow(report_by_huyen_allRow row) {
+            public void Removereport_by_huyen_duyetRow(report_by_huyen_duyetRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -629,7 +629,7 @@ namespace XuatExcelApp {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSet2 ds = new DataSet2();
+                DataSet3 ds = new DataSet3();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -647,7 +647,7 @@ namespace XuatExcelApp {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "report_by_huyen_allDataTable";
+                attribute2.FixedValue = "report_by_huyen_duyetDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -691,25 +691,25 @@ namespace XuatExcelApp {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class report_by_huyen_allRow : global::System.Data.DataRow {
+        public partial class report_by_huyen_duyetRow : global::System.Data.DataRow {
             
-            private report_by_huyen_allDataTable tablereport_by_huyen_all;
+            private report_by_huyen_duyetDataTable tablereport_by_huyen_duyet;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal report_by_huyen_allRow(global::System.Data.DataRowBuilder rb) : 
+            internal report_by_huyen_duyetRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablereport_by_huyen_all = ((report_by_huyen_allDataTable)(this.Table));
+                this.tablereport_by_huyen_duyet = ((report_by_huyen_duyetDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int SO_CT {
                 get {
-                    return ((int)(this[this.tablereport_by_huyen_all.SO_CTColumn]));
+                    return ((int)(this[this.tablereport_by_huyen_duyet.SO_CTColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.SO_CTColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.SO_CTColumn] = value;
                 }
             }
             
@@ -717,10 +717,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string NGAY_NHAN {
                 get {
-                    return ((string)(this[this.tablereport_by_huyen_all.NGAY_NHANColumn]));
+                    return ((string)(this[this.tablereport_by_huyen_duyet.NGAY_NHANColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.NGAY_NHANColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.NGAY_NHANColumn] = value;
                 }
             }
             
@@ -728,10 +728,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string NGAY_HEN {
                 get {
-                    return ((string)(this[this.tablereport_by_huyen_all.NGAY_HENColumn]));
+                    return ((string)(this[this.tablereport_by_huyen_duyet.NGAY_HENColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.NGAY_HENColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.NGAY_HENColumn] = value;
                 }
             }
             
@@ -739,10 +739,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string TEN_NGUOI_NHAN {
                 get {
-                    return ((string)(this[this.tablereport_by_huyen_all.TEN_NGUOI_NHANColumn]));
+                    return ((string)(this[this.tablereport_by_huyen_duyet.TEN_NGUOI_NHANColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.TEN_NGUOI_NHANColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.TEN_NGUOI_NHANColumn] = value;
                 }
             }
             
@@ -750,10 +750,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string DIEN_THOAI {
                 get {
-                    return ((string)(this[this.tablereport_by_huyen_all.DIEN_THOAIColumn]));
+                    return ((string)(this[this.tablereport_by_huyen_duyet.DIEN_THOAIColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.DIEN_THOAIColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.DIEN_THOAIColumn] = value;
                 }
             }
             
@@ -761,10 +761,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string DIA_CHI_THUONG_TRU {
                 get {
-                    return ((string)(this[this.tablereport_by_huyen_all.DIA_CHI_THUONG_TRUColumn]));
+                    return ((string)(this[this.tablereport_by_huyen_duyet.DIA_CHI_THUONG_TRUColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.DIA_CHI_THUONG_TRUColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.DIA_CHI_THUONG_TRUColumn] = value;
                 }
             }
             
@@ -772,10 +772,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string DIA_CHI {
                 get {
-                    return ((string)(this[this.tablereport_by_huyen_all.DIA_CHIColumn]));
+                    return ((string)(this[this.tablereport_by_huyen_duyet.DIA_CHIColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.DIA_CHIColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.DIA_CHIColumn] = value;
                 }
             }
             
@@ -783,10 +783,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int HUYEN_NHAN {
                 get {
-                    return ((int)(this[this.tablereport_by_huyen_all.HUYEN_NHANColumn]));
+                    return ((int)(this[this.tablereport_by_huyen_duyet.HUYEN_NHANColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.HUYEN_NHANColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.HUYEN_NHANColumn] = value;
                 }
             }
             
@@ -794,10 +794,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string TEN_HUYENTP {
                 get {
-                    return ((string)(this[this.tablereport_by_huyen_all.TEN_HUYENTPColumn]));
+                    return ((string)(this[this.tablereport_by_huyen_duyet.TEN_HUYENTPColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.TEN_HUYENTPColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.TEN_HUYENTPColumn] = value;
                 }
             }
             
@@ -805,10 +805,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string NGAY_DUYET {
                 get {
-                    return ((string)(this[this.tablereport_by_huyen_all.NGAY_DUYETColumn]));
+                    return ((string)(this[this.tablereport_by_huyen_duyet.NGAY_DUYETColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.NGAY_DUYETColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.NGAY_DUYETColumn] = value;
                 }
             }
             
@@ -816,10 +816,10 @@ namespace XuatExcelApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public decimal CUOC_PHI {
                 get {
-                    return ((decimal)(this[this.tablereport_by_huyen_all.CUOC_PHIColumn]));
+                    return ((decimal)(this[this.tablereport_by_huyen_duyet.CUOC_PHIColumn]));
                 }
                 set {
-                    this[this.tablereport_by_huyen_all.CUOC_PHIColumn] = value;
+                    this[this.tablereport_by_huyen_duyet.CUOC_PHIColumn] = value;
                 }
             }
         }
@@ -828,22 +828,22 @@ namespace XuatExcelApp {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class report_by_huyen_allRowChangeEvent : global::System.EventArgs {
+        public class report_by_huyen_duyetRowChangeEvent : global::System.EventArgs {
             
-            private report_by_huyen_allRow eventRow;
+            private report_by_huyen_duyetRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public report_by_huyen_allRowChangeEvent(report_by_huyen_allRow row, global::System.Data.DataRowAction action) {
+            public report_by_huyen_duyetRowChangeEvent(report_by_huyen_duyetRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public report_by_huyen_allRow Row {
+            public report_by_huyen_duyetRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -859,7 +859,7 @@ namespace XuatExcelApp {
         }
     }
 }
-namespace XuatExcelApp.DataSet2TableAdapters {
+namespace XuatExcelApp.DataSet3TableAdapters {
     
     
     /// <summary>
@@ -871,7 +871,7 @@ namespace XuatExcelApp.DataSet2TableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class report_by_huyen_allTableAdapter : global::System.ComponentModel.Component {
+    public partial class report_by_huyen_duyetTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -885,7 +885,7 @@ namespace XuatExcelApp.DataSet2TableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public report_by_huyen_allTableAdapter() {
+        public report_by_huyen_duyetTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -982,7 +982,7 @@ namespace XuatExcelApp.DataSet2TableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "report_by_huyen_all";
+            tableMapping.DataSetTable = "report_by_huyen_duyet";
             tableMapping.ColumnMappings.Add("SO_CT", "SO_CT");
             tableMapping.ColumnMappings.Add("NGAY_NHAN", "NGAY_NHAN");
             tableMapping.ColumnMappings.Add("NGAY_HEN", "NGAY_HEN");
@@ -1010,17 +1010,24 @@ namespace XuatExcelApp.DataSet2TableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.report_by_huyen_all";
+            this._commandCollection[0].CommandText = "dbo.report_by_huyen_duyet";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ngay", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSet2.report_by_huyen_allDataTable dataTable) {
+        public virtual int Fill(DataSet3.report_by_huyen_duyetDataTable dataTable, string ngay) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((ngay == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(ngay));
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -1032,9 +1039,15 @@ namespace XuatExcelApp.DataSet2TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSet2.report_by_huyen_allDataTable GetData() {
+        public virtual DataSet3.report_by_huyen_duyetDataTable GetData(string ngay) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            DataSet2.report_by_huyen_allDataTable dataTable = new DataSet2.report_by_huyen_allDataTable();
+            if ((ngay == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(ngay));
+            }
+            DataSet3.report_by_huyen_duyetDataTable dataTable = new DataSet3.report_by_huyen_duyetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1108,7 +1121,7 @@ namespace XuatExcelApp.DataSet2TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(DataSet2 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(DataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1118,7 +1131,7 @@ namespace XuatExcelApp.DataSet2TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(DataSet2 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(DataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1128,7 +1141,7 @@ namespace XuatExcelApp.DataSet2TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(DataSet2 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(DataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1162,7 +1175,7 @@ namespace XuatExcelApp.DataSet2TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(DataSet2 dataSet) {
+        public virtual int UpdateAll(DataSet3 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

@@ -64,7 +64,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@DIA_CHI", "");
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
             cmd.Parameters.AddWithValue("@NGAY_HEN", "");
-            cmd.Parameters.AddWithValue("@NGAY_NHAN","");
+            cmd.Parameters.AddWithValue("@NGAY_NHAN", "");
             cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", "");
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
@@ -116,7 +116,7 @@ namespace XuatExcelApp
                         cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
                         cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value.Date.ToShortDateString());
-                        cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU",(diachi_thuongtru_box.Text + ", " + tinh_comboBox5.Text + ", " + huyen_comboBox6.Text).ToString());
+                        cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", (diachi_thuongtru_box.Text + ", " + tinh_comboBox5.Text + ", " + huyen_comboBox6.Text).ToString());
                         cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
@@ -178,8 +178,8 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@TEN_NGUOI_NHAN", "");
             cmd.Parameters.AddWithValue("@DIA_CHI", "");
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
-            cmd.Parameters.AddWithValue("@NGAY_HEN","");
-            cmd.Parameters.AddWithValue("@NGAY_NHAN","");
+            cmd.Parameters.AddWithValue("@NGAY_HEN", "");
+            cmd.Parameters.AddWithValue("@NGAY_NHAN", "");
             cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", "");
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
@@ -209,8 +209,8 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@TEN_NGUOI_NHAN", "");
             cmd.Parameters.AddWithValue("@DIA_CHI", "");
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
-            cmd.Parameters.AddWithValue("@NGAY_HEN","");
-            cmd.Parameters.AddWithValue("@NGAY_NHAN","");
+            cmd.Parameters.AddWithValue("@NGAY_HEN", "");
+            cmd.Parameters.AddWithValue("@NGAY_NHAN", "");
             cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", "");
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
@@ -241,7 +241,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@DIA_CHI", "");
             cmd.Parameters.AddWithValue("@SO_HS_HCC", "");
             cmd.Parameters.AddWithValue("@NGAY_HEN", "");
-            cmd.Parameters.AddWithValue("@NGAY_NHAN","");
+            cmd.Parameters.AddWithValue("@NGAY_NHAN", "");
             cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", diachi_thuongtru_box.Text);
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
@@ -262,7 +262,7 @@ namespace XuatExcelApp
             loai_hs_comboBox.DataSource = dt;
             loai_hs_comboBox.DisplayMember = "TEN_LOAI_HS";
             loai_hs_comboBox.ValueMember = "MA_LOAI_HS";
-          
+
         }
         void LoadHuyen(int MaTinh)
         {
@@ -279,7 +279,7 @@ namespace XuatExcelApp
             //huyen_comboBox6.DataSource = dt;
             //huyen_comboBox6.DisplayMember = "TEN_HUYENTP";
             //huyen_comboBox6.ValueMember = "MA_HUYENTP";
-            
+
         }
         void LoadHuyen_tt(int MaTinh)
         {
@@ -319,7 +319,7 @@ namespace XuatExcelApp
             xa_comboBox4.DataSource = dt;
             xa_comboBox4.DisplayMember = "TEN_XA_PHUONG";
             xa_comboBox4.ValueMember = "MA_XA_PHUONG";
-            
+
         }
 
         private void label20_Click(object sender, EventArgs e)
@@ -383,58 +383,58 @@ namespace XuatExcelApp
             }
             //try
             //{
-                
-                comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
-                {
-                    duyet_box.CheckState = CheckState.Checked;
-                }
-                else
-                {
-                    duyet_box.CheckState = CheckState.Unchecked;
-                }
-                dataGridView1.CurrentRow.Cells[1].ReadOnly = true;
-                ten_box.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                diachi_box.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-                so_hcc_box.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-                //DateTime date1 = DateTime.ParseExact(dataGridView1.CurrentRow.Cells[5].Value.ToString(), "dd'|'MM'|'yyyy", null);
-                dateTimePicker2.Text = (DateTime.ParseExact(dataGridView1.CurrentRow.Cells[5].Value .ToString(), "dd'/'MM'/'yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)).ToString();
-                ////DateTime date2 = DateTime.ParseExact(dataGridView1.CurrentRow.Cells[6].Value.ToString(), "dd'|'MM'|'yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None);
-                dateTimePicker1.Text = (DateTime.ParseExact(dataGridView1.CurrentRow.Cells[6].Value.ToString(), "dd'/'MM'/'yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)).ToString();
-                diachi_thuongtru_box.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
-                SqlCommand cmd = new SqlCommand("load_tinh_huyen_xa", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@tinh", int.Parse(dataGridView1.CurrentRow.Cells[8].Value.ToString())));
-                cmd.Parameters.Add(new SqlParameter("@huyen", int.Parse(dataGridView1.CurrentRow.Cells[9].Value.ToString())));
-                cmd.Parameters.Add(new SqlParameter("@xa", int.Parse(dataGridView1.CurrentRow.Cells[10].Value.ToString())));
-                da = new SqlDataAdapter(cmd);
-                System.Data.DataTable dt = new System.Data.DataTable();
-                da.Fill(dt);
-                tinh_comboBox2.Text = dt.Rows[0][0].ToString();
-                huyen_comboBox3.Text = dt.Rows[0][1].ToString();
-                xa_comboBox4.Text = dt.Rows[0][2].ToString();    
-                sohskem.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
-                sdt_textBox2.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
-                SqlCommand cmd1 = new SqlCommand("load_loai_hoso", cn);
-                cmd1.CommandType = CommandType.StoredProcedure;
-                cmd1.Parameters.Add(new SqlParameter("@id", int.Parse(dataGridView1.CurrentRow.Cells[13].Value.ToString())));
-                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-                System.Data.DataTable dt1 = new System.Data.DataTable();
-                da1.Fill(dt1);
-                loai_hs_comboBox.Text = dt1.Rows[0][0].ToString();
-                trongluong.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
-                mabuugui.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
-                ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[16].Value.ToString();
-                if (dataGridView1.CurrentRow.Cells[17].Value.ToString() != "")
-                {
-                    dateTimePicker3.Visible = true;
-                    dateTimePicker3.Text = (DateTime.ParseExact(dataGridView1.CurrentRow.Cells[17].Value.ToString(), "dd'/'MM'/'yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)).ToString();
-                }
-                if (dataGridView1.CurrentRow.Cells[17].Value.ToString() == "")
-                {
-                    dateTimePicker3.Visible = false;
-                }
-                cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[18].Value.ToString();
+
+            comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
+            {
+                duyet_box.CheckState = CheckState.Checked;
+            }
+            else
+            {
+                duyet_box.CheckState = CheckState.Unchecked;
+            }
+            dataGridView1.CurrentRow.Cells[1].ReadOnly = true;
+            ten_box.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            diachi_box.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            so_hcc_box.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            //DateTime date1 = DateTime.ParseExact(dataGridView1.CurrentRow.Cells[5].Value.ToString(), "dd'|'MM'|'yyyy", null);
+            dateTimePicker2.Text = (DateTime.ParseExact(dataGridView1.CurrentRow.Cells[5].Value.ToString(), "dd'/'MM'/'yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)).ToString();
+            ////DateTime date2 = DateTime.ParseExact(dataGridView1.CurrentRow.Cells[6].Value.ToString(), "dd'|'MM'|'yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None);
+            dateTimePicker1.Text = (DateTime.ParseExact(dataGridView1.CurrentRow.Cells[6].Value.ToString(), "dd'/'MM'/'yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)).ToString();
+            diachi_thuongtru_box.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
+            SqlCommand cmd = new SqlCommand("load_tinh_huyen_xa", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@tinh", int.Parse(dataGridView1.CurrentRow.Cells[8].Value.ToString())));
+            cmd.Parameters.Add(new SqlParameter("@huyen", int.Parse(dataGridView1.CurrentRow.Cells[9].Value.ToString())));
+            cmd.Parameters.Add(new SqlParameter("@xa", int.Parse(dataGridView1.CurrentRow.Cells[10].Value.ToString())));
+            da = new SqlDataAdapter(cmd);
+            System.Data.DataTable dt = new System.Data.DataTable();
+            da.Fill(dt);
+            tinh_comboBox2.Text = dt.Rows[0][0].ToString();
+            huyen_comboBox3.Text = dt.Rows[0][1].ToString();
+            xa_comboBox4.Text = dt.Rows[0][2].ToString();
+            sohskem.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
+            sdt_textBox2.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
+            SqlCommand cmd1 = new SqlCommand("load_loai_hoso", cn);
+            cmd1.CommandType = CommandType.StoredProcedure;
+            cmd1.Parameters.Add(new SqlParameter("@id", int.Parse(dataGridView1.CurrentRow.Cells[13].Value.ToString())));
+            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+            System.Data.DataTable dt1 = new System.Data.DataTable();
+            da1.Fill(dt1);
+            loai_hs_comboBox.Text = dt1.Rows[0][0].ToString();
+            trongluong.Text = dataGridView1.CurrentRow.Cells[14].Value.ToString();
+            mabuugui.Text = dataGridView1.CurrentRow.Cells[15].Value.ToString();
+            ghichu_textBox9.Text = dataGridView1.CurrentRow.Cells[16].Value.ToString();
+            if (dataGridView1.CurrentRow.Cells[17].Value.ToString() != "")
+            {
+                dateTimePicker3.Visible = true;
+                dateTimePicker3.Text = (DateTime.ParseExact(dataGridView1.CurrentRow.Cells[17].Value.ToString(), "dd'/'MM'/'yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)).ToString();
+            }
+            if (dataGridView1.CurrentRow.Cells[17].Value.ToString() == "")
+            {
+                dateTimePicker3.Visible = false;
+            }
+            cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[18].Value.ToString();
             //}
             //catch
             //{
@@ -485,16 +485,16 @@ namespace XuatExcelApp
                         {
                             cmd.Parameters.AddWithValue("@NGAY_DUYET", dateTimePicker3.Value.ToShortDateString());
                         }
-                        if(dateTimePicker3.Visible==false)
+                        if (dateTimePicker3.Visible == false)
                         {
-                            cmd.Parameters.AddWithValue("@NGAY_DUYET","");
-                        }    
+                            cmd.Parameters.AddWithValue("@NGAY_DUYET", "");
+                        }
                         cmd.Parameters.AddWithValue("@CUOC_PHI", Decimal.Parse(cuoc_textBox8.Text.ToString()));
                         cmd.Parameters.AddWithValue("@OperationType", "2");
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Bản ghi được sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Get_All_ChungTu();
-                       
+
                     }
                     else
                     {
@@ -553,7 +553,7 @@ namespace XuatExcelApp
                 {
                     for (int j = 1; j <= k; j++)
                     {
-                        XcelApp.Cells[i, j] = dataGridView1.Rows[i-2].Cells[j-1].Value.ToString();//gán giá trị cho từ thứ 2 đến hàng cuối.
+                        XcelApp.Cells[i, j] = dataGridView1.Rows[i - 2].Cells[j - 1].Value.ToString();//gán giá trị cho từ thứ 2 đến hàng cuối.
                     }
                 }
                 XcelApp.Columns.AutoFit();
@@ -562,7 +562,7 @@ namespace XuatExcelApp
         }
         private void button7_Click(object sender, EventArgs e)
         {
-               //IN_BAOCAO_THEO_HUYEN(int.Parse((tinh_comboBox5.SelectedValue).ToString()), int.Parse((huyen_comboBox6.SelectedValue).ToString()));
+            //IN_BAOCAO_THEO_HUYEN(int.Parse((tinh_comboBox5.SelectedValue).ToString()), int.Parse((huyen_comboBox6.SelectedValue).ToString()));
             IN_BAO_ALL(dateTimePicker4.Value.ToString());
         }
         void IN_BAOCAO_THEO_HUYEN(int ma_tinh, int ma_huyen)
@@ -615,7 +615,7 @@ namespace XuatExcelApp
             comboBox1.Text = comboBox1.ValueMember.ToString();
             //comboBox1.DataBind();
             comboBox1.SelectedItem = null;
-          
+
         }
         private void comboBox1_TextUpdate(object sender, EventArgs e)
         {
@@ -787,7 +787,7 @@ namespace XuatExcelApp
                             duyet_box.Checked = true;
                             MessageBox.Show("Duyệt thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        if(i == 0)
+                        if (i == 0)
                         {
                             cmd = new SqlCommand("duyet_ct", cn);
                             cmd.CommandType = CommandType.StoredProcedure;
@@ -797,7 +797,7 @@ namespace XuatExcelApp
                             cmd.ExecuteNonQuery();
                             duyet_box.Checked = false;
                             MessageBox.Show("Hủy duyệt thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }    
+                        }
                         Get_All_ChungTu();
 
                     }
@@ -842,24 +842,30 @@ namespace XuatExcelApp
 
         private void in_banke_Click(object sender, EventArgs e)
         {
-            string selected = Cach_Bao_Cao.GetItemText(Cach_Bao_Cao.SelectedItem);
-            if (selected == "Theo ngày nhận")
+            switch(kieu_bao_cao)
             {
-                day = dateTimePicker4.Value.ToString();
-                Form fr2 = new Report();
-                fr2.Show();
-            }
-            if (selected == "Theo ngày duyệt")
-            {
-                day = dateTimePicker4.Value.ToString();
-                //Form fr2 = new Report();
-                //fr2.Show();
-            }
-            if (selected == "Theo ngày hẹn")
-            {
-                day = dateTimePicker4.Value.ToString();
-                //Form fr2 = new Report();
-                //fr2.Show();
+                case 1:
+                    day = dateTimePicker4.Value.ToString();
+                    Form fr2 = new Report();
+                    fr2.Show();
+                    break;
+                case 2:
+                    Form fr3 = new Report();
+                    fr3.Show();
+                    break;
+                case 3:
+                    day = dateTimePicker4.Value.ToString();
+                    Form fr4 = new Report();
+                    fr4.Show();
+                    break;
+                case 4:
+                    day = dateTimePicker4.Value.ToString();
+                    Form fr5 = new Report();
+                    fr5.Show();
+                    break;
+
+                default:
+                    break;
             }
 
         }
@@ -878,7 +884,7 @@ namespace XuatExcelApp
         private void button2_Click(object sender, EventArgs e)
         {
             duyet_ct(0);
-            
+
         }
 
 
@@ -929,7 +935,7 @@ namespace XuatExcelApp
         {
 
         }
-       
+
         private void button4_Click(object sender, EventArgs e)
         {
 
@@ -947,7 +953,7 @@ namespace XuatExcelApp
                 return;
             if (dr == DialogResult.Cancel)
                 return;
-           
+
             //txtpath.Text = od.FileName.ToString();   
             if (dr == DialogResult.OK)
             {
@@ -971,42 +977,42 @@ namespace XuatExcelApp
                         System.Data.DataTable table = Exceldatatable(path);
                         if (cn.State == ConnectionState.Closed)
                         {
-                        cn.Open();
+                            cn.Open();
                         }
                         try
-                           {
+                        {
                             SqlCommand cmd = new SqlCommand("ImportTableExcel", cn);
                             cmd.CommandType = CommandType.StoredProcedure;
                             SqlParameter dtparam = cmd.Parameters.AddWithValue("@table_excel", table);
                             dtparam.SqlDbType = SqlDbType.Structured;
                             cmd.ExecuteNonQuery();
-                           }
-                        catch 
-                            { 
-                           MessageBox.Show("Lỗi dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                            } 
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Lỗi dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     };
-                bw.ProgressChanged += (bwSender, bwArg) =>
-                    {
-                     };
-                bw.RunWorkerCompleted += (bwSender, bwArg) =>
-                    {
-                        sWatch.Stop();
-                        Get_All_ChungTu();
-                        button4.Enabled = true;
-                        button4.Text= "Nhập Excel";
-                        bw.Dispose();
-                        cn.Close();
-                    };
-                //Starts the actual work - triggerrs the "DoWork" event
+                    bw.ProgressChanged += (bwSender, bwArg) =>
+                        {
+                        };
+                    bw.RunWorkerCompleted += (bwSender, bwArg) =>
+                        {
+                            sWatch.Stop();
+                            Get_All_ChungTu();
+                            button4.Enabled = true;
+                            button4.Text = "Nhập Excel";
+                            bw.Dispose();
+                            cn.Close();
+                        };
+                    //Starts the actual work - triggerrs the "DoWork" event
                     bw.RunWorkerAsync();
                 }
                 catch
                 {
-                   MessageBox.Show("Dữ liệu file excel quá lớn hoặc quá thời gian truy vấn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Dữ liệu file excel quá lớn hoặc quá thời gian truy vấn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-           
+
         }
 
         public static System.Data.DataTable Exceldatatable(string path)
@@ -1038,7 +1044,8 @@ namespace XuatExcelApp
             }
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
-        {   if (textBox2.Text != "")
+        {
+            if (textBox2.Text != "")
             {
                 try
                 {
@@ -1063,13 +1070,13 @@ namespace XuatExcelApp
             else
             {
                 Get_All_ChungTu();
-            }    
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             dateTimePicker2.Value = dateTimePicker1.Value.AddDays(7);
-            
+
         }
 
         private void Form1_Click(object sender, EventArgs e)
@@ -1080,34 +1087,36 @@ namespace XuatExcelApp
         private void Cach_Bao_Cao_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = Cach_Bao_Cao.GetItemText(Cach_Bao_Cao.SelectedItem);
-            if (selected == "Theo ngày nhận")
+            switch(selected)
             {
-                kieu_bao_cao = 1;
-            }
-            if (selected == "Tất cả ngày")
-            {
-                kieu_bao_cao = 2;
-            }
-            if (selected == "Theo ngày duyệt")
-            {
-                kieu_bao_cao = 3;
-            }
-            if (selected == "Theo ngày hẹn")
-            {
-                {
-                kieu_bao_cao = 4;
-            }
-            if (selected == "Theo ngày nhận" || selected == "Theo ngày duyệt" || selected == "Theo ngày hẹn")
-            {
-                dateTimePicker4.Visible = true;
-                label24.Visible = true;
-            }
-            else
-            {
-                dateTimePicker4.Visible = false;
-                label24.Visible = false;
+                case "Theo ngày nhận":
+                    kieu_bao_cao = 1;
+                    dateTimePicker4.Visible = true;
+                    label24.Visible = true;
+                    break;
+                case "Tất cả ngày":
+                    kieu_bao_cao = 2;
+                    dateTimePicker4.Visible = false;
+                    label24.Visible = false;
+                    break;
+                case "Theo ngày duyệt":
+                    kieu_bao_cao = 3;
+                    dateTimePicker4.Visible = true;
+                    label24.Visible = true;
+                    break;
+                case "Theo ngày hẹn" :
+                    kieu_bao_cao = 4;
+                    dateTimePicker4.Visible = true;
+                    label24.Visible = true;
+                    break;
+
+                default:
+                    kieu_bao_cao = 0;
+                    dateTimePicker4.Visible = false;
+                    label24.Visible = false;
+                    break;
             }
 
+            }
         }
     }
-}
