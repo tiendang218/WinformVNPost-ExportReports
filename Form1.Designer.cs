@@ -96,9 +96,9 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.Cach_Bao_Cao = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // in_banke
@@ -116,7 +116,7 @@
             // 
             // Xóa
             // 
-            this.Xóa.Location = new System.Drawing.Point(1099, 132);
+            this.Xóa.Location = new System.Drawing.Point(1098, 100);
             this.Xóa.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Xóa.Name = "Xóa";
             this.Xóa.Size = new System.Drawing.Size(92, 35);
@@ -128,10 +128,10 @@
             // 
             // Sửa
             // 
-            this.Sửa.Location = new System.Drawing.Point(1099, 68);
+            this.Sửa.Location = new System.Drawing.Point(1099, 61);
             this.Sửa.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Sửa.Name = "Sửa";
-            this.Sửa.Size = new System.Drawing.Size(92, 43);
+            this.Sửa.Size = new System.Drawing.Size(92, 34);
             this.Sửa.TabIndex = 3;
             this.Sửa.TabStop = false;
             this.Sửa.Text = "Sửa";
@@ -166,13 +166,13 @@
             // button7
             // 
             this.button7.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button7.Location = new System.Drawing.Point(1063, 244);
+            this.button7.Location = new System.Drawing.Point(1085, 212);
             this.button7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(128, 91);
+            this.button7.Size = new System.Drawing.Size(106, 106);
             this.button7.TabIndex = 7;
             this.button7.TabStop = false;
-            this.button7.Text = "Xuất tổng BC đã duyệt theo ngày";
+            this.button7.Text = "Xuất tổng CT đã duyệt theo ngày";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -294,14 +294,14 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(146, 34);
             this.label8.TabIndex = 22;
-            this.label8.Text = "Tên";
+            this.label8.Text = "Họ và tên";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ten_box
             // 
             this.ten_box.Location = new System.Drawing.Point(417, 139);
             this.ten_box.Name = "ten_box";
-            this.ten_box.Size = new System.Drawing.Size(659, 28);
+            this.ten_box.Size = new System.Drawing.Size(580, 28);
             this.ten_box.TabIndex = 7;
             this.ten_box.TextChanged += new System.EventHandler(this.ten_box_TextChanged);
             // 
@@ -408,9 +408,9 @@
             // xa_comboBox4
             // 
             this.xa_comboBox4.FormattingEnabled = true;
-            this.xa_comboBox4.Location = new System.Drawing.Point(970, 284);
+            this.xa_comboBox4.Location = new System.Drawing.Point(964, 284);
             this.xa_comboBox4.Name = "xa_comboBox4";
-            this.xa_comboBox4.Size = new System.Drawing.Size(89, 30);
+            this.xa_comboBox4.Size = new System.Drawing.Size(114, 30);
             this.xa_comboBox4.TabIndex = 15;
             // 
             // label14
@@ -463,7 +463,7 @@
             this.huyen_comboBox6.FormattingEnabled = true;
             this.huyen_comboBox6.Location = new System.Drawing.Point(942, 249);
             this.huyen_comboBox6.Name = "huyen_comboBox6";
-            this.huyen_comboBox6.Size = new System.Drawing.Size(117, 30);
+            this.huyen_comboBox6.Size = new System.Drawing.Size(136, 30);
             this.huyen_comboBox6.TabIndex = 12;
             this.huyen_comboBox6.SelectedIndexChanged += new System.EventHandler(this.huyen_comboBox6_SelectedIndexChanged);
             // 
@@ -503,7 +503,7 @@
             this.cuoc_textBox8.BackColor = System.Drawing.SystemColors.Info;
             this.cuoc_textBox8.Location = new System.Drawing.Point(951, 316);
             this.cuoc_textBox8.Name = "cuoc_textBox8";
-            this.cuoc_textBox8.Size = new System.Drawing.Size(108, 28);
+            this.cuoc_textBox8.Size = new System.Drawing.Size(125, 28);
             this.cuoc_textBox8.TabIndex = 19;
             this.cuoc_textBox8.TextChanged += new System.EventHandler(this.cuoc_textBox8_TextChanged);
             // 
@@ -529,10 +529,10 @@
             // xuatExcel
             // 
             this.xuatExcel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.xuatExcel.Location = new System.Drawing.Point(1069, 341);
+            this.xuatExcel.Location = new System.Drawing.Point(1085, 324);
             this.xuatExcel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xuatExcel.Name = "xuatExcel";
-            this.xuatExcel.Size = new System.Drawing.Size(121, 36);
+            this.xuatExcel.Size = new System.Drawing.Size(105, 53);
             this.xuatExcel.TabIndex = 47;
             this.xuatExcel.TabStop = false;
             this.xuatExcel.Text = "Xuất Excel";
@@ -714,7 +714,7 @@
             this.dateTimePicker4.Location = new System.Drawing.Point(707, 212);
             this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(264, 28);
+            this.dateTimePicker4.Size = new System.Drawing.Size(369, 28);
             this.dateTimePicker4.TabIndex = 65;
             this.dateTimePicker4.Value = new System.DateTime(2022, 8, 26, 10, 47, 10, 0);
             this.dateTimePicker4.ValueChanged += new System.EventHandler(this.dateTimePicker4_ValueChanged);
@@ -752,7 +752,7 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox1.Location = new System.Drawing.Point(1010, 210);
+            this.textBox1.Location = new System.Drawing.Point(1009, 176);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(181, 28);
             this.textBox1.TabIndex = 68;
@@ -766,7 +766,7 @@
             this.button4.Location = new System.Drawing.Point(942, 351);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(121, 28);
+            this.button4.Size = new System.Drawing.Size(134, 28);
             this.button4.TabIndex = 70;
             this.button4.TabStop = false;
             this.button4.UseVisualStyleBackColor = false;
@@ -775,7 +775,7 @@
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox2.Location = new System.Drawing.Point(1009, 176);
+            this.textBox2.Location = new System.Drawing.Point(1009, 142);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(181, 28);
             this.textBox2.TabIndex = 71;
@@ -819,14 +819,24 @@
             this.label24.Text = "Chọn ngày";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox1
+            // label1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(13, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(224, 157);
-            this.pictureBox1.TabIndex = 104;
-            this.pictureBox1.TabStop = false;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(8, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(198, 48);
+            this.label1.TabIndex = 104;
+            this.label1.Text = "QUẢN LÝ CHỨNG TỪ HÀNH CHÍNH CÔNG";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label25
+            // 
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label25.Location = new System.Drawing.Point(12, 103);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(279, 31);
+            this.label25.TabIndex = 105;
+            this.label25.Text = "BƯU ĐIỆN TỈNH BÌNH THUẬN";
             // 
             // Form1
             // 
@@ -834,7 +844,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1203, 634);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.Cach_Bao_Cao);
             this.Controls.Add(this.dateTimePicker2);
@@ -902,11 +913,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
-            this.Text = "Nhập chứng từ HCC";
+            this.Text = "Chứng Từ Hành Chính Công";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -981,7 +991,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.ComboBox Cach_Bao_Cao;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label25;
     }
 }
 

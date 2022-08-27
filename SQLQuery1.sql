@@ -30,7 +30,6 @@ CUOC_PHI decimal(15) NOT NULL
 --select convert (varchar,NGAY_DUYET,103) from CT_HCC
 --select convert (varchar,NGAY_HEN,103) from CT_HCC
 --Go
-
 ALTER TABLE CT_HCC
 ALTER COLUMN NGAY_HEN nvarchar(10) not null;
 ALTER TABLE CT_HCC

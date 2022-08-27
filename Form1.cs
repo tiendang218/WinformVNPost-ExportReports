@@ -18,7 +18,6 @@ using System.ComponentModel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using System.Globalization;
 using ClosedXML.Excel;
-
 namespace XuatExcelApp
 {
     public partial class Form1 : Form
@@ -27,7 +26,8 @@ namespace XuatExcelApp
         SqlCommand cmd;
         SqlDataAdapter da;
         SqlDataReader dr;
-        public static int kieu_bao_cao;
+        public static int kieu_bao_cao = 2;
+        public static string day;
         public Form1()
         {
             InitializeComponent();
@@ -106,7 +106,6 @@ namespace XuatExcelApp
                 {
                     if (comboBox1.Text != string.Empty /*&& ten_box.Text != string.Empty && txtempsalary.Text != string.Empty*/)
                     {
-
                         cmd = new SqlCommand("CRUD", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
@@ -116,7 +115,7 @@ namespace XuatExcelApp
                         cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
                         cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value.Date.ToShortDateString());
-                        cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", (diachi_thuongtru_box.Text + ", " + tinh_comboBox5.Text + ", " + huyen_comboBox6.Text).ToString());
+                        cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", (diachi_thuongtru_box.Text + " " + tinh_comboBox5.Text + " " + huyen_comboBox6.Text).ToString());
                         cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
@@ -246,7 +245,6 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@TINH_NHAN", "");
             cmd.Parameters.AddWithValue("@HUYEN_NHAN", "");
             cmd.Parameters.AddWithValue("@XA_NHAN", "");
-
             cmd.Parameters.AddWithValue("@SO_HS_KEM", "0");
             cmd.Parameters.AddWithValue("@DIEN_THOAI", "");
             cmd.Parameters.AddWithValue("@MA_LOAI_HS", "");
@@ -262,11 +260,9 @@ namespace XuatExcelApp
             loai_hs_comboBox.DataSource = dt;
             loai_hs_comboBox.DisplayMember = "TEN_LOAI_HS";
             loai_hs_comboBox.ValueMember = "MA_LOAI_HS";
-
         }
         void LoadHuyen(int MaTinh)
         {
-
             SqlCommand cmd = new SqlCommand("load_huyen", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@tinh", MaTinh));
@@ -279,16 +275,9 @@ namespace XuatExcelApp
             //huyen_comboBox6.DataSource = dt;
             //huyen_comboBox6.DisplayMember = "TEN_HUYENTP";
             //huyen_comboBox6.ValueMember = "MA_HUYENTP";
-
         }
         void LoadHuyen_tt(int MaTinh)
         {
-            //string sql = @"select * from HUYEN_TP where MA_TINH = @MaTinh";   
-            //SqlCommand cmd = new SqlCommand(sql, cn);
-            //SqlParameter para = new SqlParameter("@MaTinh", SqlDbType.Int);
-            //para.Value = MaTinh;
-            //cmd.Parameters.Add(para);
-
             SqlCommand cmd = new SqlCommand("load_huyen", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@tinh", MaTinh));
@@ -304,12 +293,6 @@ namespace XuatExcelApp
         }
         void LoadXa(int MaHuyen)
         {
-            //string sql = @"select * from XAPHUONG where MA_HUYENTP= @MaHuyen";
-            //SqlCommand cmd = new SqlCommand(sql, cn);
-            //SqlParameter para = new SqlParameter("@MaHuyen", SqlDbType.Int);
-            //para.Value = MaHuyen;
-            //cmd.Parameters.Add(para);
-
             SqlCommand cmd = new SqlCommand("load_xa", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@huyen", MaHuyen));
@@ -319,7 +302,6 @@ namespace XuatExcelApp
             xa_comboBox4.DataSource = dt;
             xa_comboBox4.DisplayMember = "TEN_XA_PHUONG";
             xa_comboBox4.ValueMember = "MA_XA_PHUONG";
-
         }
 
         private void label20_Click(object sender, EventArgs e)
@@ -352,7 +334,6 @@ namespace XuatExcelApp
                     cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
                     cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
                     cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
-
                     cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
                     cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
                     cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
@@ -373,7 +354,6 @@ namespace XuatExcelApp
                 cn.Close();
             }
             xoa_noidung_box();
-
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -381,9 +361,8 @@ namespace XuatExcelApp
             {
                 cn.Open();
             }
-            //try
-            //{
-
+            try
+            {
             comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
             {
@@ -435,13 +414,13 @@ namespace XuatExcelApp
                 dateTimePicker3.Visible = false;
             }
             cuoc_textBox8.Text = dataGridView1.CurrentRow.Cells[18].Value.ToString();
-            //}
-            //catch
-            //{
-            //    loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[13].Value.ToString();
-            //    MessageBox.Show("Hàng trống dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    xoa_noidung_box();
-            //}
+            }
+            catch
+            {
+                loai_hs_comboBox.Text = dataGridView1.CurrentRow.Cells[13].Value.ToString();
+                MessageBox.Show("Hàng trống dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                xoa_noidung_box();
+            }
         }
         private void Sửa_Click(object sender, EventArgs e)
         {
@@ -461,7 +440,6 @@ namespace XuatExcelApp
                             i = 1;
                         }
                         else i = 0;
-
                         cmd = new SqlCommand("CRUD", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
@@ -471,7 +449,14 @@ namespace XuatExcelApp
                         cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
                         cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value.Date.ToShortDateString());
                         cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value.Date.ToShortDateString());
-                        cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", (diachi_thuongtru_box.Text + ", " + tinh_comboBox5.Text + ", " + huyen_comboBox6.Text).ToString());
+                        if (!tinh_comboBox5.SelectedValue.ToString().Equals("0"))
+                        {
+                        cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", (diachi_thuongtru_box.Text + " " + tinh_comboBox5.Text + " " + huyen_comboBox6.Text).ToString());
+                        }
+                        if (tinh_comboBox5.SelectedValue.ToString().Equals("0"))
+                        {
+                            cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", diachi_thuongtru_box.Text);
+                        }
                         cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
@@ -494,7 +479,6 @@ namespace XuatExcelApp
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Bản ghi được sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Get_All_ChungTu();
-
                     }
                     else
                     {
@@ -563,7 +547,7 @@ namespace XuatExcelApp
         private void button7_Click(object sender, EventArgs e)
         {
             //IN_BAOCAO_THEO_HUYEN(int.Parse((tinh_comboBox5.SelectedValue).ToString()), int.Parse((huyen_comboBox6.SelectedValue).ToString()));
-            IN_BAO_ALL(dateTimePicker4.Value.ToString());
+            IN_BAO_ALL(dateTimePicker4.Value.ToShortDateString());
         }
         void IN_BAOCAO_THEO_HUYEN(int ma_tinh, int ma_huyen)
         {
@@ -615,7 +599,6 @@ namespace XuatExcelApp
             comboBox1.Text = comboBox1.ValueMember.ToString();
             //comboBox1.DataBind();
             comboBox1.SelectedItem = null;
-
         }
         private void comboBox1_TextUpdate(object sender, EventArgs e)
         {
@@ -659,20 +642,16 @@ namespace XuatExcelApp
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
             da.Fill(dt);
-
             object oMissing = System.Reflection.Missing.Value;
             object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
-
             //Start Word and create a new document.
             Microsoft.Office.Interop.Word._Application oWord;
             Microsoft.Office.Interop.Word._Document oDoc;
             oWord = new Microsoft.Office.Interop.Word.Application();
-
             //oWord.PrintPreview = true;
             oWord.Width = 300;
             oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
             ref oMissing, ref oMissing);
-
             ;
             //Insert a paragraph at the beginning of the document.
             Microsoft.Office.Interop.Word.Paragraph oPara1;
@@ -683,7 +662,6 @@ namespace XuatExcelApp
             oPara1.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
             oPara1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
             oPara1.Range.InsertParagraphAfter();
-
             //Insert a paragraph at the end of the document.
             Microsoft.Office.Interop.Word.Paragraph oPara2;
             object oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
@@ -691,7 +669,6 @@ namespace XuatExcelApp
             oPara2.Range.Text = "Ngày: " + dateTimePicker4.Value.ToShortDateString();
             oPara2.Format.SpaceAfter = 6;
             oPara2.Range.InsertParagraphAfter();
-
             //Insert another paragraph.
             Microsoft.Office.Interop.Word.Paragraph oPara3;
             oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
@@ -699,7 +676,6 @@ namespace XuatExcelApp
             oPara3.Range.Font.Bold = 0;
             oPara3.Format.SpaceAfter = 24;
             oPara3.Range.InsertParagraphAfter();
-
             Microsoft.Office.Interop.Word.Table oTable;
             Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             int i = dt.Rows.Count;
@@ -799,7 +775,6 @@ namespace XuatExcelApp
                             MessageBox.Show("Hủy duyệt thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         Get_All_ChungTu();
-
                     }
                     else
                     {
@@ -811,35 +786,12 @@ namespace XuatExcelApp
                 cn.Close();
             }
         }
-
         private void duyet_box_CheckedChanged(object sender, EventArgs e)
         {
-            //if (duyet_box.Checked == true)
-            //{
-            //    if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-            //    {
-
-            //        duyet_ct(1);
-            //    }
-            //}
-            //if (duyet_box.Checked == false)
-            //{
-            //    if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi duyệt ", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
-            //    {
-
-            //        duyet_ct(0);
-            //    }
-            //}
         }
-
         private void duyet_box_CheckStateChanged(object sender, EventArgs e)
         {
-
         }
-
-        public static string day;
-
-
         private void in_banke_Click(object sender, EventArgs e)
         {
             switch(kieu_bao_cao)
@@ -867,35 +819,23 @@ namespace XuatExcelApp
                 default:
                     break;
             }
-
         }
-
         private void printPreviewControl1_Click(object sender, EventArgs e)
         {
-
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             duyet_ct(1);
-
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             duyet_ct(0);
-
         }
-
-
         private void so_hcc_box_TextChanged(object sender, EventArgs e)
         {
-
         }
-
         private void ten_box_TextChanged(object sender, EventArgs e)
         {
-
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -930,15 +870,11 @@ namespace XuatExcelApp
         {
             Get_All_ChungTu();
         }
-
         private void InBiThuDS_Click(object sender, EventArgs e)
         {
-
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
-
             string _path;
             OpenFileDialog od = new OpenFileDialog();
             od.Filter = "Excell|*.xls;*.xlsx;";
@@ -953,11 +889,9 @@ namespace XuatExcelApp
                 return;
             if (dr == DialogResult.Cancel)
                 return;
-
             //txtpath.Text = od.FileName.ToString();   
             if (dr == DialogResult.OK)
             {
-
                 try
                 {
                     _path = od.FileName.ToString();
@@ -1012,9 +946,7 @@ namespace XuatExcelApp
                     MessageBox.Show("Dữ liệu file excel quá lớn hoặc quá thời gian truy vấn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
         }
-
         public static System.Data.DataTable Exceldatatable(string path)
         {
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -1072,18 +1004,14 @@ namespace XuatExcelApp
                 Get_All_ChungTu();
             }
         }
-
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             dateTimePicker2.Value = dateTimePicker1.Value.AddDays(7);
-
         }
-
         private void Form1_Click(object sender, EventArgs e)
         {
             Get_All_ChungTu();
         }
-
         private void Cach_Bao_Cao_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = Cach_Bao_Cao.GetItemText(Cach_Bao_Cao.SelectedItem);
@@ -1109,19 +1037,21 @@ namespace XuatExcelApp
                     dateTimePicker4.Visible = true;
                     label24.Visible = true;
                     break;
-
                 default:
                     kieu_bao_cao = 0;
                     dateTimePicker4.Visible = false;
                     label24.Visible = false;
                     break;
             }
-
-            }
-
+        }
         private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
         {
-            Form1.day = dateTimePicker4.Value.ToString();
+            Form1.day = dateTimePicker4.Value.ToShortDateString();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }

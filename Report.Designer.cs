@@ -94,7 +94,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Report";
-            this.Text = "HCC Báo Cáo";
+            this.Text = "Báo Cáo Chứng Từ Hành Chính Công";
             this.Load += new System.EventHandler(this.Report_Load);
             ((System.ComponentModel.ISupportInitialize)(this.reportbyhuyenBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();

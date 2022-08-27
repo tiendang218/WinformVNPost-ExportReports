@@ -9,25 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace XuatExcelApp
 {
     public partial class Report : Form
     {
         SqlConnection cn = new SqlConnection(@"Data Source=KTNV-TIEN\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
         SqlCommand cmd;
-        SqlDataAdapter da;
-        
+        SqlDataAdapter da;     
         public Report()
         {
             InitializeComponent();
         }
-
         private void Report_Load(object sender, EventArgs e)
-        {
-            
-            this.reportViewer1.RefreshReport();
-            
+        {    
+            this.reportViewer1.RefreshReport();   
         }
         private void reportViewer1_Load(object sender, EventArgs e)
         {   switch(Form1.kieu_bao_cao)
@@ -76,7 +71,6 @@ namespace XuatExcelApp
                     cmd3.CommandType = CommandType.StoredProcedure;
                     cmd3.Parameters.Add(new SqlParameter("@ngay", Form1.day));
                     SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
-
                     DataSet ds2 = new DataSet();
                     da3.Fill(ds2);
                     reportViewer1.Reset();
@@ -97,7 +91,6 @@ namespace XuatExcelApp
                     cmd4.CommandType = CommandType.StoredProcedure;
                     cmd4.Parameters.Add(new SqlParameter("@ngay", Form1.day));
                     SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
-
                     DataSet ds3 = new DataSet();
                     da4.Fill(ds3);
                     reportViewer1.Reset();
