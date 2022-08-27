@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "Svy9F6Sd66zKxl3kDGzMreRBj7G5O8+2FN5agCck74PYcKAmlKdJnU+6SCN2kUDzM7TJhTMglwkw9mQ6Ab9Zfg==",
+  "dgSpecHash": "ewXBsNzE5JXGJACt4gBHH1jWEaDv1hAZKbU/0v2uwHkZkkhZIuXEKtZnKEY/2ffV0oG0H27efFLIPraXyslzXQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\TIEN DANG\\source\\repos\\XuatExcelApp\\XuatExcelApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\TIEN DANG\\.nuget\\packages\\closedxml\\0.96.0\\closedxml.0.96.0.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\documentformat.openxml\\2.17.1\\documentformat.openxml.2.17.1.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\TIEN DANG\\.nuget\\packages\\excelnumberformat\\1.1.0\\excelnumberformat.1.1.0.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\grapecity.documents.imaging\\5.2.0.800\\grapecity.documents.imaging.5.2.0.800.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\grapecity.documents.word\\5.2.0.800\\grapecity.documents.word.5.2.0.800.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\TIEN DANG\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\microsoft.office.interop.excel\\15.0.4795.1001\\microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512",
     "C:\\Users\\TIEN DANG\\.nuget\\packages\\microsoft.office.interop.word\\15.0.4797.1004\\microsoft.office.interop.word.15.0.4797.1004.nupkg.sha512",

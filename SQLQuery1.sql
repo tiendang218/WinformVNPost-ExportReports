@@ -1,6 +1,7 @@
 ﻿drop database ChungTuHCC
 create database ChungTuHCC
  use [ChungTuHCC]
+SELECT FORMAT (getdate(), 'dd/MM/yyyy ') as date
 CREATE TABLE CT_HCC (
     SO_CT	int PRIMARY KEY not null,
 	Approved bit not null,
@@ -19,9 +20,24 @@ MA_LOAI_HS	int	not null,
 TRONG_LUONG	varchar(10)not null,
 MA_BUUGUI	varchar(10)not null	,
 GHI_CHU	nvarchar(50)not null,
-NGAY_DUYET DATE NULL,
-CUOC_PHI decimal(20) NOT NULL
+NGAY_DUYET date NULL,
+CUOC_PHI decimal(15) NOT NULL
 );
+--select NGAY_NHAN from CT_HCC
+--Go
+----dd/mm/yyyy format
+--select convert (varchar,NGAY_NHAN,103) from CT_HCC
+--select convert (varchar,NGAY_DUYET,103) from CT_HCC
+--select convert (varchar,NGAY_HEN,103) from CT_HCC
+--Go
+
+ALTER TABLE CT_HCC
+ALTER COLUMN NGAY_HEN nvarchar(10) not null;
+ALTER TABLE CT_HCC
+ALTER COLUMN NGAY_NHAN nvarchar(10) not null;
+ALTER TABLE CT_HCC
+ALTER COLUMN NGAY_DUYET nvarchar(10) not null;
+
 CREATE TABLE LOAI_HS
 (
 MA_LOAI_HS int PRIMARY KEY NOT NULL,
@@ -76,8 +92,8 @@ create PROCEDURE [CRUD]
 @TEN_NGUOI_NHAN	nvarchar(50) ,	
 @DIA_CHI	nvarchar(50),	
 @SO_HS_HCC	nvarchar(50),	
-@NGAY_HEN	date	,
-@NGAY_NHAN	date	,
+@NGAY_HEN	nvarchar(10)	,
+@NGAY_NHAN	nvarchar(10)	,
 @DIA_CHI_THUONG_TRU nvarchar(50),
 @TINH_NHAN	int,
 @HUYEN_NHAN	int,
@@ -88,7 +104,7 @@ create PROCEDURE [CRUD]
 @TRONG_LUONG	varchar(10),
 @MA_BUUGUI	varchar(10),
 @GHI_CHU	nvarchar(50),
-@NGAY_DUYET DATE,
+@NGAY_DUYET nvarchar(10),
 @CUOC_PHI decimal(10,2),
 
 @OperationType int   
@@ -183,6 +199,7 @@ begin
         SELECT * FROM CT_HCC   
     END  
 END  
+select * from XAPHUONG
 drop PROCEDURE dem_ban_ghi
 CREATE PROCEDURE dem_ban_ghi @tinh int, @huyen int
 AS
@@ -208,7 +225,7 @@ BEGIN
 END
 
 drop procedure bao_cao_cthcc
-create procedure bao_cao_cthcc @ngayduyet date
+create procedure bao_cao_cthcc @ngayduyet varchar(10)
 as 
 with CountData as
 (
@@ -244,12 +261,28 @@ select t.TEN_TINH, h.TEN_HUYENTP, x.TEN_XA_PHUONG
 from TINH as t, HUYEN_TP as h, XAPHUONG as x
 where t.MA_TINH=@tinh and t.MA_TINH=h.MA_TINH and h.MA_HUYENTP= @huyen and x.MA_HUYENTP= h.MA_HUYENTP and x.MA_XA_PHUONG=@xa
 
+drop proc load_loai_hoso @id=1
+create proc load_loai_hoso @id int
+as
+select TEN_LOAI_HS from LOAI_HS
+where MA_LOAI_HS=@id
+
+drop proc duyet_ct
+create proc duyet_ct @i int,@id int,@date varchar(10)
+as
+update CT_HCC set Approved=@i,NGAY_DUYET= @date
+where SO_CT=@id
+
+
+insert into LOAI_HS values(0,N'')
 insert into LOAI_HS values(1,N'Cấp mới')
 insert into LOAI_HS values(2,N'Mất cấp lại')
 insert into LOAI_HS values(3,N'Đổi điều chỉnh')
 insert into LOAI_HS values(4,N'Không chọn')
 
+insert into TINH values(0,N'')
 insert into TINH values(86,N'Bình Thuận')
+insert into HUYEN_TP values(0,N'',0)
 insert into HUYEN_TP values(1,N'TP.Phan Thiết',86)
 insert into HUYEN_TP values(2,N'Tuy Phong',86)
 insert into HUYEN_TP values(3,N'Hàm Thuận Bắc',86)
@@ -261,6 +294,7 @@ insert into HUYEN_TP values(8,N'Bắc Bình',86)
 insert into HUYEN_TP values(9,N'Lagi',86)
 insert into HUYEN_TP values(10,N'Phú Quý',86)
 
+insert into XAPHUONG values(0,N'',0)
 insert into XAPHUONG values(1,N'Mũi Né',1)
 insert into XAPHUONG values(2,N'Hàm Tiến',1)
 insert into XAPHUONG values(3,N'Phú Hài',1)
@@ -396,10 +430,26 @@ insert into XAPHUONG values(123,N'Long Hải',10)
 insert into XAPHUONG values(124,N'Tam Thanh',10)
 
 drop procedure report_by_huyen
-create procedure report_by_huyen @ngay date
+create procedure report_by_huyen @ngay varchar(10)
 as 
-select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
+select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,ct.NGAY_DUYET,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
 where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1 and ct.NGAY_NHAN=@ngay
+exec report_by_huyen @ngay='27/08/2022'
+
+create procedure report_by_huyen_duyet @ngay varchar(10)
+as 
+select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,ct.NGAY_DUYET,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
+where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1 and ct.NGAY_DUYET=@ngay
+
+create procedure report_by_huyen_hen @ngay varchar(10)
+as 
+select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,ct.NGAY_DUYET,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
+where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1 and ct.NGAY_HEN=@ngay
+
+create procedure report_by_huyen_all
+as 
+select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,ct.NGAY_DUYET,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
+where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1
 
 drop proc search_soct @ma=1
 create proc search_soct @ma int
@@ -407,13 +457,20 @@ as
 select * from CT_HCC
 where SO_CT=@ma
 
-drop proc search_nguoinhan @ten='Trang'
+create proc search_sdt @sdt varchar(50)
+as
+select * from CT_HCC
+where DIEN_THOAI=@sdt
+
+search_sdt '12312'
+
+drop proc search_nguoinhan @ten='T'
 create proc search_nguoinhan @ten nvarchar(50)
 as
 select * from CT_HCC
 where TEN_NGUOI_NHAN=@ten
 
-exec report_by_huyen @ngay='2022-08-24'
+
  
 drop proc load_huyen_report
 create proc load_huyen_report
@@ -453,3 +510,43 @@ where ct.HUYEN_NHAN=@huyen and ct.HUYEN_NHAN=h.MA_HUYENTP
 exec load_ct_huyen_theo_ma @huyen=2
 exec load_tinh_huyen_xa @tinh=86,@huyen=1,@xa=1
 
+
+CREATE TYPE CT_HCC_Table AS TABLE
+(
+SO_CT	int PRIMARY KEY not null,
+	Approved bit not null,
+TEN_NGUOI_NHAN	nvarchar(50) not null ,	
+DIA_CHI	nvarchar(50) not null,	
+SO_HS_HCC	nvarchar(50) not null,	
+NGAY_HEN	date	not null,
+NGAY_NHAN	date	not null,
+DIA_CHI_THUONG_TRU nvarchar(50) not null,
+TINH_NHAN	int	not null,
+HUYEN_NHAN	int	not null,
+XA_NHAN	int	not null,
+SO_HS_KEM	varchar(10)	not null,
+DIEN_THOAI	varchar(50)	not null,
+MA_LOAI_HS	int	not null,
+TRONG_LUONG	varchar(10)not null,
+MA_BUUGUI	varchar(10)not null	,
+GHI_CHU	nvarchar(50)not null,
+NGAY_DUYET DATE NULL,
+CUOC_PHI decimal(20) NOT NULL
+)
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<m.nabeel siddiqui="">
+-- Create date: <19/4/2016>
+-- Description:	<adding records="" in="" moodleusers="">
+-- =============================================
+create PROCEDURE ImportTableExcel 
+@table_excel CT_HCC_Table readonly
+AS
+BEGIN
+insert into CT_HCC select * from @table_excel
+END

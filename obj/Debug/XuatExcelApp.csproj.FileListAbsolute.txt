@@ -109,3 +109,6 @@ C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\zh-CHT\Microsoft.ReportVi
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Microsoft.SqlServer.Types.dll
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Report1.rdlc
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\ClosedXML.dll
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\ClosedXML.pdb
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\ExcelNumberFormat.dll

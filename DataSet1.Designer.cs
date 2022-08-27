@@ -20,9 +20,9 @@ namespace XuatExcelApp {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSet3")]
+    [global::System.Xml.Serialization.XmlRootAttribute("DataSet1")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DataSet3 : global::System.Data.DataSet {
+    public partial class DataSet1 : global::System.Data.DataSet {
         
         private report_by_huyenDataTable tablereport_by_huyen;
         
@@ -30,7 +30,7 @@ namespace XuatExcelApp {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public DataSet3() {
+        public DataSet1() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace XuatExcelApp {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected DataSet3(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DataSet1(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace XuatExcelApp {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DataSet3 cln = ((DataSet3)(base.Clone()));
+            DataSet1 cln = ((DataSet1)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace XuatExcelApp {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DataSet3";
+            this.DataSetName = "DataSet1";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DataSet3.xsd";
+            this.Namespace = "http://tempuri.org/DataSet1.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tablereport_by_huyen = new report_by_huyenDataTable();
@@ -225,7 +225,7 @@ namespace XuatExcelApp {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DataSet3 ds = new DataSet3();
+            DataSet1 ds = new DataSet1();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -296,6 +296,8 @@ namespace XuatExcelApp {
             private global::System.Data.DataColumn columnHUYEN_NHAN;
             
             private global::System.Data.DataColumn columnTEN_HUYENTP;
+            
+            private global::System.Data.DataColumn columnNGAY_DUYET;
             
             private global::System.Data.DataColumn columnCUOC_PHI;
             
@@ -406,6 +408,14 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NGAY_DUYETColumn {
+                get {
+                    return this.columnNGAY_DUYET;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn CUOC_PHIColumn {
                 get {
                     return this.columnCUOC_PHI;
@@ -449,7 +459,7 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public report_by_huyenRow Addreport_by_huyenRow(int SO_CT, System.DateTime NGAY_NHAN, System.DateTime NGAY_HEN, string TEN_NGUOI_NHAN, string DIEN_THOAI, string DIA_CHI_THUONG_TRU, string DIA_CHI, int HUYEN_NHAN, string TEN_HUYENTP, decimal CUOC_PHI) {
+            public report_by_huyenRow Addreport_by_huyenRow(int SO_CT, string NGAY_NHAN, string NGAY_HEN, string TEN_NGUOI_NHAN, string DIEN_THOAI, string DIA_CHI_THUONG_TRU, string DIA_CHI, int HUYEN_NHAN, string TEN_HUYENTP, string NGAY_DUYET, decimal CUOC_PHI) {
                 report_by_huyenRow rowreport_by_huyenRow = ((report_by_huyenRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SO_CT,
@@ -461,6 +471,7 @@ namespace XuatExcelApp {
                         DIA_CHI,
                         HUYEN_NHAN,
                         TEN_HUYENTP,
+                        NGAY_DUYET,
                         CUOC_PHI};
                 rowreport_by_huyenRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowreport_by_huyenRow);
@@ -500,6 +511,7 @@ namespace XuatExcelApp {
                 this.columnDIA_CHI = base.Columns["DIA_CHI"];
                 this.columnHUYEN_NHAN = base.Columns["HUYEN_NHAN"];
                 this.columnTEN_HUYENTP = base.Columns["TEN_HUYENTP"];
+                this.columnNGAY_DUYET = base.Columns["NGAY_DUYET"];
                 this.columnCUOC_PHI = base.Columns["CUOC_PHI"];
             }
             
@@ -508,9 +520,9 @@ namespace XuatExcelApp {
             private void InitClass() {
                 this.columnSO_CT = new global::System.Data.DataColumn("SO_CT", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSO_CT);
-                this.columnNGAY_NHAN = new global::System.Data.DataColumn("NGAY_NHAN", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnNGAY_NHAN = new global::System.Data.DataColumn("NGAY_NHAN", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNGAY_NHAN);
-                this.columnNGAY_HEN = new global::System.Data.DataColumn("NGAY_HEN", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnNGAY_HEN = new global::System.Data.DataColumn("NGAY_HEN", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNGAY_HEN);
                 this.columnTEN_NGUOI_NHAN = new global::System.Data.DataColumn("TEN_NGUOI_NHAN", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTEN_NGUOI_NHAN);
@@ -524,6 +536,8 @@ namespace XuatExcelApp {
                 base.Columns.Add(this.columnHUYEN_NHAN);
                 this.columnTEN_HUYENTP = new global::System.Data.DataColumn("TEN_HUYENTP", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTEN_HUYENTP);
+                this.columnNGAY_DUYET = new global::System.Data.DataColumn("NGAY_DUYET", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNGAY_DUYET);
                 this.columnCUOC_PHI = new global::System.Data.DataColumn("CUOC_PHI", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCUOC_PHI);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -531,7 +545,9 @@ namespace XuatExcelApp {
                 this.columnSO_CT.AllowDBNull = false;
                 this.columnSO_CT.Unique = true;
                 this.columnNGAY_NHAN.AllowDBNull = false;
+                this.columnNGAY_NHAN.MaxLength = 10;
                 this.columnNGAY_HEN.AllowDBNull = false;
+                this.columnNGAY_HEN.MaxLength = 10;
                 this.columnTEN_NGUOI_NHAN.AllowDBNull = false;
                 this.columnTEN_NGUOI_NHAN.MaxLength = 50;
                 this.columnDIEN_THOAI.AllowDBNull = false;
@@ -543,6 +559,8 @@ namespace XuatExcelApp {
                 this.columnHUYEN_NHAN.AllowDBNull = false;
                 this.columnTEN_HUYENTP.AllowDBNull = false;
                 this.columnTEN_HUYENTP.MaxLength = 50;
+                this.columnNGAY_DUYET.AllowDBNull = false;
+                this.columnNGAY_DUYET.MaxLength = 10;
                 this.columnCUOC_PHI.AllowDBNull = false;
             }
             
@@ -611,7 +629,7 @@ namespace XuatExcelApp {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSet3 ds = new DataSet3();
+                DataSet1 ds = new DataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -697,9 +715,9 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime NGAY_NHAN {
+            public string NGAY_NHAN {
                 get {
-                    return ((global::System.DateTime)(this[this.tablereport_by_huyen.NGAY_NHANColumn]));
+                    return ((string)(this[this.tablereport_by_huyen.NGAY_NHANColumn]));
                 }
                 set {
                     this[this.tablereport_by_huyen.NGAY_NHANColumn] = value;
@@ -708,9 +726,9 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime NGAY_HEN {
+            public string NGAY_HEN {
                 get {
-                    return ((global::System.DateTime)(this[this.tablereport_by_huyen.NGAY_HENColumn]));
+                    return ((string)(this[this.tablereport_by_huyen.NGAY_HENColumn]));
                 }
                 set {
                     this[this.tablereport_by_huyen.NGAY_HENColumn] = value;
@@ -785,6 +803,17 @@ namespace XuatExcelApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NGAY_DUYET {
+                get {
+                    return ((string)(this[this.tablereport_by_huyen.NGAY_DUYETColumn]));
+                }
+                set {
+                    this[this.tablereport_by_huyen.NGAY_DUYETColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public decimal CUOC_PHI {
                 get {
                     return ((decimal)(this[this.tablereport_by_huyen.CUOC_PHIColumn]));
@@ -830,7 +859,7 @@ namespace XuatExcelApp {
         }
     }
 }
-namespace XuatExcelApp.DataSet3TableAdapters {
+namespace XuatExcelApp.DataSet1TableAdapters {
     
     
     /// <summary>
@@ -963,6 +992,7 @@ namespace XuatExcelApp.DataSet3TableAdapters {
             tableMapping.ColumnMappings.Add("DIA_CHI", "DIA_CHI");
             tableMapping.ColumnMappings.Add("HUYEN_NHAN", "HUYEN_NHAN");
             tableMapping.ColumnMappings.Add("TEN_HUYENTP", "TEN_HUYENTP");
+            tableMapping.ColumnMappings.Add("NGAY_DUYET", "NGAY_DUYET");
             tableMapping.ColumnMappings.Add("CUOC_PHI", "CUOC_PHI");
             this._adapter.TableMappings.Add(tableMapping);
         }
@@ -983,20 +1013,20 @@ namespace XuatExcelApp.DataSet3TableAdapters {
             this._commandCollection[0].CommandText = "dbo.report_by_huyen";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ngay", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ngay", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSet3.report_by_huyenDataTable dataTable, global::System.Nullable<global::System.DateTime> ngay) {
+        public virtual int Fill(DataSet1.report_by_huyenDataTable dataTable, string ngay) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((ngay.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(ngay.Value));
+            if ((ngay == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(ngay));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1009,15 +1039,15 @@ namespace XuatExcelApp.DataSet3TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSet3.report_by_huyenDataTable GetData(global::System.Nullable<global::System.DateTime> ngay) {
+        public virtual DataSet1.report_by_huyenDataTable GetData(string ngay) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((ngay.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(ngay.Value));
-            }
-            else {
+            if ((ngay == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            DataSet3.report_by_huyenDataTable dataTable = new DataSet3.report_by_huyenDataTable();
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(ngay));
+            }
+            DataSet1.report_by_huyenDataTable dataTable = new DataSet1.report_by_huyenDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1091,7 +1121,7 @@ namespace XuatExcelApp.DataSet3TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(DataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1101,7 +1131,7 @@ namespace XuatExcelApp.DataSet3TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(DataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1111,7 +1141,7 @@ namespace XuatExcelApp.DataSet3TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(DataSet3 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1145,7 +1175,7 @@ namespace XuatExcelApp.DataSet3TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(DataSet3 dataSet) {
+        public virtual int UpdateAll(DataSet1 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

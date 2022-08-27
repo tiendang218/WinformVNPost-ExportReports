@@ -38,7 +38,6 @@
             this.button7 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
@@ -93,9 +92,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.Cach_Bao_Cao = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,12 +113,13 @@
             // in_banke
             // 
             this.in_banke.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.in_banke.Location = new System.Drawing.Point(31, 196);
+            this.in_banke.Location = new System.Drawing.Point(73, 201);
             this.in_banke.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.in_banke.Name = "in_banke";
-            this.in_banke.Size = new System.Drawing.Size(152, 59);
+            this.in_banke.Size = new System.Drawing.Size(133, 54);
             this.in_banke.TabIndex = 1;
-            this.in_banke.Text = "In bản kê chi tiết theo ngày";
+            this.in_banke.TabStop = false;
+            this.in_banke.Text = "In báo cáo CT đã duyệt";
             this.in_banke.UseVisualStyleBackColor = false;
             this.in_banke.Click += new System.EventHandler(this.in_banke_Click);
             // 
@@ -128,28 +130,31 @@
             this.Xóa.Name = "Xóa";
             this.Xóa.Size = new System.Drawing.Size(92, 28);
             this.Xóa.TabIndex = 2;
+            this.Xóa.TabStop = false;
             this.Xóa.Text = "Xóa";
             this.Xóa.UseVisualStyleBackColor = true;
             this.Xóa.Click += new System.EventHandler(this.Xóa_Click);
             // 
             // Sửa
             // 
-            this.Sửa.Location = new System.Drawing.Point(1095, 97);
+            this.Sửa.Location = new System.Drawing.Point(1095, 79);
             this.Sửa.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Sửa.Name = "Sửa";
             this.Sửa.Size = new System.Drawing.Size(92, 32);
             this.Sửa.TabIndex = 3;
+            this.Sửa.TabStop = false;
             this.Sửa.Text = "Sửa";
             this.Sửa.UseVisualStyleBackColor = true;
             this.Sửa.Click += new System.EventHandler(this.Sửa_Click);
             // 
             // Them
             // 
-            this.Them.Location = new System.Drawing.Point(1095, 57);
+            this.Them.Location = new System.Drawing.Point(1095, 23);
             this.Them.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Them.Name = "Them";
             this.Them.Size = new System.Drawing.Size(92, 36);
             this.Them.TabIndex = 4;
+            this.Them.TabStop = false;
             this.Them.Tag = "Thêm";
             this.Them.Text = "Thêm";
             this.Them.UseVisualStyleBackColor = true;
@@ -157,11 +162,12 @@
             // 
             // InBiThuDS
             // 
-            this.InBiThuDS.Location = new System.Drawing.Point(31, 261);
+            this.InBiThuDS.Location = new System.Drawing.Point(12, 267);
             this.InBiThuDS.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.InBiThuDS.Name = "InBiThuDS";
-            this.InBiThuDS.Size = new System.Drawing.Size(152, 36);
+            this.InBiThuDS.Size = new System.Drawing.Size(194, 36);
             this.InBiThuDS.TabIndex = 5;
+            this.InBiThuDS.TabStop = false;
             this.InBiThuDS.Text = "In Bì Thư (DS)";
             this.InBiThuDS.UseVisualStyleBackColor = true;
             this.InBiThuDS.Click += new System.EventHandler(this.InBiThuDS_Click);
@@ -172,9 +178,10 @@
             this.button7.Location = new System.Drawing.Point(1059, 244);
             this.button7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(128, 79);
+            this.button7.Size = new System.Drawing.Size(128, 91);
             this.button7.TabIndex = 7;
-            this.button7.Text = "Xuất tổng BC theo ngày";
+            this.button7.TabStop = false;
+            this.button7.Text = "Xuất tổng BC đã duyệt theo ngày";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -191,24 +198,20 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(751, 17);
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(789, 23);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(279, 28);
-            this.dateTimePicker1.TabIndex = 11;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(755, 63);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(275, 28);
-            this.dateTimePicker2.TabIndex = 12;
+            this.dateTimePicker1.Size = new System.Drawing.Size(216, 28);
+            this.dateTimePicker1.TabIndex = 2;
+            this.dateTimePicker1.Value = new System.DateTime(2022, 8, 26, 10, 46, 50, 0);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(597, 16);
+            this.label3.Location = new System.Drawing.Point(635, 22);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 34);
@@ -225,15 +228,16 @@
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1175, 227);
-            this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.Size = new System.Drawing.Size(1172, 227);
+            this.dataGridView1.TabIndex = 100;
+            this.dataGridView1.TabStop = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(597, 66);
+            this.label4.Location = new System.Drawing.Point(632, 61);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(146, 34);
@@ -268,13 +272,13 @@
             this.loai_hs_comboBox.FormattingEnabled = true;
             this.loai_hs_comboBox.Location = new System.Drawing.Point(417, 103);
             this.loai_hs_comboBox.Name = "loai_hs_comboBox";
-            this.loai_hs_comboBox.Size = new System.Drawing.Size(75, 30);
-            this.loai_hs_comboBox.TabIndex = 19;
+            this.loai_hs_comboBox.Size = new System.Drawing.Size(101, 30);
+            this.loai_hs_comboBox.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.BackColor = System.Drawing.SystemColors.Control;
-            this.label7.Location = new System.Drawing.Point(802, 99);
+            this.label7.Location = new System.Drawing.Point(798, 97);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 34);
@@ -285,10 +289,10 @@
             // 
             // sdt_textBox2
             // 
-            this.sdt_textBox2.Location = new System.Drawing.Point(915, 99);
+            this.sdt_textBox2.Location = new System.Drawing.Point(915, 102);
             this.sdt_textBox2.Name = "sdt_textBox2";
             this.sdt_textBox2.Size = new System.Drawing.Size(161, 28);
-            this.sdt_textBox2.TabIndex = 21;
+            this.sdt_textBox2.TabIndex = 6;
             // 
             // label8
             // 
@@ -307,7 +311,7 @@
             this.ten_box.Location = new System.Drawing.Point(417, 136);
             this.ten_box.Name = "ten_box";
             this.ten_box.Size = new System.Drawing.Size(659, 28);
-            this.ten_box.TabIndex = 23;
+            this.ten_box.TabIndex = 7;
             this.ten_box.TextChanged += new System.EventHandler(this.ten_box_TextChanged);
             // 
             // diachi_box
@@ -315,7 +319,7 @@
             this.diachi_box.Location = new System.Drawing.Point(417, 171);
             this.diachi_box.Name = "diachi_box";
             this.diachi_box.Size = new System.Drawing.Size(361, 28);
-            this.diachi_box.TabIndex = 24;
+            this.diachi_box.TabIndex = 8;
             // 
             // label9
             // 
@@ -346,7 +350,7 @@
             this.so_hcc_box.Location = new System.Drawing.Point(911, 171);
             this.so_hcc_box.Name = "so_hcc_box";
             this.so_hcc_box.Size = new System.Drawing.Size(86, 28);
-            this.so_hcc_box.TabIndex = 27;
+            this.so_hcc_box.TabIndex = 9;
             this.so_hcc_box.TextChanged += new System.EventHandler(this.so_hcc_box_TextChanged);
             // 
             // diachi_thuongtru_box
@@ -354,7 +358,7 @@
             this.diachi_thuongtru_box.Location = new System.Drawing.Point(417, 249);
             this.diachi_thuongtru_box.Name = "diachi_thuongtru_box";
             this.diachi_thuongtru_box.Size = new System.Drawing.Size(228, 28);
-            this.diachi_thuongtru_box.TabIndex = 28;
+            this.diachi_thuongtru_box.TabIndex = 10;
             // 
             // label11
             // 
@@ -386,7 +390,7 @@
             this.tinh_comboBox2.Location = new System.Drawing.Point(417, 281);
             this.tinh_comboBox2.Name = "tinh_comboBox2";
             this.tinh_comboBox2.Size = new System.Drawing.Size(109, 30);
-            this.tinh_comboBox2.TabIndex = 31;
+            this.tinh_comboBox2.TabIndex = 13;
             this.tinh_comboBox2.SelectedIndexChanged += new System.EventHandler(this.tinh_comboBox2_SelectedIndexChanged);
             // 
             // label13
@@ -407,7 +411,7 @@
             this.huyen_comboBox3.Location = new System.Drawing.Point(712, 286);
             this.huyen_comboBox3.Name = "huyen_comboBox3";
             this.huyen_comboBox3.Size = new System.Drawing.Size(99, 30);
-            this.huyen_comboBox3.TabIndex = 33;
+            this.huyen_comboBox3.TabIndex = 14;
             this.huyen_comboBox3.SelectedIndexChanged += new System.EventHandler(this.huyen_comboBox3_SelectedIndexChanged);
             // 
             // xa_comboBox4
@@ -416,7 +420,7 @@
             this.xa_comboBox4.Location = new System.Drawing.Point(970, 281);
             this.xa_comboBox4.Name = "xa_comboBox4";
             this.xa_comboBox4.Size = new System.Drawing.Size(89, 30);
-            this.xa_comboBox4.TabIndex = 34;
+            this.xa_comboBox4.TabIndex = 15;
             // 
             // label14
             // 
@@ -448,7 +452,7 @@
             this.tinh_comboBox5.Location = new System.Drawing.Point(719, 249);
             this.tinh_comboBox5.Name = "tinh_comboBox5";
             this.tinh_comboBox5.Size = new System.Drawing.Size(121, 30);
-            this.tinh_comboBox5.TabIndex = 38;
+            this.tinh_comboBox5.TabIndex = 11;
             this.tinh_comboBox5.SelectedIndexChanged += new System.EventHandler(this.tinh_comboBox5_SelectedIndexChanged);
             // 
             // label16
@@ -469,7 +473,7 @@
             this.huyen_comboBox6.Location = new System.Drawing.Point(942, 249);
             this.huyen_comboBox6.Name = "huyen_comboBox6";
             this.huyen_comboBox6.Size = new System.Drawing.Size(117, 30);
-            this.huyen_comboBox6.TabIndex = 40;
+            this.huyen_comboBox6.TabIndex = 12;
             this.huyen_comboBox6.SelectedIndexChanged += new System.EventHandler(this.huyen_comboBox6_SelectedIndexChanged);
             // 
             // label17
@@ -489,7 +493,7 @@
             this.sohskem.Location = new System.Drawing.Point(417, 314);
             this.sohskem.Name = "sohskem";
             this.sohskem.Size = new System.Drawing.Size(47, 28);
-            this.sohskem.TabIndex = 42;
+            this.sohskem.TabIndex = 16;
             // 
             // label18
             // 
@@ -508,7 +512,7 @@
             this.cuoc_textBox8.Location = new System.Drawing.Point(951, 312);
             this.cuoc_textBox8.Name = "cuoc_textBox8";
             this.cuoc_textBox8.Size = new System.Drawing.Size(108, 28);
-            this.cuoc_textBox8.TabIndex = 44;
+            this.cuoc_textBox8.TabIndex = 19;
             this.cuoc_textBox8.TextChanged += new System.EventHandler(this.cuoc_textBox8_TextChanged);
             // 
             // ghichu_textBox9
@@ -516,7 +520,7 @@
             this.ghichu_textBox9.Location = new System.Drawing.Point(417, 348);
             this.ghichu_textBox9.Name = "ghichu_textBox9";
             this.ghichu_textBox9.Size = new System.Drawing.Size(514, 28);
-            this.ghichu_textBox9.TabIndex = 45;
+            this.ghichu_textBox9.TabIndex = 20;
             // 
             // label19
             // 
@@ -533,11 +537,12 @@
             // xuatExcel
             // 
             this.xuatExcel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.xuatExcel.Location = new System.Drawing.Point(1063, 342);
+            this.xuatExcel.Location = new System.Drawing.Point(1063, 341);
             this.xuatExcel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xuatExcel.Name = "xuatExcel";
             this.xuatExcel.Size = new System.Drawing.Size(121, 36);
             this.xuatExcel.TabIndex = 47;
+            this.xuatExcel.TabStop = false;
             this.xuatExcel.Text = "Xuất Excel";
             this.xuatExcel.UseVisualStyleBackColor = false;
             this.xuatExcel.Click += new System.EventHandler(this.xuatExcel_Click);
@@ -549,6 +554,7 @@
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(118, 26);
             this.checkBox1.TabIndex = 48;
+            this.checkBox1.TabStop = false;
             this.checkBox1.Text = "Bì thư A5";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -559,15 +565,16 @@
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(118, 26);
             this.checkBox2.TabIndex = 49;
+            this.checkBox2.TabStop = false;
             this.checkBox2.Text = "Bì thư A6";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // trongluong
             // 
-            this.trongluong.Location = new System.Drawing.Point(587, 318);
+            this.trongluong.Location = new System.Drawing.Point(601, 317);
             this.trongluong.Name = "trongluong";
             this.trongluong.Size = new System.Drawing.Size(79, 28);
-            this.trongluong.TabIndex = 50;
+            this.trongluong.TabIndex = 17;
             // 
             // label20
             // 
@@ -587,7 +594,7 @@
             this.mabuugui.Location = new System.Drawing.Point(806, 318);
             this.mabuugui.Name = "mabuugui";
             this.mabuugui.Size = new System.Drawing.Size(70, 28);
-            this.mabuugui.TabIndex = 52;
+            this.mabuugui.TabIndex = 18;
             this.mabuugui.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // label21
@@ -625,24 +632,23 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(417, 61);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(75, 30);
-            this.comboBox1.TabIndex = 56;
+            this.comboBox1.Size = new System.Drawing.Size(97, 30);
+            this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
             // 
             // duyet_box
             // 
             this.duyet_box.AutoSize = true;
-            this.duyet_box.Location = new System.Drawing.Point(502, 44);
+            this.duyet_box.Enabled = false;
+            this.duyet_box.Location = new System.Drawing.Point(525, 39);
             this.duyet_box.Name = "duyet_box";
             this.duyet_box.Size = new System.Drawing.Size(88, 26);
             this.duyet_box.TabIndex = 58;
             this.duyet_box.Text = "Duyệt";
             this.duyet_box.UseVisualStyleBackColor = true;
-            this.duyet_box.Visible = false;
             this.duyet_box.CheckedChanged += new System.EventHandler(this.duyet_box_CheckedChanged);
             this.duyet_box.CheckStateChanged += new System.EventHandler(this.duyet_box_CheckStateChanged);
             // 
@@ -663,16 +669,16 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(643, 612);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(100, 22);
+            this.linkLabel1.Size = new System.Drawing.Size(69, 22);
             this.linkLabel1.TabIndex = 61;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "My Github";
+            this.linkLabel1.Text = "Github";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label22
             // 
             this.label22.BackColor = System.Drawing.SystemColors.Control;
-            this.label22.Location = new System.Drawing.Point(503, 68);
+            this.label22.Location = new System.Drawing.Point(521, 68);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(116, 34);
@@ -682,34 +688,43 @@
             // 
             // dateTimePicker3
             // 
+            this.dateTimePicker3.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker3.Enabled = false;
-            this.dateTimePicker3.Location = new System.Drawing.Point(499, 105);
+            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker3.Location = new System.Drawing.Point(525, 105);
             this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(279, 28);
-            this.dateTimePicker3.TabIndex = 63;
+            this.dateTimePicker3.Size = new System.Drawing.Size(244, 28);
+            this.dateTimePicker3.TabIndex = 5;
             this.dateTimePicker3.Value = new System.DateTime(2022, 8, 22, 13, 47, 37, 0);
+            this.dateTimePicker3.Visible = false;
             // 
             // label23
             // 
-            this.label23.BackColor = System.Drawing.SystemColors.Control;
-            this.label23.Location = new System.Drawing.Point(191, 208);
+            this.label23.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label23.Location = new System.Drawing.Point(214, 208);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(228, 34);
+            this.label23.Size = new System.Drawing.Size(205, 34);
             this.label23.TabIndex = 64;
-            this.label23.Text = "Chọn ngày xuất báo cáo";
+            this.label23.Text = "Chọn kiểu báo cáo";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dateTimePicker4
             // 
-            this.dateTimePicker4.CalendarMonthBackground = System.Drawing.SystemColors.ActiveCaption;
-            this.dateTimePicker4.Location = new System.Drawing.Point(417, 208);
+            this.dateTimePicker4.CalendarForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dateTimePicker4.CalendarMonthBackground = System.Drawing.SystemColors.MenuHighlight;
+            this.dateTimePicker4.CalendarTitleBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.dateTimePicker4.CalendarTitleForeColor = System.Drawing.SystemColors.Highlight;
+            this.dateTimePicker4.CalendarTrailingForeColor = System.Drawing.SystemColors.Highlight;
+            this.dateTimePicker4.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker4.Location = new System.Drawing.Point(693, 212);
             this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(527, 28);
+            this.dateTimePicker4.Size = new System.Drawing.Size(264, 28);
             this.dateTimePicker4.TabIndex = 65;
-            this.dateTimePicker4.Value = new System.DateTime(2022, 8, 22, 13, 47, 37, 0);
+            this.dateTimePicker4.Value = new System.DateTime(2022, 8, 26, 10, 47, 10, 0);
             // 
             // printDialog2
             // 
@@ -723,6 +738,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(78, 61);
             this.button1.TabIndex = 66;
+            this.button1.TabStop = false;
             this.button1.Text = "Duyệt CT";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -730,11 +746,12 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button2.Location = new System.Drawing.Point(214, 312);
+            this.button2.Location = new System.Drawing.Point(214, 317);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 61);
             this.button2.TabIndex = 67;
+            this.button2.TabStop = false;
             this.button2.Text = "Hủy Duyệt";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -742,35 +759,23 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox1.Location = new System.Drawing.Point(978, 210);
+            this.textBox1.Location = new System.Drawing.Point(1003, 210);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(206, 28);
+            this.textBox1.Size = new System.Drawing.Size(181, 28);
             this.textBox1.TabIndex = 68;
-            this.textBox1.Text = "Nhập số CT tra cứu";
+            this.textBox1.Text = "Nhập SĐT tra cứu";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button3.Location = new System.Drawing.Point(1038, 14);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(152, 36);
-            this.button3.TabIndex = 69;
-            this.button3.Tag = "Thêm";
-            this.button3.Text = "Tải lại dữ liệu";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button4.Location = new System.Drawing.Point(938, 340);
+            this.button4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(938, 344);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(121, 36);
             this.button4.TabIndex = 70;
-            this.button4.Text = "Nhập Excel";
+            this.button4.TabStop = false;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -784,15 +789,54 @@
             this.textBox2.Text = "Nhập tên tra cứu";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(789, 66);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(216, 28);
+            this.dateTimePicker2.TabIndex = 101;
+            this.dateTimePicker2.Value = new System.DateTime(2022, 8, 26, 10, 46, 50, 0);
+            // 
+            // Cach_Bao_Cao
+            // 
+            this.Cach_Bao_Cao.FormattingEnabled = true;
+            this.Cach_Bao_Cao.Items.AddRange(new object[] {
+            "Tất cả ngày",
+            "Theo ngày nhận",
+            "Theo ngày duyệt",
+            "Theo ngày hẹn"});
+            this.Cach_Bao_Cao.Location = new System.Drawing.Point(417, 210);
+            this.Cach_Bao_Cao.Name = "Cach_Bao_Cao";
+            this.Cach_Bao_Cao.Size = new System.Drawing.Size(162, 30);
+            this.Cach_Bao_Cao.TabIndex = 102;
+            this.Cach_Bao_Cao.Text = "Chọn kiểu báo cáo";
+            this.Cach_Bao_Cao.SelectedIndexChanged += new System.EventHandler(this.Cach_Bao_Cao_SelectedIndexChanged);
+            // 
+            // label24
+            // 
+            this.label24.BackColor = System.Drawing.SystemColors.Control;
+            this.label24.Location = new System.Drawing.Point(586, 208);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(111, 34);
+            this.label24.TabIndex = 103;
+            this.label24.Text = "Chọn ngày";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1203, 634);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.Cach_Bao_Cao);
+            this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -843,7 +887,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button7);
@@ -854,10 +897,12 @@
             this.Controls.Add(this.in_banke);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.Text = "Nhập chứng từ HCC";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.Form1_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -875,7 +920,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label4;
@@ -917,7 +961,6 @@
         private System.Windows.Forms.Label label21;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintDialog printDialog1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox duyet_box;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
@@ -928,12 +971,15 @@
         private System.Windows.Forms.PrintDialog printDialog2;
         public System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.Button button1;
-        private DataSet3TableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter1;
+        private DataSet1TableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.ComboBox Cach_Bao_Cao;
+        private System.Windows.Forms.Label label24;
     }
 }
 

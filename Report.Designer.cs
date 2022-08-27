@@ -30,27 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.report_by_huyenTableAdapter1 = new XuatExcelApp.DataSet3TableAdapters.report_by_huyenTableAdapter();
-            this.report_by_huyenTableAdapter2 = new XuatExcelApp.DataSet3TableAdapters.report_by_huyenTableAdapter();
-            this.report_by_huyenTableAdapter3 = new XuatExcelApp.DataSet3TableAdapters.report_by_huyenTableAdapter();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Report));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.dataSet3 = new XuatExcelApp.DataSet3();
             this.reportbyhuyenBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet3)).BeginInit();
+            this.dataSet1 = new XuatExcelApp.DataSet1();
+            this.report_by_huyenTableAdapter1 = new XuatExcelApp.DataSet1TableAdapters.report_by_huyenTableAdapter();
+            this.report_by_huyenTableAdapter2 = new XuatExcelApp.DataSet1TableAdapters.report_by_huyenTableAdapter();
+            this.report_by_huyenTableAdapter3 = new XuatExcelApp.DataSet1TableAdapters.report_by_huyenTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.reportbyhuyenBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // report_by_huyenTableAdapter1
-            // 
-            this.report_by_huyenTableAdapter1.ClearBeforeFill = true;
-            // 
-            // report_by_huyenTableAdapter2
-            // 
-            this.report_by_huyenTableAdapter2.ClearBeforeFill = true;
-            // 
-            // report_by_huyenTableAdapter3
-            // 
-            this.report_by_huyenTableAdapter3.ClearBeforeFill = true;
             // 
             // reportViewer1
             // 
@@ -67,15 +56,27 @@
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
-            // dataSet3
-            // 
-            this.dataSet3.DataSetName = "DataSet3";
-            this.dataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // reportbyhuyenBindingSource
             // 
             this.reportbyhuyenBindingSource.DataMember = "report_by_huyen";
-            this.reportbyhuyenBindingSource.DataSource = this.dataSet3;
+            this.reportbyhuyenBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // report_by_huyenTableAdapter1
+            // 
+            this.report_by_huyenTableAdapter1.ClearBeforeFill = true;
+            // 
+            // report_by_huyenTableAdapter2
+            // 
+            this.report_by_huyenTableAdapter2.ClearBeforeFill = true;
+            // 
+            // report_by_huyenTableAdapter3
+            // 
+            this.report_by_huyenTableAdapter3.ClearBeforeFill = true;
             // 
             // Report
             // 
@@ -84,11 +85,12 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1693, 838);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Report";
-            this.Text = "HCC Report";
+            this.Text = "HCC Report Theo Ngày Nhận";
             this.Load += new System.EventHandler(this.Report_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportbyhuyenBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,11 +98,11 @@
 
         #endregion
 
-        private DataSet3TableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter1;
-        private DataSet3TableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter2;
-        private DataSet3TableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter3;
+        private DataSet1TableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter1;
+        private DataSet1TableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter2;
+        private DataSet1TableAdapters.report_by_huyenTableAdapter report_by_huyenTableAdapter3;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource reportbyhuyenBindingSource;
-        private DataSet3 dataSet3;
+        private DataSet1 dataSet1;
     }
 }
