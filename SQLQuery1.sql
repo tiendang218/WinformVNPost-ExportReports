@@ -549,3 +549,19 @@ AS
 BEGIN
 insert into CT_HCC select * from @table_excel
 END
+
+drop proc search_tinh
+create proc search_tinh @tinh nvarchar(50)
+as
+select T.TEN_TINH as "Tên Tỉnh" from TINH as T, CT_HCC as ct
+where T.TEN_TINH=@tinh and ct.TINH_NHAN=T.MA_TINH
+
+exec search_tinh @tinh= N'Bình Thuận'
+
+
+create proc search_box_tinh @box nvarchar(50)
+as
+select TEN_TINH from TINH
+where @box= TEN_TINH
+
+search_box_tinh @box="Bình Thuận"

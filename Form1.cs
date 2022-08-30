@@ -52,6 +52,8 @@ namespace XuatExcelApp
             ////disable delete and update button on load  
             Sửa.Enabled = true;
             Xóa.Enabled = true;
+            //auto_add_id();
+            xoa_noidung_box();
             cn.Close();
         }
         private void Get_All_ChungTu()
@@ -82,8 +84,24 @@ namespace XuatExcelApp
             System.Data.DataTable dt = new System.Data.DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
-            auto_add_id();
+            
         }
+        private void search_box_tinh()
+           { 
+            tinh_comboBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            tinh_comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cmd = new SqlCommand("search_box_tinh", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            da = new SqlDataAdapter(cmd);
+            cmd.Parameters.AddWithValue("@box", tinh_comboBox2.Text.ToString());
+            System.Data.DataTable tinh = new System.Data.DataTable();
+            DataView dtview = new DataView(tinh);
+            da.Fill(tinh);
+            dtview.Sort = "TEN_TINH DESC";
+            comboBox1.DataSource = tinh;
+            comboBox1.ValueMember = "TEN_TINH";
+            comboBox1.DisplayMember = "TEN_TINH";
+            } 
         private void label2_Click(object sender, EventArgs e)
         {
         }
@@ -116,11 +134,25 @@ namespace XuatExcelApp
                         cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value.Date.ToShortDateString());
                         cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", (diachi_thuongtru_box.Text + " " + tinh_comboBox5.Text + " " + huyen_comboBox6.Text).ToString());
-                        cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
+                        try 
+                        {   
+                            cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
+                            cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
+                            cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Dữ liệu tỉnh, huyện, xã không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                         cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
-                        cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
+                        try
+                        {   int sdt = int.Parse(sdt_textBox2.Text.ToString());
+                            cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Số điện thoại không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                         cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
                         cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
@@ -138,15 +170,16 @@ namespace XuatExcelApp
                     }
                 }
                 catch
-                { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                {
+                    MessageBox.Show("Số CT bị trùng hoặc dữ liệu không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                }
                 cn.Close();
             }
             xoa_noidung_box();
         }
         private void xoa_noidung_box()
         {
-            comboBox1.SelectedItem = null;
-            comboBox1.Text = "";
+            //auto_add_id();
             dateTimePicker1.Text = "";
             dateTimePicker2.Text = "";
             loai_hs_comboBox.Text = "";
@@ -303,7 +336,6 @@ namespace XuatExcelApp
             xa_comboBox4.DisplayMember = "TEN_XA_PHUONG";
             xa_comboBox4.ValueMember = "MA_XA_PHUONG";
         }
-
         private void label20_Click(object sender, EventArgs e)
         {
         }
@@ -363,6 +395,7 @@ namespace XuatExcelApp
             }
             try
             {
+                comboBox1.ResetText();
             comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
             {
@@ -596,9 +629,8 @@ namespace XuatExcelApp
             comboBox1.DataSource = dt;
             comboBox1.DisplayMember = "Số_CT";
             comboBox1.ValueMember = "Số_CT";
-            comboBox1.Text = comboBox1.ValueMember.ToString();
-            //comboBox1.DataBind();
-            comboBox1.SelectedItem = null;
+           comboBox1.Text = dt.Rows[0][0].ToString();
+            ////comboBox1.Text = comboBox1.SelectedText;
         }
         private void comboBox1_TextUpdate(object sender, EventArgs e)
         {
@@ -607,9 +639,13 @@ namespace XuatExcelApp
         private void tinh_comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             //load_tinh();
+            //search_box_tinh();
             int fid;
             bool parseOK = Int32.TryParse(tinh_comboBox2.SelectedValue.ToString(), out fid);
-            LoadHuyen(fid);
+            if (parseOK == true)
+            {
+                LoadHuyen(fid);
+            }      
         }
         private void tinh_comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -721,7 +757,7 @@ namespace XuatExcelApp
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //auto_add_id();
+            auto_add_id();
         }
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -815,7 +851,6 @@ namespace XuatExcelApp
                     Form fr5 = new Report();
                     fr5.Show();
                     break;
-
                 default:
                     break;
             }
@@ -875,77 +910,77 @@ namespace XuatExcelApp
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            string _path;
-            OpenFileDialog od = new OpenFileDialog();
-            od.Filter = "Excell|*.xls;*.xlsx;";
-            od.FileName = "FileImport.xlsx";
-            BackgroundWorker bw = new BackgroundWorker
-            {
-                WorkerReportsProgress = true,
-                WorkerSupportsCancellation = true
-            };
-            DialogResult dr = od.ShowDialog();
-            if (dr == DialogResult.Abort)
-                return;
-            if (dr == DialogResult.Cancel)
-                return;
-            //txtpath.Text = od.FileName.ToString();   
-            if (dr == DialogResult.OK)
-            {
-                try
-                {
-                    _path = od.FileName.ToString();
-                    string path = _path;
-                    button4.Text = "Loading";
-                    button4.Enabled = false;
-                    if (bw.IsBusy)
-                    {
-                        return;
-                    }
-                    System.Diagnostics.Stopwatch sWatch = new System.Diagnostics.Stopwatch();
-                    bw.DoWork += (bwSender, bwArg) =>
-                    {
-                        //what happens here must not touch the form
-                        //as it's in a different thread
-                        sWatch.Start();
-                        System.Data.DataTable table = Exceldatatable(path);
-                        if (cn.State == ConnectionState.Closed)
-                        {
-                            cn.Open();
-                        }
-                        try
-                        {
-                            SqlCommand cmd = new SqlCommand("ImportTableExcel", cn);
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            SqlParameter dtparam = cmd.Parameters.AddWithValue("@table_excel", table);
-                            dtparam.SqlDbType = SqlDbType.Structured;
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Lỗi dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    };
-                    bw.ProgressChanged += (bwSender, bwArg) =>
-                        {
-                        };
-                    bw.RunWorkerCompleted += (bwSender, bwArg) =>
-                        {
-                            sWatch.Stop();
-                            Get_All_ChungTu();
-                            button4.Enabled = true;
-                            button4.Text = "Nhập Excel";
-                            bw.Dispose();
-                            cn.Close();
-                        };
-                    //Starts the actual work - triggerrs the "DoWork" event
-                    bw.RunWorkerAsync();
-                }
-                catch
-                {
-                    MessageBox.Show("Dữ liệu file excel quá lớn hoặc quá thời gian truy vấn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            //string _path;
+            //OpenFileDialog od = new OpenFileDialog();
+            //od.Filter = "Excell|*.xls;*.xlsx;";
+            //od.FileName = "FileImport.xlsx";
+            //BackgroundWorker bw = new BackgroundWorker
+            //{
+            //    WorkerReportsProgress = true,
+            //    WorkerSupportsCancellation = true
+            //};
+            //DialogResult dr = od.ShowDialog();
+            //if (dr == DialogResult.Abort)
+            //    return;
+            //if (dr == DialogResult.Cancel)
+            //    return;
+            ////txtpath.Text = od.FileName.ToString();   
+            //if (dr == DialogResult.OK)
+            //{
+            //    try
+            //    {
+            //        _path = od.FileName.ToString();
+            //        string path = _path;
+            //        button4.Text = "Loading";
+            //        button4.Enabled = false;
+            //        if (bw.IsBusy)
+            //        {
+            //            return;
+            //        }
+            //        System.Diagnostics.Stopwatch sWatch = new System.Diagnostics.Stopwatch();
+            //        bw.DoWork += (bwSender, bwArg) =>
+            //        {
+            //            //what happens here must not touch the form
+            //            //as it's in a different thread
+            //            sWatch.Start();
+            //            System.Data.DataTable table = Exceldatatable(path);
+            //            if (cn.State == ConnectionState.Closed)
+            //            {
+            //                cn.Open();
+            //            }
+            //            try
+            //            {
+            //                SqlCommand cmd = new SqlCommand("ImportTableExcel", cn);
+            //                cmd.CommandType = CommandType.StoredProcedure;
+            //                SqlParameter dtparam = cmd.Parameters.AddWithValue("@table_excel", table);
+            //                dtparam.SqlDbType = SqlDbType.Structured;
+            //                cmd.ExecuteNonQuery();
+            //            }
+            //            catch
+            //            {
+            //                MessageBox.Show("Lỗi dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //            }
+            //        };
+            //        bw.ProgressChanged += (bwSender, bwArg) =>
+            //            {
+            //            };
+            //        bw.RunWorkerCompleted += (bwSender, bwArg) =>
+            //            {
+            //                sWatch.Stop();
+            //                Get_All_ChungTu();
+            //                button4.Enabled = true;
+            //                button4.Text = "Nhập Excel";
+            //                bw.Dispose();
+            //                cn.Close();
+            //            };
+            //        //Starts the actual work - triggerrs the "DoWork" event
+            //        bw.RunWorkerAsync();
+            //    }
+            //    catch
+            //    {
+            //        MessageBox.Show("Dữ liệu file excel quá lớn hoặc quá thời gian truy vấn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
         }
         public static System.Data.DataTable Exceldatatable(string path)
         {
@@ -1011,6 +1046,7 @@ namespace XuatExcelApp
         private void Form1_Click(object sender, EventArgs e)
         {
             Get_All_ChungTu();
+            xoa_noidung_box();
         }
         private void Cach_Bao_Cao_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1052,6 +1088,11 @@ namespace XuatExcelApp
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_Click(object sender, EventArgs e)
+        {
+            auto_add_id();
         }
     }
     }
