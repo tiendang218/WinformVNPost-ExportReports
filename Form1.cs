@@ -79,12 +79,12 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@GHI_CHU", "");
             cmd.Parameters.AddWithValue("@NGAY_DUYET", "");
             cmd.Parameters.AddWithValue("@CUOC_PHI", decimal.Zero);
+            cmd.Parameters.AddWithValue("@NGAY_NHAP", "");
             cmd.Parameters.AddWithValue("@OperationType", "9");
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
-            
         }
         private void search_box_tinh()
            { 
@@ -159,6 +159,7 @@ namespace XuatExcelApp
                         cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
                         cmd.Parameters.AddWithValue("@NGAY_DUYET", "");
                         cmd.Parameters.AddWithValue("@CUOC_PHI", Decimal.Parse(cuoc_textBox8.Text.ToString()));
+                        cmd.Parameters.AddWithValue("@NGAY_NHAP", DateTime.Now.ToShortDateString());
                         cmd.Parameters.AddWithValue("@OperationType", "1");
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Bản ghi được thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -224,6 +225,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@GHI_CHU", "");
             cmd.Parameters.AddWithValue("@NGAY_DUYET", "");
             cmd.Parameters.AddWithValue("@CUOC_PHI", decimal.Zero);
+            cmd.Parameters.AddWithValue("@NGAY_NHAP", "");
             cmd.Parameters.AddWithValue("@OperationType", "5");
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -255,6 +257,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@GHI_CHU", "");
             cmd.Parameters.AddWithValue("@NGAY_DUYET", "1/1/1900");
             cmd.Parameters.AddWithValue("@CUOC_PHI", decimal.Zero);
+            cmd.Parameters.AddWithValue("@NGAY_NHAP", "");
             cmd.Parameters.AddWithValue("@OperationType", "5");
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -286,6 +289,7 @@ namespace XuatExcelApp
             cmd.Parameters.AddWithValue("@GHI_CHU", "");
             cmd.Parameters.AddWithValue("@NGAY_DUYET", "");
             cmd.Parameters.AddWithValue("@CUOC_PHI", decimal.Zero);
+            cmd.Parameters.AddWithValue("@NGAY_NHAP", "");
             cmd.Parameters.AddWithValue("@OperationType", "8");
             da = new SqlDataAdapter(cmd);
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -374,6 +378,7 @@ namespace XuatExcelApp
                     cmd.Parameters.AddWithValue("@GHI_CHU", ghichu_textBox9.Text);
                     cmd.Parameters.AddWithValue("@NGAY_DUYET", dateTimePicker3.Value.ToShortDateString());
                     cmd.Parameters.AddWithValue("@CUOC_PHI", Decimal.Parse(cuoc_textBox8.Text.ToString()));
+                    cmd.Parameters.AddWithValue("@NGAY_NHAP", "");
                     cmd.Parameters.AddWithValue("@OperationType", "3");
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Bản ghi được xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

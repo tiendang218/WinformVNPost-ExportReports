@@ -21,8 +21,16 @@ TRONG_LUONG	varchar(10)not null,
 MA_BUUGUI	varchar(10)not null	,
 GHI_CHU	nvarchar(50)not null,
 NGAY_DUYET date NULL,
-CUOC_PHI decimal(15) NOT NULL
-);
+CUOC_PHI decimal(15) NOT NULL,
+
+); 
+alter table CT_HCC
+
+add NGAY_NHAP nvarchar(10)
+
+ drop COLUMN NGAY_NHAP
+
+UPDATE CT_HCC SET NGAY_NHAP = '30/08/2022', 
 --select NGAY_NHAN from CT_HCC
 --Go
 ----dd/mm/yyyy format
@@ -105,6 +113,7 @@ create PROCEDURE [CRUD]
 @GHI_CHU	nvarchar(50),
 @NGAY_DUYET nvarchar(10),
 @CUOC_PHI decimal(10,2),
+@NGAY_NHAP nvarchar(10),
 
 @OperationType int   
     --================================================  
@@ -142,7 +151,8 @@ begin
 		@MA_BUUGUI,
 		@GHI_CHU,
 		@NGAY_DUYET,
-		@CUOC_PHI)  
+		@CUOC_PHI,
+		@NGAY_NHAP)  
     END  
     ELSE IF @OperationType=2  
     BEGIN  
