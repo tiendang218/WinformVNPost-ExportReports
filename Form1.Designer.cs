@@ -633,7 +633,6 @@
             this.comboBox1.Size = new System.Drawing.Size(97, 30);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
             this.comboBox1.Click += new System.EventHandler(this.comboBox1_Click);
             // 
             // duyet_box
@@ -835,7 +834,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1229, 605);
+            this.ClientSize = new System.Drawing.Size(1255, 605);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label24);

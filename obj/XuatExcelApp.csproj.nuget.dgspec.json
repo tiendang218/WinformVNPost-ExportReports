@@ -62,6 +62,10 @@
               "target": "Package",
               "version": "[150.1484.0, )"
             },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
             "Spire.DataExport": {
               "target": "Package",
               "version": "[3.5.10, )"

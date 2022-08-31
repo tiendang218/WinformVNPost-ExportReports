@@ -126,11 +126,20 @@ namespace XuatExcelApp
                     {
                         cmd = new SqlCommand("CRUD", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
+                        cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.SelectedText));
                         cmd.Parameters.AddWithValue("@Approved", 0);
                         cmd.Parameters.AddWithValue("@TEN_NGUOI_NHAN", ten_box.Text);
                         cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
-                        cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
+                        try
+                        {
+                            int sohcc = int.Parse(so_hcc_box.Text.ToString());
+                            cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
+                        }
+                        catch
+                        {
+                            so_hcc_box.Text = "";
+                            MessageBox.Show("Số HCC không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                         cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value.Date.ToShortDateString());
                         cmd.Parameters.AddWithValue("@DIA_CHI_THUONG_TRU", (diachi_thuongtru_box.Text + " " + tinh_comboBox5.Text + " " + huyen_comboBox6.Text).ToString());
@@ -144,13 +153,25 @@ namespace XuatExcelApp
                         {
                             MessageBox.Show("Dữ liệu tỉnh, huyện, xã không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
+                       
                         try
-                        {   int sdt = int.Parse(sdt_textBox2.Text.ToString());
+                        {
+                            int shskem = int.Parse(sohskem.Text.ToString());
+                            cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
+                        }
+                        catch
+                        {
+                            sohskem.Text = "";
+                            MessageBox.Show("Số HS kèm không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        try
+                        {   
+                            int sdt = int.Parse(sdt_textBox2.Text.ToString());
                             cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
                         }
                         catch
                         {
+                            sdt_textBox2.Text = "";
                             MessageBox.Show("Số điện thoại không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
@@ -164,11 +185,13 @@ namespace XuatExcelApp
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Bản ghi được thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Get_All_ChungTu();
+
                     }
                     else
                     {
                         MessageBox.Show("Điền thiếu dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    xoa_noidung_box();
                 }
                 catch
                 {
@@ -176,7 +199,6 @@ namespace XuatExcelApp
                 }
                 cn.Close();
             }
-            xoa_noidung_box();
         }
         private void xoa_noidung_box()
         {
@@ -401,7 +423,7 @@ namespace XuatExcelApp
             try
             {
                 comboBox1.ResetText();
-            comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            comboBox1.SelectedText = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
             {
                 duyet_box.CheckState = CheckState.Checked;
@@ -484,7 +506,17 @@ namespace XuatExcelApp
                         cmd.Parameters.AddWithValue("@Approved", i);
                         cmd.Parameters.AddWithValue("@TEN_NGUOI_NHAN", ten_box.Text);
                         cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
-                        cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
+                        
+                        try
+                        {
+                            int sohcc = int.Parse(so_hcc_box.Text.ToString());
+                            cmd.Parameters.AddWithValue("@SO_HS_HCC", so_hcc_box.Text);
+                        }
+                        catch
+                        {
+                            so_hcc_box.Text = "";
+                            MessageBox.Show("Số HCC không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                         cmd.Parameters.AddWithValue("@NGAY_HEN", dateTimePicker2.Value.Date.ToShortDateString());
                         cmd.Parameters.AddWithValue("@NGAY_NHAN", dateTimePicker1.Value.Date.ToShortDateString());
                         if (!tinh_comboBox5.SelectedValue.ToString().Equals("0"))
@@ -497,9 +529,27 @@ namespace XuatExcelApp
                         }
                         cmd.Parameters.AddWithValue("@TINH_NHAN", int.Parse(tinh_comboBox2.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@HUYEN_NHAN", int.Parse(huyen_comboBox3.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));
-                        cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
-                        cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
+                        cmd.Parameters.AddWithValue("@XA_NHAN", int.Parse(xa_comboBox4.SelectedValue.ToString()));   
+                        try
+                        {
+                            int sohs = int.Parse(sohskem.Text.ToString());
+                            cmd.Parameters.AddWithValue("@SO_HS_KEM", sohskem.Text);
+                        }
+                        catch
+                        {
+                            sohskem.Text = "";
+                            MessageBox.Show("Số hồ sơ kèm không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        try
+                        {
+                            int shs = int.Parse(sdt_textBox2.Text.ToString());
+                            cmd.Parameters.AddWithValue("@DIEN_THOAI", sdt_textBox2.Text);
+                        }
+                        catch
+                        {
+                            sdt_textBox2.Text = "";
+                            MessageBox.Show("Số điện thoại không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                         cmd.Parameters.AddWithValue("@MA_LOAI_HS", int.Parse(loai_hs_comboBox.SelectedValue.ToString()));
                         cmd.Parameters.AddWithValue("@TRONG_LUONG", trongluong.Text);
                         cmd.Parameters.AddWithValue("@MA_BUUGUI", mabuugui.Text);
@@ -513,6 +563,7 @@ namespace XuatExcelApp
                             cmd.Parameters.AddWithValue("@NGAY_DUYET", "");
                         }
                         cmd.Parameters.AddWithValue("@CUOC_PHI", Decimal.Parse(cuoc_textBox8.Text.ToString()));
+                        cmd.Parameters.AddWithValue("@NGAY_NHAP", dataGridView1.CurrentRow.Cells[19].Value.ToString());
                         cmd.Parameters.AddWithValue("@OperationType", "2");
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Bản ghi được sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -520,11 +571,13 @@ namespace XuatExcelApp
                     }
                     else
                     {
-                        MessageBox.Show("Điền thiếu dữ liệu hoặc số chứng từ đã tồn tại", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Lỗi dữ liệu nhập vào hoặc số chứng từ đã tồn tại", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch
-                { MessageBox.Show("Số CT bị trùng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                { 
+                    MessageBox.Show("Số CT bị trùng/Dữ liệu đầu vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                }
                 cn.Close();
             }
             xoa_noidung_box();
@@ -634,12 +687,8 @@ namespace XuatExcelApp
             comboBox1.DataSource = dt;
             comboBox1.DisplayMember = "Số_CT";
             comboBox1.ValueMember = "Số_CT";
-           comboBox1.Text = dt.Rows[0][0].ToString();
+           //comboBox1.Text = dt.Rows[0][0].ToString();
             ////comboBox1.Text = comboBox1.SelectedText;
-        }
-        private void comboBox1_TextUpdate(object sender, EventArgs e)
-        {
-            auto_add_id();
         }
         private void tinh_comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
