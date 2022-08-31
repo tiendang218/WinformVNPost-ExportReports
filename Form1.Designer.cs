@@ -791,7 +791,8 @@
             "Tất cả ngày",
             "Theo ngày nhận",
             "Theo ngày duyệt",
-            "Theo ngày hẹn"});
+            "Theo ngày hẹn",
+            "Theo ngày nhập"});
             this.Cach_Bao_Cao.Location = new System.Drawing.Point(417, 210);
             this.Cach_Bao_Cao.Name = "Cach_Bao_Cao";
             this.Cach_Bao_Cao.Size = new System.Drawing.Size(162, 30);
@@ -834,7 +835,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1255, 605);
+            this.ClientSize = new System.Drawing.Size(1229, 605);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label24);

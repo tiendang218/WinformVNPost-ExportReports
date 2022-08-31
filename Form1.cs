@@ -770,7 +770,7 @@ namespace XuatExcelApp
             Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             int i = dt.Rows.Count;
             int j = dt.Columns.Count;
-            oTable = oDoc.Tables.Add(wrdRng, i + 1, j, ref oMissing, ref oMissing); ;
+            oTable = oDoc.Tables.Add(wrdRng, i + 1, j, ref oMissing, ref oMissing); 
             oTable.Rows.Alignment = WdRowAlignment.wdAlignRowCenter;
             oTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
             oTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
@@ -904,6 +904,11 @@ namespace XuatExcelApp
                     day = dateTimePicker4.Value.ToShortDateString();
                     Form fr5 = new Report();
                     fr5.Show();
+                    break;
+                case 5:
+                    day = dateTimePicker4.Value.ToShortDateString();
+                    Form fr6 = new Report();
+                    fr6.Show();
                     break;
                 default:
                     break;
@@ -1127,6 +1132,11 @@ namespace XuatExcelApp
                     dateTimePicker4.Visible = true;
                     label24.Visible = true;
                     break;
+                case "Theo ngày nhập":
+                    kieu_bao_cao = 5;
+                    dateTimePicker4.Visible = true;
+                    label24.Visible = true;
+                    break;
                 default:
                     kieu_bao_cao = 0;
                     dateTimePicker4.Visible = false;
@@ -1138,15 +1148,13 @@ namespace XuatExcelApp
         {
             Form1.day = dateTimePicker4.Value.ToShortDateString();
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void comboBox1_Click(object sender, EventArgs e)
         {
             auto_add_id();
         }
     }
-    }
+}

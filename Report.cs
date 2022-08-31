@@ -106,6 +106,26 @@ namespace XuatExcelApp
                         reportViewer1.RefreshReport();
                     }
                     break;
+                case 5:
+                    SqlCommand cmd5 = new SqlCommand("report_by_huyen_ngaynhap", cn);
+                    cmd5.CommandType = CommandType.StoredProcedure;
+                    cmd5.Parameters.Add(new SqlParameter("@ngay", Form1.day));
+                    SqlDataAdapter da5 = new SqlDataAdapter(cmd5);
+                    DataSet ds4 = new DataSet();
+                    da5.Fill(ds4);
+                    reportViewer1.Reset();
+                    reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
+                    reportViewer1.LocalReport.ReportPath = "Report2.rdlc";
+                    if (ds4.Tables[0].Rows.Count > 0)
+                    {
+                        ReportDataSource rds4 = new ReportDataSource();
+                        rds4.Name = "DataSet5";
+                        rds4.Value = ds4.Tables[0];
+                        reportViewer1.LocalReport.DataSources.Clear();
+                        reportViewer1.LocalReport.DataSources.Add(rds4);
+                        reportViewer1.RefreshReport();
+                    }
+                    break;
                 default:
                     break;
             }

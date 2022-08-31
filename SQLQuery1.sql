@@ -455,6 +455,13 @@ as
 select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,ct.NGAY_DUYET,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
 where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1 and ct.NGAY_HEN=@ngay
 
+create procedure report_by_huyen_ngaynhap @ngay varchar(10)
+as 
+select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,ct.NGAY_DUYET,CT.CUOC_PHI,CT.NGAY_NHAP from CT_HCC as ct, HUYEN_TP as h
+where ct.HUYEN_NHAN=h.MA_HUYENTP and ct.Approved=1 and ct.NGAY_NHAP=@ngay
+
+report_by_huyen_ngaynhap @ngay='31/08/2022'
+
 create procedure report_by_huyen_all
 as 
 select ct.SO_CT,ct.NGAY_NHAN, ct.NGAY_HEN, ct.TEN_NGUOI_NHAN, ct.DIEN_THOAI,ct.DIA_CHI_THUONG_TRU ,ct.DIA_CHI , ct.HUYEN_NHAN , h.TEN_HUYENTP,ct.NGAY_DUYET,CT.CUOC_PHI from CT_HCC as ct, HUYEN_TP as h
