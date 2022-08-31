@@ -1234,5 +1234,10 @@ namespace XuatExcelApp
             else
                 A5.CheckState = CheckState.Checked;
         }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

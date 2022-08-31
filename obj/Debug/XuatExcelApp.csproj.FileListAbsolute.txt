@@ -117,3 +117,7 @@ C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\ReportALL.rdlc
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Report_ngay_hen.rdlc
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\nunit.framework.dll
 C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\Report2.rdlc
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\XuatExcelApp.exe.manifest
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\bin\Debug\XuatExcelApp.application
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.exe.manifest
+C:\Users\TIEN DANG\source\repos\XuatExcelApp\obj\Debug\XuatExcelApp.application

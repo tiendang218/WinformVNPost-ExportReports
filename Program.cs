@@ -16,6 +16,25 @@ namespace XuatExcelApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            //MySolutionWinApplication winApplication = new MySolutionWinApplication();
+            ////...
+            //if (ConfigurationManager.ConnectionStrings["ConnectionString"] != null)
+            //{
+            //    winApplication.ConnectionString = ConfigurationManager.
+            //       ConnectionStrings["ConnectionString"].ConnectionString;
+            //}
+            //winApplication.Setup();
+            //winApplication.Start();
+            ////... = new MySolutionWinApplication();
+            ////...
+            //if (ConfigurationManager.ConnectionStrings["ConnectionString"] != null)
+            //{
+            //    winApplication.ConnectionString = ConfigurationManager.
+            //       ConnectionStrings["ConnectionString"].ConnectionString;
+            //}
+            //winApplication.Setup();
+            //winApplication.Start();
+            ////...
         }
     }
 }

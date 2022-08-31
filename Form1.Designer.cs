@@ -494,18 +494,19 @@
             // 
             this.label18.BackColor = System.Drawing.SystemColors.Info;
             this.label18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label18.Location = new System.Drawing.Point(883, 343);
+            this.label18.Location = new System.Drawing.Point(883, 324);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(60, 34);
+            this.label18.Size = new System.Drawing.Size(60, 43);
             this.label18.TabIndex = 43;
             this.label18.Text = "Cước";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label18.Click += new System.EventHandler(this.label18_Click);
             // 
             // cuoc_textBox8
             // 
             this.cuoc_textBox8.BackColor = System.Drawing.SystemColors.Info;
-            this.cuoc_textBox8.Location = new System.Drawing.Point(951, 345);
+            this.cuoc_textBox8.Location = new System.Drawing.Point(953, 333);
             this.cuoc_textBox8.Name = "cuoc_textBox8";
             this.cuoc_textBox8.Size = new System.Drawing.Size(125, 28);
             this.cuoc_textBox8.TabIndex = 19;
