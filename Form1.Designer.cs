@@ -70,8 +70,8 @@
             this.ghichu_textBox9 = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.xuatExcel = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.A5 = new System.Windows.Forms.CheckBox();
+            this.A6 = new System.Windows.Forms.CheckBox();
             this.trongluong = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.mabuugui = new System.Windows.Forms.TextBox();
@@ -543,27 +543,29 @@
             this.xuatExcel.UseVisualStyleBackColor = false;
             this.xuatExcel.Click += new System.EventHandler(this.xuatExcel_Click);
             // 
-            // checkBox1
+            // A5
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 320);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(118, 26);
-            this.checkBox1.TabIndex = 48;
-            this.checkBox1.TabStop = false;
-            this.checkBox1.Text = "Bì thư A5";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.A5.AutoSize = true;
+            this.A5.Location = new System.Drawing.Point(12, 320);
+            this.A5.Name = "A5";
+            this.A5.Size = new System.Drawing.Size(118, 26);
+            this.A5.TabIndex = 48;
+            this.A5.TabStop = false;
+            this.A5.Text = "Bì thư A5";
+            this.A5.UseVisualStyleBackColor = true;
+            this.A5.CheckedChanged += new System.EventHandler(this.A5_CheckedChanged);
             // 
-            // checkBox2
+            // A6
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 352);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(118, 26);
-            this.checkBox2.TabIndex = 49;
-            this.checkBox2.TabStop = false;
-            this.checkBox2.Text = "Bì thư A6";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.A6.AutoSize = true;
+            this.A6.Location = new System.Drawing.Point(12, 352);
+            this.A6.Name = "A6";
+            this.A6.Size = new System.Drawing.Size(118, 26);
+            this.A6.TabIndex = 49;
+            this.A6.TabStop = false;
+            this.A6.Text = "Bì thư A6";
+            this.A6.UseVisualStyleBackColor = true;
+            this.A6.CheckedChanged += new System.EventHandler(this.A6_CheckedChanged);
             // 
             // trongluong
             // 
@@ -857,8 +859,8 @@
             this.Controls.Add(this.mabuugui);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.trongluong);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.A6);
+            this.Controls.Add(this.A5);
             this.Controls.Add(this.xuatExcel);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.ghichu_textBox9);
@@ -955,8 +957,8 @@
         private System.Windows.Forms.TextBox ghichu_textBox9;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button xuatExcel;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox A5;
+        private System.Windows.Forms.CheckBox A6;
         private System.Windows.Forms.TextBox trongluong;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox mabuugui;

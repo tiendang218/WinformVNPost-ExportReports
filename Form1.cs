@@ -966,6 +966,64 @@ namespace XuatExcelApp
         }
         private void InBiThuDS_Click(object sender, EventArgs e)
         {
+            //if (cn.State != ConnectionState.Open)
+            //{
+            //    cn.Open();
+            //}
+            //SqlCommand cmd = new SqlCommand("bao_cao_cthcc", cn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.Add(new SqlParameter("@ngayduyet", date));
+            //da = new SqlDataAdapter(cmd);
+            //System.Data.DataTable dt = new System.Data.DataTable();
+            //da.Fill(dt);
+            object oMissing = System.Reflection.Missing.Value;
+            object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+            //Start Word and create a new document.
+            Microsoft.Office.Interop.Word._Application oWord;
+            Microsoft.Office.Interop.Word._Document oDoc;
+            oWord = new Microsoft.Office.Interop.Word.Application();
+            oDoc = new Microsoft.Office.Interop.Word.Document();
+            
+            //oWord.PrintPreview = true;
+            oWord.Width = 300;
+            oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
+            ref oMissing, ref oMissing);
+            ;
+            //Insert a paragraph at the beginning of the document.
+            Microsoft.Office.Interop.Word.Paragraph oPara1;
+            oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
+            oPara1.Range.Text = "BƯU ĐIỆN TP.PHAN THIẾT";
+            oPara1.Range.Text = "BƯU ĐIỆN TỈNH BÌNH THUẬN";
+            oPara1.Range.Font.Bold = 1;
+            oPara1.Range.Font.Size = 20;
+            oPara1.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft;
+            oPara1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
+            oPara1.Range.InsertParagraphAfter();
+            Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+            wrdRng.InsertParagraphAfter();
+            wrdRng.InsertAfter("Tên: "+ten_box.Text + "  SĐT: " + sdt_textBox2.Text +  "Địa chỉ thường trú: " + diachi_thuongtru_box.Text);
+            wrdRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphRight;
+            oDoc.PageSetup.Orientation = WdOrientation.wdOrientLandscape;
+            if (A5.CheckState == CheckState.Checked)
+            {
+                oDoc.PageSetup.PaperSize = WdPaperSize.wdPaperA5;
+            }
+            if (A6.CheckState == CheckState.Checked)
+            {
+                oDoc.PageSetup.PaperSize = WdPaperSize.wdPaperA3;
+            }
+            oDoc.Activate();
+            oWord.Visible = true;
+            oWord.PrintPreview = true;
+            oWord.ActiveWindow.View.Type = Microsoft.Office.Interop.Word.WdViewType.wdPrintPreview;
+            //object nullobj = Missing.Value;
+            //int dialogResult = oWord.Dialogs[Microsoft.Office.Interop.Word.WdWordDialog.wdDialogFilePrint].Show(ref nullobj);
+            //if (dialogResult == 1)
+            //{
+            //    oWord.PrintOut();
+            //}
+            cn.Close();
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -1155,6 +1213,26 @@ namespace XuatExcelApp
         private void comboBox1_Click(object sender, EventArgs e)
         {
             auto_add_id();
+        }
+
+        private void A5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (A5.Checked == true)
+            {
+                A6.CheckState = CheckState.Unchecked;
+            }
+            else
+                A6.CheckState = CheckState.Checked;
+        }
+
+        private void A6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (A6.Checked == true)
+            {
+                A5.CheckState = CheckState.Unchecked;
+            }
+            else
+                A5.CheckState = CheckState.Checked;
         }
     }
 }
