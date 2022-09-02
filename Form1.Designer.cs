@@ -259,6 +259,7 @@
             // 
             // loai_hs_comboBox
             // 
+            this.loai_hs_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.loai_hs_comboBox.FormattingEnabled = true;
             this.loai_hs_comboBox.Location = new System.Drawing.Point(417, 103);
             this.loai_hs_comboBox.Name = "loai_hs_comboBox";
@@ -631,6 +632,8 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Enabled = false;
+            this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(417, 61);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(97, 30);
@@ -789,6 +792,7 @@
             // 
             // Cach_Bao_Cao
             // 
+            this.Cach_Bao_Cao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cach_Bao_Cao.FormattingEnabled = true;
             this.Cach_Bao_Cao.Items.AddRange(new object[] {
             "Tất cả ngày",
@@ -800,7 +804,6 @@
             this.Cach_Bao_Cao.Name = "Cach_Bao_Cao";
             this.Cach_Bao_Cao.Size = new System.Drawing.Size(162, 30);
             this.Cach_Bao_Cao.TabIndex = 102;
-            this.Cach_Bao_Cao.Text = "Chọn kiểu báo cáo";
             this.Cach_Bao_Cao.SelectedIndexChanged += new System.EventHandler(this.Cach_Bao_Cao_SelectedIndexChanged);
             // 
             // label24

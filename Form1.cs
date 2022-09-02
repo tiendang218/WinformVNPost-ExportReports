@@ -112,7 +112,13 @@ namespace XuatExcelApp
         {
         }
         private void Them_Click(object sender, EventArgs e)
-        {
+        {   
+            if(Them.Enabled==false)
+            {
+                Them.Enabled = true;
+                xoa_noidung_box();
+                auto_add_id();
+            }    
             if (DialogResult.Yes == MessageBox.Show("Xác nhận trước khi thêm", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
                 if (cn.State == ConnectionState.Closed)
@@ -126,7 +132,7 @@ namespace XuatExcelApp
                     {
                         cmd = new SqlCommand("CRUD", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.SelectedText));
+                        cmd.Parameters.AddWithValue("@SO_CT", int.Parse(comboBox1.Text));
                         cmd.Parameters.AddWithValue("@Approved", 0);
                         cmd.Parameters.AddWithValue("@TEN_NGUOI_NHAN", ten_box.Text);
                         cmd.Parameters.AddWithValue("@DIA_CHI", diachi_box.Text);
@@ -197,6 +203,7 @@ namespace XuatExcelApp
                 {
                     MessageBox.Show("Số CT bị trùng hoặc dữ liệu không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                 }
+                xoa_noidung_box();
                 cn.Close();
             }
         }
@@ -412,6 +419,7 @@ namespace XuatExcelApp
                 }
                 cn.Close();
             }
+            Them.Enabled = true;
             xoa_noidung_box();
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -422,9 +430,9 @@ namespace XuatExcelApp
             }
             try
             {
-                comboBox1.ResetText();
-            comboBox1.SelectedText = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
+            Them.Enabled = false;
+            comboBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].EditedFormattedValue) == true)
             {
                 duyet_box.CheckState = CheckState.Checked;
             }
@@ -580,7 +588,9 @@ namespace XuatExcelApp
                 }
                 cn.Close();
             }
+            Them.Enabled = true;
             xoa_noidung_box();
+
         }
         private void xuatExcel_Click(object sender, EventArgs e)
         {
@@ -811,7 +821,7 @@ namespace XuatExcelApp
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            auto_add_id();
+            //auto_add_id();
         }
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -1163,6 +1173,8 @@ namespace XuatExcelApp
         private void Form1_Click(object sender, EventArgs e)
         {
             Get_All_ChungTu();
+            Them.Enabled = true;
+            auto_add_id();
             xoa_noidung_box();
         }
         private void Cach_Bao_Cao_SelectedIndexChanged(object sender, EventArgs e)
@@ -1212,7 +1224,7 @@ namespace XuatExcelApp
         }
         private void comboBox1_Click(object sender, EventArgs e)
         {
-            auto_add_id();
+            //auto_add_id();
         }
 
         private void A5_CheckedChanged(object sender, EventArgs e)
