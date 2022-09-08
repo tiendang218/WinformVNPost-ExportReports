@@ -22,7 +22,7 @@ namespace XuatExcelApp
 {
     public partial class Form1 : Form
     {
-        SqlConnection cn = new SqlConnection(@"Data Source=KTNV-TIEN\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
+        SqlConnection cn = new SqlConnection(@"Data Source=DEVLAP\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
         SqlCommand cmd;
         SqlDataAdapter da;
         SqlDataReader dr;

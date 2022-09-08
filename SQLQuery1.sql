@@ -473,10 +473,11 @@ as
 select * from CT_HCC
 where SO_CT=@ma
 
+drop proc search_sdt
 create proc search_sdt @sdt varchar(50)
 as
 select * from CT_HCC
-where DIEN_THOAI=@sdt
+where DIEN_THOAI like '%'+ @sdt +'%'
 
 search_sdt '12312'
 
@@ -484,7 +485,7 @@ drop proc search_nguoinhan @ten='T'
 create proc search_nguoinhan @ten nvarchar(50)
 as
 select * from CT_HCC
-where TEN_NGUOI_NHAN=@ten
+where TEN_NGUOI_NHAN LIKE '%'+ @ten + '%'
 
 
  

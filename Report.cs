@@ -13,7 +13,7 @@ namespace XuatExcelApp
 {
     public partial class Report : Form
     {
-        SqlConnection cn = new SqlConnection(@"Data Source=KTNV-TIEN\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
+        SqlConnection cn = new SqlConnection(@"Data Source=DEVLAP\SQLEXPRESS;Initial Catalog=ChungTuHCC;Integrated Security=True");
         SqlCommand cmd;
         SqlDataAdapter da;     
         public Report()
