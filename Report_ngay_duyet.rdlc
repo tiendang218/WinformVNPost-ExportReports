@@ -1023,7 +1023,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!CUOC_PHI.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>#,0'đ';(#,0'đ')</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1039,6 +1041,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>vi-VN</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1301,7 +1304,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Sum(Fields!CUOC_PHI.Value)</Value>
-                              <Style />
+                              <Style>
+                                <Format>#,0'đ';(#,0'đ')</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1317,6 +1322,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>vi-VN</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1579,7 +1585,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Sum(Fields!CUOC_PHI.Value)</Value>
-                              <Style />
+                              <Style>
+                                <Format>#,0'đ';(#,0'đ')</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -1595,8 +1603,10 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>vi-VN</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>

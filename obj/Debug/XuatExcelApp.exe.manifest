@@ -1158,14 +1158,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="XuatExcelApp.exe" size="638936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="XuatExcelApp.exe" size="628696">
       <assemblyIdentity name="XuatExcelApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>eEz38q7Md2Ns4HwCOl1amFwbMKfH0z17DDxugdMkp+0=</dsig:DigestValue>
+        <dsig:DigestValue>3uR9NH5k95BxN6BIvI6Wf/5RYulXhBsjcX3oEKhfEI4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
