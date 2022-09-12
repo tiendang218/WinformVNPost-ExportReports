@@ -956,7 +956,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.24722cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1204,7 +1204,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>1.25264cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1395,7 +1395,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Tổng cước trong ngày nhập của huyện</Value>
+                              <Value>Tổng cước trong ngày nhập của huyện </Value>
+                              <Style />
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!TEN_HUYENTP.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1701,7 +1705,6 @@
                         <rd:FormatSymbolCulture>vi-VN</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -2004,7 +2007,7 @@
         <DataSetName>DataSet5</DataSetName>
         <Top>1.91064cm</Top>
         <Left>0.05856cm</Left>
-        <Height>3.6cm</Height>
+        <Height>3.89986cm</Height>
         <Width>30cm</Width>
         <Style>
           <Border>
@@ -2073,7 +2076,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>2.16954in</Height>
+    <Height>2.2876in</Height>
     <Style />
   </Body>
   <Width>11.83408in</Width>
