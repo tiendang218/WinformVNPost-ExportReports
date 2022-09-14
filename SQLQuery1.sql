@@ -583,3 +583,7 @@ select TEN_TINH from TINH
 where @box= TEN_TINH
 
 search_box_tinh @box="Bình Thuận"
+
+create proc export_excel
+as
+select * from CT_HCC

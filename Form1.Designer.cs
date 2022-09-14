@@ -97,6 +97,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -372,7 +373,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(146, 34);
             this.label12.TabIndex = 30;
-            this.label12.Text = "Tỉnh phát";
+            this.label12.Text = "Tỉnh";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tinh_comboBox2
@@ -403,7 +404,7 @@
             this.huyen_comboBox3.FormattingEnabled = true;
             this.huyen_comboBox3.Location = new System.Drawing.Point(707, 284);
             this.huyen_comboBox3.Name = "huyen_comboBox3";
-            this.huyen_comboBox3.Size = new System.Drawing.Size(99, 30);
+            this.huyen_comboBox3.Size = new System.Drawing.Size(133, 30);
             this.huyen_comboBox3.TabIndex = 14;
             this.huyen_comboBox3.SelectedIndexChanged += new System.EventHandler(this.huyen_comboBox3_SelectedIndexChanged);
             // 
@@ -420,12 +421,12 @@
             // 
             this.label14.BackColor = System.Drawing.SystemColors.Control;
             this.label14.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label14.Location = new System.Drawing.Point(806, 280);
+            this.label14.Location = new System.Drawing.Point(847, 280);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(157, 34);
+            this.label14.Size = new System.Drawing.Size(116, 34);
             this.label14.TabIndex = 36;
-            this.label14.Text = "Xã/phường phát";
+            this.label14.Text = "Xã/phường";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label15
@@ -820,21 +821,35 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(8, 43);
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(12, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 48);
+            this.label1.Size = new System.Drawing.Size(202, 43);
             this.label1.TabIndex = 104;
-            this.label1.Text = "QUẢN LÝ CHỨNG TỪ HÀNH CHÍNH CÔNG";
+            this.label1.Text = "QUẢN LÝ CHỨNG TỪ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label25
             // 
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label25.Location = new System.Drawing.Point(12, 103);
+            this.label25.Location = new System.Drawing.Point(12, 26);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(279, 31);
+            this.label25.Size = new System.Drawing.Size(261, 39);
             this.label25.TabIndex = 105;
             this.label25.Text = "BƯU ĐIỆN TỈNH BÌNH THUẬN";
+            this.label25.Click += new System.EventHandler(this.label25_Click);
+            // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label26.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label26.Location = new System.Drawing.Point(12, 105);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(202, 44);
+            this.label26.TabIndex = 106;
+            this.label26.Text = "HÀNH CHÍNH CÔNG";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Form1
             // 
@@ -842,6 +857,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1229, 605);
+            this.Controls.Add(this.label26);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label24);
@@ -989,6 +1005,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
     }
 }
 

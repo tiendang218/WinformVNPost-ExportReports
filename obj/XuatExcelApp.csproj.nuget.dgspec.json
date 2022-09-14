@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[2.17.1, )"
             },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
             "EntityFramework": {
               "target": "Package",
               "version": "[6.4.4, )"
@@ -49,6 +53,10 @@
             "GrapeCity.Documents.Word": {
               "target": "Package",
               "version": "[5.2.0.800, )"
+            },
+            "IronXL.Excel": {
+              "target": "Package",
+              "version": "[2022.9.8711, )"
             },
             "Microsoft.Office.Interop.Excel": {
               "target": "Package",

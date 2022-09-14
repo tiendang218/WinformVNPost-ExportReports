@@ -18,6 +18,10 @@ using System.ComponentModel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using System.Globalization;
 using ClosedXML.Excel;
+using System.Configuration;
+using IronXL;
+using OfficeOpenXml;
+
 namespace XuatExcelApp
 {
     public partial class Form1 : Form
@@ -623,27 +627,32 @@ namespace XuatExcelApp
             //    }
             //}
             //Adding the Columns
-            int k = dataGridView1.Columns.Count;
-            int l = dataGridView1.Rows.Count;
-            if (dataGridView1.Rows.Count > 0)
+            SqlCommand cmd = new SqlCommand("export_excel", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            da = new SqlDataAdapter(cmd);
+            System.Data.DataTable dt = new System.Data.DataTable();
+            da.Fill(dt);
+            int k = dt.Columns.Count;
+            int l = dt.Rows.Count;
+            if (dt.Rows.Count > 0)
             {
                 Microsoft.Office.Interop.Excel.ApplicationClass XcelApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
                 XcelApp.Application.Workbooks.Add(Type.Missing);
                 //Sheet trong excel có chỉ số bắt đầu bằng 1
                 for (int i = 0; i < k; i++)
                 {
-                    XcelApp.Cells[1, i + 1] = dataGridView1.Columns[i].HeaderText;//Gán header cho hàng đầu excel
+                    XcelApp.Cells[1, i + 1] = dt.Columns[i].ToString();//Gán giá trị header
                 }
                 for (int i = 2; i <= l; i++)
                 {
                     for (int j = 1; j <= k; j++)
                     {
-                        XcelApp.Cells[i, j] = dataGridView1.Rows[i - 2].Cells[j - 1].Value.ToString();//gán giá trị cho từ thứ 2 đến hàng cuối.
+                        XcelApp.Cells[i, j] = dt.Rows[i - 2][j - 1].ToString();//gán giá trị cho các ô từ hàng thứ 2 đến hàng cuối.
                     }
                 }
-                XcelApp.Columns.AutoFit();
                 XcelApp.Visible = true;
             }
+
         }
         private void button7_Click(object sender, EventArgs e)
         {
@@ -780,7 +789,7 @@ namespace XuatExcelApp
             Microsoft.Office.Interop.Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
             int i = dt.Rows.Count;
             int j = dt.Columns.Count;
-            oTable = oDoc.Tables.Add(wrdRng, i + 1, j, ref oMissing, ref oMissing); 
+            oTable = oDoc.Tables.Add(wrdRng, i + 1, j, ref oMissing, ref oMissing);
             oTable.Rows.Alignment = WdRowAlignment.wdAlignRowCenter;
             oTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
             oTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
@@ -1248,6 +1257,11 @@ namespace XuatExcelApp
         }
 
         private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label25_Click(object sender, EventArgs e)
         {
 
         }
