@@ -837,7 +837,7 @@ namespace XuatExcelApp
             linkLabel2.LinkVisited = true;
             //Call the Process.Start method to open the default browser
             //with a URL:
-            System.Diagnostics.Process.Start("https://www.facebook.com/tttiendanggg/");
+            System.Diagnostics.Process.Start("https://www.facebook.com/tienn.dangg/");
         }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
